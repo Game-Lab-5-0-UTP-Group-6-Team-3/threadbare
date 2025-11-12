@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dryinuip71yvm"]
+[gd_scene load_steps=38 format=4 uid="uid://dryinuip71yvm"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
@@ -26,6 +26,13 @@
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="22_tgado"]
 [ext_resource type="Script" uid="uid://bltpep3g48huc" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/box_2.gd" id="23_k8ms1"]
 [ext_resource type="Texture2D" uid="uid://c2m3jeidfq6ai" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/box2.png" id="24_cf23d"]
+[ext_resource type="Texture2D" uid="uid://c6q3gwsjo4vjh" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/numbers_object.png" id="25_cf23d"]
+[ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="26_interact"]
+[ext_resource type="Script" uid="uid://8xo5f21u6msr" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_1.gd" id="27_number1"]
+[ext_resource type="Script" uid="uid://c2lbftbqre78x" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_2.gd" id="28_d1r8i"]
+[ext_resource type="Script" uid="uid://b7gql5ketshdk" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_3.gd" id="29_p0ape"]
+[ext_resource type="Script" uid="uid://mgl5d6o11dmm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_4.gd" id="30_kmrtp"]
+[ext_resource type="Script" uid="uid://cn6llxta5muaw" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_5.gd" id="31_f2hix"]
 
 [sub_resource type="Resource" id="Resource_n8tm3"]
 script = ExtResource("18_7cqpc")
@@ -34,6 +41,12 @@ metadata/_custom_type_script = "uid://bgmwplmj3bfls"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6l02"]
 size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0krk3"]
+radius = 21.023796
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 25.0
 
 [node name="SequencePuzzleTemplate" type="Node2D"]
 
@@ -66,13 +79,13 @@ position = Vector2(356, 453)
 
 [node name="Blue" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_4v8ro")]
 modulate = Color(0, 0.4, 0.6, 1)
-position = Vector2(3, -81)
+position = Vector2(11, 58)
 sprite_frames = ExtResource("6_cmgae")
 audio_stream = ExtResource("7_2uj2h")
 
 [node name="Pink" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_4v8ro")]
 modulate = Color(0.89, 0.2937, 0.804817, 1)
-position = Vector2(89, -177)
+position = Vector2(164, 56)
 sprite_frames = ExtResource("6_cmgae")
 audio_stream = ExtResource("8_vtitg")
 
@@ -84,7 +97,7 @@ audio_stream = ExtResource("9_h0ieo")
 
 [node name="Green" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_4v8ro")]
 modulate = Color(0.188235, 0.717647, 0, 1)
-position = Vector2(242, -176)
+position = Vector2(312, 54)
 sprite_frames = ExtResource("6_cmgae")
 audio_stream = ExtResource("10_q7u8c")
 
@@ -96,7 +109,7 @@ audio_stream = ExtResource("11_2i5va")
 
 [node name="Red" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_4v8ro")]
 modulate = Color(0.89, 0.2937, 0.2937, 1)
-position = Vector2(324, -59)
+position = Vector2(379, 52)
 sprite_frames = ExtResource("6_cmgae")
 audio_stream = ExtResource("12_qytao")
 
@@ -175,6 +188,139 @@ shape = SubResource("RectangleShape2D_x6l02")
 [node name="Box2_sprite" type="Sprite2D" parent="OnTheGround/Boxes/Box2"]
 position = Vector2(58, 83)
 texture = ExtResource("24_cf23d")
+
+[node name="PuzzleSumas" type="Node2D" parent="OnTheGround"]
+
+[node name="Number1" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(263, 197)
+gravity_scale = 0.0
+script = ExtResource("27_number1")
+
+[node name="ColllsionNumber1" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number1"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber1" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number1/ColllsionNumber1"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("25_cf23d")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number1"]
+unique_name_in_owner = true
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number1/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="Number2" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(363, 197)
+gravity_scale = 0.0
+script = ExtResource("28_d1r8i")
+
+[node name="ColllsionNumber2" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number2"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber2" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number2/ColllsionNumber2"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("25_cf23d")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number2"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number2/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="Number3" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(460, 195)
+gravity_scale = 0.0
+script = ExtResource("29_p0ape")
+
+[node name="ColllsionNumber3" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number3"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber3" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number3/ColllsionNumber3"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("25_cf23d")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number3"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number3/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="Number4" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(315, 302)
+gravity_scale = 0.0
+script = ExtResource("30_kmrtp")
+
+[node name="ColllsionNumber4" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number4"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber4" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number4/ColllsionNumber4"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("25_cf23d")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number4"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number4/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="Number5" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(431, 302)
+gravity_scale = 0.0
+script = ExtResource("31_f2hix")
+
+[node name="ColllsionNumber5" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number5"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber5" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number5/ColllsionNumber5"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("25_cf23d")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number5"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number5/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
