@@ -235,7 +235,7 @@ _data = {
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_k6wdu"]
 frequency = 0.0075
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ql7a6"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lbtuf"]
 width = 1280
 height = 720
 noise = SubResource("FastNoiseLite_k6wdu")
@@ -244,7 +244,7 @@ seamless_blend_skirt = 0.75
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xuaj6"]
 shader = ExtResource("20_cq1dq")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_ql7a6")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_lbtuf")
 shader_parameter/density = 0.25
 shader_parameter/speed = Vector2(0.02, 0.01)
 
@@ -428,7 +428,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Cinematic" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
 script = ExtResource("4_r4x33")
