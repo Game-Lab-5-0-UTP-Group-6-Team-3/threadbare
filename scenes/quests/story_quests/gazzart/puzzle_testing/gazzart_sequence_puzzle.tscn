@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://dryinuip71yvm"]
+[gd_scene load_steps=43 format=4 uid="uid://dryinuip71yvm"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
@@ -37,20 +37,21 @@
 [ext_resource type="Script" uid="uid://mgl5d6o11dmm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_4.gd" id="30_kmrtp"]
 [ext_resource type="Texture2D" uid="uid://cgq411tidsdjm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number3_sprite.png" id="31_1devu"]
 [ext_resource type="Texture2D" uid="uid://cybuabtqleui7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number4_sprite.png" id="33_vto3y"]
+[ext_resource type="Texture2D" uid="uid://c4hks1t7cv5us" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/target_boxes.png" id="36_vto3y"]
 
 [sub_resource type="Resource" id="Resource_n8tm3"]
 script = ExtResource("18_7cqpc")
 type = 2
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6l02"]
-size = Vector2(64, 64)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0krk3"]
 radius = 21.023796
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
 radius = 25.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6l02"]
+size = Vector2(64, 64)
 
 [node name="SequencePuzzleTemplate" type="Node2D"]
 
@@ -152,47 +153,6 @@ dialogue_title = &"well_done"
 position = Vector2(153, 567)
 direction = 1
 text = "First melody: yellow, green, blue."
-
-[node name="Boxes" type="Node2D" parent="OnTheGround"]
-position = Vector2(-37, 0)
-
-[node name="Box1" type="RigidBody2D" parent="OnTheGround/Boxes"]
-position = Vector2(239, 259)
-mass = 2.0
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
-contact_monitor = true
-max_contacts_reported = 10
-linear_damp = 8.0
-script = ExtResource("21_x6l02")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/Boxes/Box1"]
-position = Vector2(-40, 86)
-shape = SubResource("RectangleShape2D_x6l02")
-
-[node name="Box1_sprite" type="Sprite2D" parent="OnTheGround/Boxes/Box1"]
-position = Vector2(-40, 86)
-texture = ExtResource("21_gg1sl")
-
-[node name="Box2" type="RigidBody2D" parent="OnTheGround/Boxes"]
-position = Vector2(649, 267)
-mass = 2.0
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
-contact_monitor = true
-max_contacts_reported = 10
-linear_damp = 8.0
-script = ExtResource("23_k8ms1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/Boxes/Box2"]
-position = Vector2(58, 84)
-shape = SubResource("RectangleShape2D_x6l02")
-
-[node name="Box2_sprite" type="Sprite2D" parent="OnTheGround/Boxes/Box2"]
-position = Vector2(58, 83)
-texture = ExtResource("24_cf23d")
 
 [node name="PuzzleSumas" type="Node2D" parent="OnTheGround"]
 position = Vector2(-30, 0)
@@ -329,6 +289,75 @@ action = "Tap"
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_interact")
 debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="PuzzleEstatuas" type="Node2D" parent="OnTheGround"]
+
+[node name="PuzzleCajas" type="Node2D" parent="OnTheGround"]
+
+[node name="Tableros" type="Node2D" parent="OnTheGround/PuzzleCajas"]
+
+[node name="Baldosas_Tablero" type="TileMapLayer" parent="OnTheGround/PuzzleCajas/Tableros"]
+tile_map_data = PackedByteArray("AAABAAUAEAAAAAAAAAABAAMAEAAAAAAAAAACAAQAEAAAAAAAAAADAAMAEAAAAAAAAAADAAUAEAAAAAAAAAAJAAUAEAAAAAAAAAAJAAMAEAAAAAAAAAALAAMAEAAAAAAAAAALAAUAEAAAAAAAAAACAAMAEQAAAAAAAAACAAUAEQAAAAAAAAADAAQAEQAAAAAAAAAKAAMAEQAAAAAAAAAJAAQAEQAAAAAAAAALAAQAEQAAAAAAAAAKAAUAEQAAAAAAAAA=")
+tile_set = ExtResource("1_c5656")
+
+[node name="Baldosas_Bloque" type="TileMapLayer" parent="OnTheGround/PuzzleCajas/Tableros"]
+tile_map_data = PackedByteArray("AAAKAAQADwAAAAAAAAABAAQADwAAAAAAAAA=")
+tile_set = ExtResource("1_c5656")
+
+[node name="Boxes" type="Node2D" parent="OnTheGround/PuzzleCajas/Tableros"]
+position = Vector2(-37, 0)
+
+[node name="Box1" type="RigidBody2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes"]
+position = Vector2(237, 266)
+mass = 2.0
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+contact_monitor = true
+max_contacts_reported = 10
+linear_damp = 8.0
+script = ExtResource("21_x6l02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes/Box1"]
+position = Vector2(-40, 86)
+shape = SubResource("RectangleShape2D_x6l02")
+
+[node name="Box1_sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes/Box1"]
+position = Vector2(-40, 86)
+texture = ExtResource("21_gg1sl")
+
+[node name="Box2" type="RigidBody2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes"]
+position = Vector2(649, 267)
+mass = 2.0
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+contact_monitor = true
+max_contacts_reported = 10
+linear_damp = 8.0
+script = ExtResource("23_k8ms1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes/Box2"]
+position = Vector2(58, 84)
+shape = SubResource("RectangleShape2D_x6l02")
+
+[node name="Box2_sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes/Box2"]
+position = Vector2(58, 83)
+texture = ExtResource("24_cf23d")
+
+[node name="Target1" type="Node2D" parent="OnTheGround/PuzzleCajas"]
+
+[node name="Target1Sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Target1"]
+position = Vector2(96, 224)
+texture = ExtResource("36_vto3y")
+
+[node name="Target2" type="Node2D" parent="OnTheGround/PuzzleCajas"]
+
+[node name="Target2Sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Target2"]
+position = Vector2(608, 224)
+texture = ExtResource("36_vto3y")
+
+[node name="JefeFinal" type="Node2D" parent="OnTheGround"]
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
