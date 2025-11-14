@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://cybuabtqleui7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number4_sprite.png" id="33_vto3y"]
 [ext_resource type="Texture2D" uid="uid://2035jimxvq6o" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/switch_statues.png" id="34_mn1ft"]
 [ext_resource type="Texture2D" uid="uid://c4hks1t7cv5us" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/target_boxes.png" id="36_vto3y"]
+[ext_resource type="Script" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puzzle_cajas_controller.gd" id="37_puzzle_cajas"]
 
 [sub_resource type="Resource" id="Resource_n8tm3"]
 script = ExtResource("18_7cqpc")
@@ -350,6 +351,7 @@ texture = ExtResource("34_mn1ft")
 [node name="PuzzleCajas" type="Node2D" parent="OnTheGround"]
 
 [node name="Tableros" type="Node2D" parent="OnTheGround/PuzzleCajas"]
+script = ExtResource("37_puzzle_cajas")
 
 [node name="Baldosas_Tablero" type="TileMapLayer" parent="OnTheGround/PuzzleCajas/Tableros"]
 tile_map_data = PackedByteArray("AAABAAUAEAAAAAAAAAABAAMAEAAAAAAAAAACAAQAEAAAAAAAAAADAAMAEAAAAAAAAAADAAUAEAAAAAAAAAAJAAUAEAAAAAAAAAAJAAMAEAAAAAAAAAALAAMAEAAAAAAAAAALAAUAEAAAAAAAAAACAAMAEQAAAAAAAAACAAUAEQAAAAAAAAADAAQAEQAAAAAAAAAKAAMAEQAAAAAAAAAJAAQAEQAAAAAAAAALAAQAEQAAAAAAAAAKAAUAEQAAAAAAAAA=")
@@ -394,7 +396,7 @@ position = Vector2(-40, 86)
 texture = ExtResource("21_gg1sl")
 
 [node name="Box2" type="RigidBody2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes"]
-position = Vector2(649, 267)
+position = Vector2(715, 268)
 mass = 2.0
 gravity_scale = 0.0
 lock_rotation = true

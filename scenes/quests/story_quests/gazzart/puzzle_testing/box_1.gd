@@ -3,7 +3,8 @@
 extends RigidBody2D
 
 ## Emitida cuando la caja se mueve
-signal caja_movida(new_position: Vector2)
+## Parámetros: nueva_posicion, direccion_movimiento
+signal caja_movida(new_position: Vector2, direccion: Vector2)
 
 ## Distancia a la que detecta al jugador para empujar
 @export var deteccion: float = 60.0
@@ -14,6 +15,7 @@ signal caja_movida(new_position: Vector2)
 var nodo_jugador: Player = null
 var cooldown_empuje: float = 0.0
 var tiempo_cooldown: float = 0.2
+var tablero_tilemap: TileMapLayer = null
 
 func _ready() -> void:
 	# Configurar propiedades de física
@@ -23,6 +25,11 @@ func _ready() -> void:
 	mass = 2.0  # Peso de la caja
 	# Congelar la física para movimiento directo
 	freeze = true
+	
+	# Obtener referencia al tilemap del tablero
+	tablero_tilemap = get_node_or_null("../../Baldosas_Tablero") as TileMapLayer
+	if not tablero_tilemap:
+		print("Advertencia: No se encontró el tilemap del tablero (Baldosas_Tablero)")
 
 
 func _physics_process(delta: float) -> void:
@@ -113,11 +120,42 @@ func _mover_la_caja(direccion: Vector2) -> void:
 	# Detener cualquier movimiento actual
 	linear_velocity = Vector2.ZERO
 	
-	# Calcular la nueva posición
+	# Calcular la nueva posición del RigidBody2D
 	var nueva_posicion = global_position + (direccion * empuje)
+	
+	# Obtener la posición real de la caja (usando CollisionShape2D si existe)
+	var posicion_real_caja = nueva_posicion
+	var colision_caja = get_node_or_null("CollisionShape2D")
+	if colision_caja:
+		# Calcular la posición global del CollisionShape2D en la nueva posición
+		posicion_real_caja = nueva_posicion + colision_caja.position
+	
+	# Verificar que la nueva posición esté dentro del tablero
+	if not _posicion_valida_en_tablero(posicion_real_caja):
+		# Si no es válida, no mover la caja
+		return
 	
 	# Mover la caja instantáneamente
 	global_position = nueva_posicion
 	
-	# Emitir señal para notificar que la caja se movió
-	caja_movida.emit(nueva_posicion)
+	# Emitir señal para notificar que la caja se movió (incluyendo la dirección)
+	caja_movida.emit(nueva_posicion, direccion)
+
+
+func _posicion_valida_en_tablero(posicion: Vector2) -> bool:
+	# Si no hay tilemap, permitir el movimiento (por compatibilidad)
+	if not tablero_tilemap:
+		return true
+	
+	# Convertir la posición global a coordenadas locales del tilemap
+	var posicion_local = tablero_tilemap.to_local(posicion)
+	
+	# Convertir a coordenadas de celda del tilemap
+	var coordenadas_celda = tablero_tilemap.local_to_map(posicion_local)
+	
+	# Verificar si hay un tile válido en esa celda
+	# get_cell_source_id retorna -1 si no hay tile
+	var source_id = tablero_tilemap.get_cell_source_id(coordenadas_celda)
+	
+	# Si source_id es -1, no hay tile, por lo que la posición no es válida
+	return source_id != -1
