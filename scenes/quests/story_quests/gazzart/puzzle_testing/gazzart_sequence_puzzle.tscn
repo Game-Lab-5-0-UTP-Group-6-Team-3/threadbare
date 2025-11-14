@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://dryinuip71yvm"]
+[gd_scene load_steps=50 format=4 uid="uid://dryinuip71yvm"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
@@ -23,13 +23,15 @@
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="21_ca12e"]
 [ext_resource type="Texture2D" uid="uid://cf34tb5m4t6a1" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/box1.png" id="21_gg1sl"]
 [ext_resource type="Script" uid="uid://c83qdc8rpl4se" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/box_1.gd" id="21_x6l02"]
+[ext_resource type="Texture2D" uid="uid://cjvspnd1yufe2" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge5.png" id="22_mn1ft"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="22_tgado"]
+[ext_resource type="Texture2D" uid="uid://nqx5858wdd53" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge6.png" id="23_iuy7r"]
 [ext_resource type="Script" uid="uid://bltpep3g48huc" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/box_2.gd" id="23_k8ms1"]
+[ext_resource type="Texture2D" uid="uid://dv487oiscabb6" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge1.png" id="24_avfkk"]
 [ext_resource type="Texture2D" uid="uid://c2m3jeidfq6ai" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/box2.png" id="24_cf23d"]
 [ext_resource type="Texture2D" uid="uid://bdg1kleu2swm0" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge2.png" id="25_1devu"]
 [ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="26_interact"]
 [ext_resource type="Texture2D" uid="uid://cubtn1v2dpyue" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number1_sprite.png" id="26_qbn36"]
-[ext_resource type="Texture2D" uid="uid://ccqvkh3nuycr7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge7.png" id="26_vto3y"]
 [ext_resource type="Script" uid="uid://8xo5f21u6msr" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_1.gd" id="27_number1"]
 [ext_resource type="Script" uid="uid://c2lbftbqre78x" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_2.gd" id="28_d1r8i"]
 [ext_resource type="Texture2D" uid="uid://1judetxxx5cd" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number2_sprite.png" id="29_8k25n"]
@@ -182,13 +184,25 @@ texture = ExtResource("25_1devu")
 
 [node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1"]
 position = Vector2(55, 183)
-texture = ExtResource("26_vto3y")
+texture = ExtResource("22_mn1ft")
 
 [node name="PuzzleSuma2" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
 
 [node name="PuzzleSuma3" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
 
 [node name="PuzzleSuma4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+
+[node name="Puente1_PS4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4"]
+position = Vector2(17, 206)
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente1_PS4"]
+texture = ExtResource("23_iuy7r")
+
+[node name="Puente2_PS4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4"]
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente2_PS4"]
+position = Vector2(65, 206)
+texture = ExtResource("24_avfkk")
 
 [node name="PuzzleSuma5" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
 
