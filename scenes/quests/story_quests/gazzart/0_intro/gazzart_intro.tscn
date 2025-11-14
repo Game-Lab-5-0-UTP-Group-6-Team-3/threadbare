@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://c44p4wfwyywxk"]
+[gd_scene load_steps=42 format=4 uid="uid://bgtdxxb20tluc"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_aaryj"]
 [ext_resource type="Texture2D" uid="uid://ddxakjtgamrjj" path="res://assets/third_party/tiny-swords/Resources/Resources/W_Idle.png" id="2_h1phu"]

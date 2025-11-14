@@ -979,5 +979,5 @@ grow_vertical = 2
 script = ExtResource("19_ykg1c")
 dialogue = ExtResource("23_pnrx4")
 animation_player = NodePath("../OnTheGround/AnimationPlayer")
-next_scene = "uid://bgtdxxb20tluc"
+next_scene = "uid://c44p4wfwyywxk"
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
