@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://dryinuip71yvm"]
+[gd_scene load_steps=48 format=4 uid="uid://dryinuip71yvm"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
@@ -36,7 +36,10 @@
 [ext_resource type="Script" uid="uid://b7gql5ketshdk" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_3.gd" id="29_p0ape"]
 [ext_resource type="Script" uid="uid://mgl5d6o11dmm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_4.gd" id="30_kmrtp"]
 [ext_resource type="Texture2D" uid="uid://cgq411tidsdjm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number3_sprite.png" id="31_1devu"]
+[ext_resource type="Texture2D" uid="uid://bn0tqynlmidc8" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_down.png" id="32_cllw3"]
+[ext_resource type="Texture2D" uid="uid://dcxm45eg2ifui" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_right.png" id="33_ddpwg"]
 [ext_resource type="Texture2D" uid="uid://cybuabtqleui7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number4_sprite.png" id="33_vto3y"]
+[ext_resource type="Texture2D" uid="uid://2035jimxvq6o" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/switch_statues.png" id="34_mn1ft"]
 [ext_resource type="Texture2D" uid="uid://c4hks1t7cv5us" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/target_boxes.png" id="36_vto3y"]
 
 [sub_resource type="Resource" id="Resource_n8tm3"]
@@ -49,6 +52,12 @@ radius = 21.023796
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
 radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cllw3"]
+radius = 31.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddpwg"]
+radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6l02"]
 size = Vector2(64, 64)
@@ -292,6 +301,38 @@ debug_color = Color(0.600391, 0.54335, 0, 0.42)
 
 [node name="PuzzleEstatuas" type="Node2D" parent="OnTheGround"]
 
+[node name="Estatuas" type="Node2D" parent="OnTheGround/PuzzleEstatuas"]
+position = Vector2(111, 0)
+
+[node name="Estatua1" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/Estatuas"]
+position = Vector2(23, 98)
+gravity_scale = 0.0
+
+[node name="Estatua1Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua1"]
+shape = SubResource("CircleShape2D_cllw3")
+
+[node name="Estatua1Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua1/Estatua1Collision"]
+texture = ExtResource("32_cllw3")
+
+[node name="Estatua2" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/Estatuas"]
+position = Vector2(244, 97)
+gravity_scale = 0.0
+
+[node name="Estatua2Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua2"]
+shape = SubResource("CircleShape2D_ddpwg")
+
+[node name="Estatua2Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua2/Estatua2Collision"]
+texture = ExtResource("33_ddpwg")
+
+[node name="Switches" type="Node2D" parent="OnTheGround/PuzzleEstatuas"]
+position = Vector2(106, -1)
+
+[node name="Switch1" type="Node2D" parent="OnTheGround/PuzzleEstatuas/Switches"]
+
+[node name="Switch1Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch1"]
+position = Vector2(135, 98)
+texture = ExtResource("34_mn1ft")
+
 [node name="PuzzleCajas" type="Node2D" parent="OnTheGround"]
 
 [node name="Tableros" type="Node2D" parent="OnTheGround/PuzzleCajas"]
@@ -303,6 +344,18 @@ tile_set = ExtResource("1_c5656")
 [node name="Baldosas_Bloque" type="TileMapLayer" parent="OnTheGround/PuzzleCajas/Tableros"]
 tile_map_data = PackedByteArray("AAAKAAQADwAAAAAAAAABAAQADwAAAAAAAAA=")
 tile_set = ExtResource("1_c5656")
+
+[node name="Target1" type="Node2D" parent="OnTheGround/PuzzleCajas/Tableros"]
+
+[node name="Target1Sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Tableros/Target1"]
+position = Vector2(96, 224)
+texture = ExtResource("36_vto3y")
+
+[node name="Target2" type="Node2D" parent="OnTheGround/PuzzleCajas/Tableros"]
+
+[node name="Target2Sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Tableros/Target2"]
+position = Vector2(608, 224)
+texture = ExtResource("36_vto3y")
 
 [node name="Boxes" type="Node2D" parent="OnTheGround/PuzzleCajas/Tableros"]
 position = Vector2(-37, 0)
@@ -344,18 +397,6 @@ shape = SubResource("RectangleShape2D_x6l02")
 [node name="Box2_sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Tableros/Boxes/Box2"]
 position = Vector2(58, 83)
 texture = ExtResource("24_cf23d")
-
-[node name="Target1" type="Node2D" parent="OnTheGround/PuzzleCajas"]
-
-[node name="Target1Sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Target1"]
-position = Vector2(96, 224)
-texture = ExtResource("36_vto3y")
-
-[node name="Target2" type="Node2D" parent="OnTheGround/PuzzleCajas"]
-
-[node name="Target2Sprite" type="Sprite2D" parent="OnTheGround/PuzzleCajas/Target2"]
-position = Vector2(608, 224)
-texture = ExtResource("36_vto3y")
 
 [node name="JefeFinal" type="Node2D" parent="OnTheGround"]
 
