@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://dryinuip71yvm"]
+[gd_scene load_steps=42 format=4 uid="uid://dryinuip71yvm"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
@@ -26,13 +26,17 @@
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="22_tgado"]
 [ext_resource type="Script" uid="uid://bltpep3g48huc" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/box_2.gd" id="23_k8ms1"]
 [ext_resource type="Texture2D" uid="uid://c2m3jeidfq6ai" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/box2.png" id="24_cf23d"]
-[ext_resource type="Texture2D" uid="uid://c6q3gwsjo4vjh" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/numbers_object.png" id="25_cf23d"]
+[ext_resource type="Texture2D" uid="uid://bdg1kleu2swm0" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge2.png" id="25_1devu"]
 [ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="26_interact"]
+[ext_resource type="Texture2D" uid="uid://cubtn1v2dpyue" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number1_sprite.png" id="26_qbn36"]
+[ext_resource type="Texture2D" uid="uid://ccqvkh3nuycr7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge7.png" id="26_vto3y"]
 [ext_resource type="Script" uid="uid://8xo5f21u6msr" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_1.gd" id="27_number1"]
 [ext_resource type="Script" uid="uid://c2lbftbqre78x" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_2.gd" id="28_d1r8i"]
+[ext_resource type="Texture2D" uid="uid://1judetxxx5cd" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number2_sprite.png" id="29_8k25n"]
 [ext_resource type="Script" uid="uid://b7gql5ketshdk" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_3.gd" id="29_p0ape"]
 [ext_resource type="Script" uid="uid://mgl5d6o11dmm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_4.gd" id="30_kmrtp"]
-[ext_resource type="Script" uid="uid://cn6llxta5muaw" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_5.gd" id="31_f2hix"]
+[ext_resource type="Texture2D" uid="uid://cgq411tidsdjm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number3_sprite.png" id="31_1devu"]
+[ext_resource type="Texture2D" uid="uid://cybuabtqleui7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number4_sprite.png" id="33_vto3y"]
 
 [sub_resource type="Resource" id="Resource_n8tm3"]
 script = ExtResource("18_7cqpc")
@@ -150,9 +154,10 @@ direction = 1
 text = "First melody: yellow, green, blue."
 
 [node name="Boxes" type="Node2D" parent="OnTheGround"]
+position = Vector2(-37, 0)
 
 [node name="Box1" type="RigidBody2D" parent="OnTheGround/Boxes"]
-position = Vector2(265, 201)
+position = Vector2(239, 259)
 mass = 2.0
 gravity_scale = 0.0
 lock_rotation = true
@@ -171,7 +176,7 @@ position = Vector2(-40, 86)
 texture = ExtResource("21_gg1sl")
 
 [node name="Box2" type="RigidBody2D" parent="OnTheGround/Boxes"]
-position = Vector2(679, 200)
+position = Vector2(649, 267)
 mass = 2.0
 gravity_scale = 0.0
 lock_rotation = true
@@ -190,22 +195,51 @@ position = Vector2(58, 83)
 texture = ExtResource("24_cf23d")
 
 [node name="PuzzleSumas" type="Node2D" parent="OnTheGround"]
+position = Vector2(-30, 0)
 
-[node name="Number1" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
+[node name="Puentes" type="Node2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(853, 233)
+
+[node name="PuzzleSuma1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+position = Vector2(10, 71)
+
+[node name="Puente1_PS1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente1_PS1"]
+position = Vector2(7, 183)
+texture = ExtResource("25_1devu")
+
+[node name="Puente2_PS1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1"]
+position = Vector2(55, 183)
+texture = ExtResource("26_vto3y")
+
+[node name="PuzzleSuma2" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+
+[node name="PuzzleSuma3" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+
+[node name="PuzzleSuma4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+
+[node name="PuzzleSuma5" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+
+[node name="Numeros" type="Node2D" parent="OnTheGround/PuzzleSumas"]
+
+[node name="Number1" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
 position = Vector2(263, 197)
 gravity_scale = 0.0
 script = ExtResource("27_number1")
 
-[node name="ColllsionNumber1" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number1"]
+[node name="ColllsionNumber1" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_0krk3")
 
-[node name="SpriteNumber1" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number1/ColllsionNumber1"]
+[node name="SpriteNumber1" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1/ColllsionNumber1"]
 position = Vector2(-1.2397766e-05, -2)
 scale = Vector2(0.7378472, 0.7395833)
-texture = ExtResource("25_cf23d")
+texture = ExtResource("26_qbn36")
 
-[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number1"]
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1"]
 unique_name_in_owner = true
 collision_layer = 32
 collision_mask = 0
@@ -213,111 +247,85 @@ script = ExtResource("26_interact")
 interact_label_position = Vector2(85, -20)
 action = "Tap"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number1/InteractArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1/InteractArea"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_interact")
 debug_color = Color(0.600391, 0.54335, 0, 0.42)
 
-[node name="Number2" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
+[node name="Number2" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
 position = Vector2(363, 197)
 gravity_scale = 0.0
 script = ExtResource("28_d1r8i")
 
-[node name="ColllsionNumber2" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number2"]
+[node name="ColllsionNumber2" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_0krk3")
 
-[node name="SpriteNumber2" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number2/ColllsionNumber2"]
+[node name="SpriteNumber2" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2/ColllsionNumber2"]
 position = Vector2(-1.2397766e-05, -2)
 scale = Vector2(0.7378472, 0.7395833)
-texture = ExtResource("25_cf23d")
+texture = ExtResource("29_8k25n")
 
-[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number2"]
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2"]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("26_interact")
 interact_label_position = Vector2(85, -20)
 action = "Tap"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number2/InteractArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2/InteractArea"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_interact")
 debug_color = Color(0.600391, 0.54335, 0, 0.42)
 
-[node name="Number3" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
-position = Vector2(460, 195)
+[node name="Number3" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
+position = Vector2(268, 299)
 gravity_scale = 0.0
 script = ExtResource("29_p0ape")
 
-[node name="ColllsionNumber3" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number3"]
+[node name="ColllsionNumber3" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_0krk3")
 
-[node name="SpriteNumber3" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number3/ColllsionNumber3"]
+[node name="SpriteNumber3" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3/ColllsionNumber3"]
 position = Vector2(-1.2397766e-05, -2)
 scale = Vector2(0.7378472, 0.7395833)
-texture = ExtResource("25_cf23d")
+texture = ExtResource("31_1devu")
 
-[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number3"]
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3"]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("26_interact")
 interact_label_position = Vector2(85, -20)
 action = "Tap"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number3/InteractArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3/InteractArea"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_interact")
 debug_color = Color(0.600391, 0.54335, 0, 0.42)
 
-[node name="Number4" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
-position = Vector2(315, 302)
+[node name="Number4" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
+position = Vector2(365, 297)
 gravity_scale = 0.0
 script = ExtResource("30_kmrtp")
 
-[node name="ColllsionNumber4" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number4"]
+[node name="ColllsionNumber4" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_0krk3")
 
-[node name="SpriteNumber4" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number4/ColllsionNumber4"]
+[node name="SpriteNumber4" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4/ColllsionNumber4"]
 position = Vector2(-1.2397766e-05, -2)
 scale = Vector2(0.7378472, 0.7395833)
-texture = ExtResource("25_cf23d")
+texture = ExtResource("33_vto3y")
 
-[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number4"]
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4"]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("26_interact")
 interact_label_position = Vector2(85, -20)
 action = "Tap"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number4/InteractArea"]
-position = Vector2(86, 55)
-shape = SubResource("CircleShape2D_interact")
-debug_color = Color(0.600391, 0.54335, 0, 0.42)
-
-[node name="Number5" type="RigidBody2D" parent="OnTheGround/PuzzleSumas"]
-position = Vector2(431, 302)
-gravity_scale = 0.0
-script = ExtResource("31_f2hix")
-
-[node name="ColllsionNumber5" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number5"]
-position = Vector2(86, 55)
-shape = SubResource("CircleShape2D_0krk3")
-
-[node name="SpriteNumber5" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Number5/ColllsionNumber5"]
-position = Vector2(-1.2397766e-05, -2)
-scale = Vector2(0.7378472, 0.7395833)
-texture = ExtResource("25_cf23d")
-
-[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Number5"]
-collision_layer = 32
-collision_mask = 0
-script = ExtResource("26_interact")
-interact_label_position = Vector2(85, -20)
-action = "Tap"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Number5/InteractArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4/InteractArea"]
 position = Vector2(86, 55)
 shape = SubResource("CircleShape2D_interact")
 debug_color = Color(0.600391, 0.54335, 0, 0.42)

@@ -6,7 +6,7 @@ extends RigidBody2D
 signal caja_movida(new_position: Vector2)
 
 ## Distancia a la que detecta al jugador para empujar
-@export var deteccion: float = 55.0
+@export var deteccion: float = 60.0
 
 ## Distancia que se mueve la caja cuando es empujada (en píxeles)
 @export var empuje: float = 64.0
