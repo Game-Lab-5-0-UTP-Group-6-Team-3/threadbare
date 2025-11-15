@@ -428,7 +428,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Cinematic" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
 script = ExtResource("4_r4x33")
