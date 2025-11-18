@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://dryinuip71yvm"]
+[gd_scene load_steps=53 format=4 uid="uid://dryinuip71yvm"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
@@ -43,12 +43,16 @@
 [ext_resource type="Texture2D" uid="uid://cybuabtqleui7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number4_sprite.png" id="33_vto3y"]
 [ext_resource type="Texture2D" uid="uid://2035jimxvq6o" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/switch_statues.png" id="34_mn1ft"]
 [ext_resource type="Texture2D" uid="uid://c4hks1t7cv5us" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/target_boxes.png" id="36_vto3y"]
-[ext_resource type="Script" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puzzle_cajas_controller.gd" id="37_puzzle_cajas"]
+[ext_resource type="Script" uid="uid://dxe8k6lp04uhi" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puzzle_cajas_controller.gd" id="37_puzzle_cajas"]
+[ext_resource type="Script" uid="uid://ci48rupjewi20" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puente.gd" id="38_puente"]
 
 [sub_resource type="Resource" id="Resource_n8tm3"]
 script = ExtResource("18_7cqpc")
 type = 2
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puente"]
+size = Vector2(48, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0krk3"]
 radius = 21.023796
@@ -176,12 +180,30 @@ position = Vector2(853, 233)
 position = Vector2(10, 71)
 
 [node name="Puente1_PS1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1"]
+script = ExtResource("38_puente")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente1_PS1"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente1_PS1/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
 
 [node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente1_PS1"]
 position = Vector2(7, 183)
 texture = ExtResource("25_1devu")
 
 [node name="Puente2_PS1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1"]
+script = ExtResource("38_puente")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1/StaticBody2D"]
+position = Vector2(55, 183)
+shape = SubResource("RectangleShape2D_puente")
 
 [node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1"]
 position = Vector2(55, 183)
@@ -195,11 +217,28 @@ texture = ExtResource("22_mn1ft")
 
 [node name="Puente1_PS4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4"]
 position = Vector2(17, 206)
+script = ExtResource("38_puente")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente1_PS4"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente1_PS4/StaticBody2D"]
+shape = SubResource("RectangleShape2D_puente")
 
 [node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente1_PS4"]
 texture = ExtResource("23_iuy7r")
 
 [node name="Puente2_PS4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4"]
+script = ExtResource("38_puente")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente2_PS4"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente2_PS4/StaticBody2D"]
+position = Vector2(65, 206)
+shape = SubResource("RectangleShape2D_puente")
 
 [node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente2_PS4"]
 position = Vector2(65, 206)
@@ -354,7 +393,7 @@ texture = ExtResource("34_mn1ft")
 script = ExtResource("37_puzzle_cajas")
 
 [node name="Baldosas_Tablero" type="TileMapLayer" parent="OnTheGround/PuzzleCajas/Tableros"]
-tile_map_data = PackedByteArray("AAABAAUAEAAAAAAAAAABAAMAEAAAAAAAAAACAAQAEAAAAAAAAAADAAMAEAAAAAAAAAADAAUAEAAAAAAAAAAJAAUAEAAAAAAAAAAJAAMAEAAAAAAAAAALAAMAEAAAAAAAAAALAAUAEAAAAAAAAAACAAMAEQAAAAAAAAACAAUAEQAAAAAAAAADAAQAEQAAAAAAAAAKAAMAEQAAAAAAAAAJAAQAEQAAAAAAAAALAAQAEQAAAAAAAAAKAAUAEQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAUAEAAAAAAAAAABAAMAEAAAAAAAAAACAAQAEAAAAAAAAAADAAMAEAAAAAAAAAADAAUAEAAAAAAAAAAJAAUAEAAAAAAAAAAJAAMAEAAAAAAAAAALAAMAEAAAAAAAAAALAAUAEAAAAAAAAAACAAUAEQAAAAAAAAADAAQAEQAAAAAAAAAKAAMAEQAAAAAAAAAJAAQAEQAAAAAAAAALAAQAEQAAAAAAAAAKAAUAEQAAAAAAAAACAAMAEQAAAAAAAAA=")
 tile_set = ExtResource("1_c5656")
 
 [node name="Baldosas_Bloque" type="TileMapLayer" parent="OnTheGround/PuzzleCajas/Tableros"]
