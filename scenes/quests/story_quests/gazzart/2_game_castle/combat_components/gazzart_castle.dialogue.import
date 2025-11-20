@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cs17pa76msdog"
+path="res://.godot/imported/gazzart_castle.dialogue-0a6eb35ca2efdd24e224c50ac8519e27.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gazzart_castle.dialogue"
+dest_files=["res://.godot/imported/gazzart_castle.dialogue-0a6eb35ca2efdd24e224c50ac8519e27.tres"]
+
+[params]
+
+defaults=true

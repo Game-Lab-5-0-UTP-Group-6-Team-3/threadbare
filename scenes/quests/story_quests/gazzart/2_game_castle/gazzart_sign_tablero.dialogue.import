@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://1iq0mft4sap7"
+path="res://.godot/imported/gazzart_sign_tablero.dialogue-ea922fb449421b5ec45723343e6c32bd.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/gazzart/2_game_castle/gazzart_sign_tablero.dialogue"
+dest_files=["res://.godot/imported/gazzart_sign_tablero.dialogue-ea922fb449421b5ec45723343e6c32bd.tres"]
+
+[params]
+
+defaults=true
