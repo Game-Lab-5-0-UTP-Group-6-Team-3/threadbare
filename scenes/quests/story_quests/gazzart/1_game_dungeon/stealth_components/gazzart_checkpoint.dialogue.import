@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cbphu2kc8htmc"
+path="res://.godot/imported/gazzart_checkpoint.dialogue-28b67bd5877587389eb597471f0e55b3.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/gazzart_checkpoint.dialogue"
+dest_files=["res://.godot/imported/gazzart_checkpoint.dialogue-28b67bd5877587389eb597471f0e55b3.tres"]
+
+[params]
+
+defaults=true

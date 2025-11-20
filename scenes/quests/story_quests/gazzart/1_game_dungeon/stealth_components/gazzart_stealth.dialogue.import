@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dpxvelg27wfcy"
+path="res://.godot/imported/gazzart_stealth.dialogue-264a744ca444dd6e9b73fa9054f1991d.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/gazzart_stealth.dialogue"
+dest_files=["res://.godot/imported/gazzart_stealth.dialogue-264a744ca444dd6e9b73fa9054f1991d.tres"]
+
+[params]
+
+defaults=true

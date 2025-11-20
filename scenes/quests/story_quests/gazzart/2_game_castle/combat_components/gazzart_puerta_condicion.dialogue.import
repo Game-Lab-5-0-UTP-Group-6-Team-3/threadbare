@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ba0hdiay4vrkt"
+path="res://.godot/imported/gazzart_puerta_condicion.dialogue-219cae7065ec815f3d24332a86063748.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gazzart_puerta_condicion.dialogue"
+dest_files=["res://.godot/imported/gazzart_puerta_condicion.dialogue-219cae7065ec815f3d24332a86063748.tres"]
+
+[params]
+
+defaults=true
