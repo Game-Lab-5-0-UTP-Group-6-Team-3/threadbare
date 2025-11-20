@@ -724,7 +724,7 @@ script = null
 position = Vector2(352, 127)
 script = null
 
-[node name="Player" parent="." groups=["light"] instance=ExtResource("17_srrtx")]
+[node name="Player" parent="." instance=ExtResource("17_srrtx")]
 position = Vector2(394.00003, 298)
 scale = Vector2(0.367, 0.367)
 sprite_frames = ExtResource("18_psppr")

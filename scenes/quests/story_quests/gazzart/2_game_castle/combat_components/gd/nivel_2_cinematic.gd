@@ -8,6 +8,8 @@ extends Cinematic
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameState.clear_inventory()
+	
 	if not GameState.intro_dialogue_shown:
 		DialogueManager.show_dialogue_balloon(dialogue, "", [self])
 		await DialogueManager.dialogue_ended
