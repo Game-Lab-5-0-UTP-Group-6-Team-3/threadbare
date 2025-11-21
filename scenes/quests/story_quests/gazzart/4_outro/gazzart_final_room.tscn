@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://dfocrdh2n83k2"]
+[gd_scene load_steps=108 format=4 uid="uid://dfocrdh2n83k2"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_nfv0t"]
 [ext_resource type="Texture2D" uid="uid://bnl01xdnuhaih" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/tiles/tile_castle.png" id="2_8i1d1"]
@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://v0rn6gwg07e8" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/tiles/tile_rug.png" id="5_kr56j"]
 [ext_resource type="Texture2D" uid="uid://cbajo7i6i3j8d" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/tiles/baran_Tiles.png" id="6_qomcw"]
 [ext_resource type="PackedScene" uid="uid://lgu7aeqa7o3r" path="res://scenes/game_elements/props/door/door.tscn" id="7_enua5"]
+[ext_resource type="Texture2D" uid="uid://cmh6yyjr0h1by" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/antorcha_frente.png" id="8_yko8d"]
+[ext_resource type="Texture2D" uid="uid://bkt30vudiwm7" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/Antorcha_costadot.png" id="9_d8wb0"]
 [ext_resource type="Texture2D" uid="uid://bggy1ay0umbuo" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/sprites/tejedor_idle_L.png" id="9_kr56j"]
+[ext_resource type="Texture2D" uid="uid://baeqq82ancfd" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/Antorcha_costado_L.png" id="10_acwlw"]
 [ext_resource type="Texture2D" uid="uid://dss1gjoweledl" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/sprites/Tejedor_walkingt.png" id="10_qomcw"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="11_fojjy"]
 [ext_resource type="Texture2D" uid="uid://dn7v6vax1x74o" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/villain_idle.png" id="11_gsveo"]
@@ -102,6 +105,114 @@ sources/0 = SubResource("TileSetAtlasSource_vy3b4")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enua5"]
 size = Vector2(22.75, 338.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dnth"]
+atlas = ExtResource("8_yko8d")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vpb4"]
+atlas = ExtResource("8_yko8d")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foe5q"]
+atlas = ExtResource("8_yko8d")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh2ah"]
+atlas = ExtResource("8_yko8d")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fdor5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dnth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vpb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foe5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh2ah")
+}],
+"loop": true,
+"name": &"frente",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vym1o"]
+atlas = ExtResource("9_d8wb0")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6lv6"]
+atlas = ExtResource("9_d8wb0")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtm06"]
+atlas = ExtResource("9_d8wb0")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o3gc"]
+atlas = ExtResource("9_d8wb0")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfsak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vym1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6lv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtm06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o3gc")
+}],
+"loop": true,
+"name": &"costado",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whumn"]
+atlas = ExtResource("10_acwlw")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnv5n"]
+atlas = ExtResource("10_acwlw")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djiyr"]
+atlas = ExtResource("10_acwlw")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k64pu"]
+atlas = ExtResource("10_acwlw")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhnnu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whumn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnv5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djiyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k64pu")
+}],
+"loop": true,
+"name": &"costado_L",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofvon"]
 atlas = ExtResource("9_kr56j")
@@ -491,160 +602,8 @@ tracks/8/keys = {
 "values": [Vector2(2749, 1130)]
 }
 
-[sub_resource type="Animation" id="Animation_e87qp"]
-resource_name = "walk_off"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("OnTheGround/Character:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.8333333, 1.3333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"walk", &"idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("OnTheGround/Character:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 1.3333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(863, 950), Vector2(794, 1202)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"walking", &"idle"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("OnTheGround/Tejedor:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(912, 1032), Vector2(965, 1113)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.73333335),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"walking", &"idle"]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.73333335),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(896, 752), Vector2(893, 1008)]
-}
-
-[sub_resource type="Animation" id="Animation_bb3k3"]
-resource_name = "walk_on"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("OnTheGround/Character:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.0666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"walk", &"idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("OnTheGround/Character:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.0666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(881, 1665), Vector2(863, 950)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.0666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"walking", &"idle"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("OnTheGround/Tejedor:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.0666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(902, 1692.0001), Vector2(912, 1032)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(2.1, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"walking", &"idle"]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(2.1, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(900, 643), Vector2(896, 752)]
-}
-
-[sub_resource type="Animation" id="Animation_hf4wu"]
-resource_name = "walk_to"
+[sub_resource type="Animation" id="Animation_tj24g"]
+resource_name = "explosion"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -667,7 +626,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(794, 1202)]
+"values": [Vector2(893, 1181)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -679,7 +638,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"idle"]
+"values": [&"walking"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -688,34 +647,34 @@ tracks/3/path = NodePath("OnTheGround/Tejedor:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.6333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(965, 1113), Vector2(864, 1203)]
+"values": [Vector2(894, 1113)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/path = NodePath("OnTheGround/Explosion:animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"idle"]
+"values": [&"default", &"new_animation"]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/path = NodePath("OnTheGround/Explosion:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4666667, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(893, 1008)]
+"values": [Vector2(881, 1145), Vector2(881, 1145), Vector2(2994, 1140)]
 }
 
 [sub_resource type="Animation" id="Animation_fns53"]
@@ -969,8 +928,160 @@ tracks/5/keys = {
 "values": [Vector2(895, 942), Vector2(895, 870)]
 }
 
-[sub_resource type="Animation" id="Animation_tj24g"]
-resource_name = "explosion"
+[sub_resource type="Animation" id="Animation_e87qp"]
+resource_name = "walk_off"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8333333, 1.3333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walk", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 1.3333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(863, 950), Vector2(794, 1202)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(912, 1032), Vector2(965, 1113)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(896, 752), Vector2(893, 1008)]
+}
+
+[sub_resource type="Animation" id="Animation_bb3k3"]
+resource_name = "walk_on"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walk", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(881, 1665), Vector2(863, 950)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(902, 1692.0001), Vector2(912, 1032)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(900, 643), Vector2(896, 752)]
+}
+
+[sub_resource type="Animation" id="Animation_hf4wu"]
+resource_name = "walk_to"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -993,7 +1104,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(893, 1181)]
+"values": [Vector2(794, 1202)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1005,7 +1116,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"walking"]
+"values": [&"idle"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1014,34 +1125,34 @@ tracks/3/path = NodePath("OnTheGround/Tejedor:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(894, 1113)]
+"values": [Vector2(965, 1113), Vector2(864, 1203)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("OnTheGround/Explosion:animation")
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"default", &"new_animation"]
+"values": [&"idle"]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("OnTheGround/Explosion:position")
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(881, 1145)]
+"values": [Vector2(893, 1008)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h6mes"]
@@ -1266,6 +1377,218 @@ shape = SubResource("RectangleShape2D_enua5")
 position = Vector2(1283, 792)
 shape = SubResource("RectangleShape2D_enua5")
 
+[node name="Torch" type="Node2D" parent="."]
+
+[node name="frente" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(672, 480)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_R" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(279, 1495)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="frente2" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1053, 979)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_L" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1001.00006, 1623)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_L2" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1249, 858)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="frente4" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(539, 480)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_R2" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(548, 861)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="frente5" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(988, 539)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente6" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(737, 979)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente7" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1246, 483)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_L3" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(352, 864)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R3" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1012, 843)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="frente9" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(805, 542)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente10" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1440, 1171)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente12" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1091, 729)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente13" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1248, 1168)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente14" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(703, 728)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente17" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1113, 480)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente18" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(543, 1170)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente19" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(348.99994, 1171)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fdor5")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_R4" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(467, 529)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_R5" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(212, 1369)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_L4" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1577, 1368)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_L5" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1324, 529)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R7" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(793, 1622)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_L6" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1513, 1497)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_L8" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1574, 1036)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R6" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(213, 1034)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_L7" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(785, 842)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_fhnnu")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R8" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(1446, 856)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_kfsak")
+animation = &"costado"
+autoplay = "costado"
+
 [node name="OnTheGround" type="Node2D" parent="."]
 top_level = true
 y_sort_enabled = true
@@ -1311,8 +1634,6 @@ position = Vector2(2749, 1130)
 scale = Vector2(0.87452084, 0.8759259)
 sprite_frames = SubResource("SpriteFrames_842sh")
 autoplay = "default"
-frame = 7
-frame_progress = 1.0
 
 [node name="Hilos_6" type="AnimatedSprite2D" parent="OnTheGround"]
 position = Vector2(2205, 456)
