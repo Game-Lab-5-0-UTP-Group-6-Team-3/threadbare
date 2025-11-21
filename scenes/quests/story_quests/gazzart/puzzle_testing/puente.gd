@@ -10,6 +10,7 @@ signal bloque_ocultado
 ## Si es true, el bloque está presente (visible y con colisión)
 ## Si es false, el bloque desaparece (sin colisión)
 @export var activo: bool = true
+@export var valor_objetivo: int = 0
 
 var static_body: StaticBody2D = null
 var collision_shape: CollisionShape2D = null
@@ -71,4 +72,8 @@ func _aplicar_estado() -> void:
 	visible = activo
 	if sprite:
 		sprite.visible = activo
+
+
+func obtener_valor() -> int:
+	return valor_objetivo
 
