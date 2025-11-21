@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://dryinuip71yvm"]
+[gd_scene load_steps=64 format=4 uid="uid://dryinuip71yvm"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
@@ -45,6 +45,11 @@
 [ext_resource type="Texture2D" uid="uid://c4hks1t7cv5us" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/target_boxes.png" id="36_vto3y"]
 [ext_resource type="Script" uid="uid://dxe8k6lp04uhi" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puzzle_cajas_controller.gd" id="37_puzzle_cajas"]
 [ext_resource type="Script" uid="uid://ci48rupjewi20" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puente.gd" id="38_puente"]
+[ext_resource type="Script" uid="uid://hwgr5n0p6c0y" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/switch_estatua.gd" id="39_switch"]
+[ext_resource type="Script" uid="uid://beou85h1nvp0j" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/estatua.gd" id="40_estatua"]
+[ext_resource type="Script" uid="uid://38b66a7x042c" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/switch_estatua_objetivo.gd" id="41_switch_obj"]
+[ext_resource type="Texture2D" uid="uid://tupgep8a0dg2" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_left.png" id="42_statue_left"]
+[ext_resource type="Texture2D" uid="uid://2twdc2jq4krr" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_up.png" id="43_statue_up"]
 
 [sub_resource type="Resource" id="Resource_n8tm3"]
 script = ExtResource("18_7cqpc")
@@ -65,6 +70,38 @@ radius = 24.020824
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddpwg"]
 radius = 24.020824
+
+[sub_resource type="Resource" id="Resource_switch_obj_1"]
+resource_name = "SwitchEstatuaObjetivo"
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua1")
+direccion = "right"
+
+[sub_resource type="Resource" id="Resource_switch_obj_2"]
+resource_name = "SwitchEstatuaObjetivo"
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua2")
+direccion = "left"
+
+[sub_resource type="Resource" id="Resource_uulsv"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua3")
+metadata/_custom_type_script = "uid://38b66a7x042c"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_switch"]
+radius = 28.0
+
+[sub_resource type="Resource" id="Resource_y1tyt"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua3")
+direccion = "right"
+metadata/_custom_type_script = "uid://38b66a7x042c"
+
+[sub_resource type="Resource" id="Resource_xb4h1"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua2")
+direccion = "up"
+metadata/_custom_type_script = "uid://38b66a7x042c"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6l02"]
 size = Vector2(64, 64)
@@ -90,7 +127,7 @@ sprite_frames = ExtResource("3_7xmax")
 
 [node name="SequencePuzzle" type="Node2D" parent="OnTheGround"]
 y_sort_enabled = true
-position = Vector2(-1, 0)
+position = Vector2(699, 50)
 script = ExtResource("4_7qsgx")
 metadata/_custom_type_script = "uid://c68oh8dtr21ti"
 
@@ -171,10 +208,10 @@ direction = 1
 text = "First melody: yellow, green, blue."
 
 [node name="PuzzleSumas" type="Node2D" parent="OnTheGround"]
-position = Vector2(-30, 0)
+position = Vector2(-297, 68)
 
 [node name="Puentes" type="Node2D" parent="OnTheGround/PuzzleSumas"]
-position = Vector2(853, 233)
+position = Vector2(528, 108)
 
 [node name="PuzzleSuma1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
 position = Vector2(10, 71)
@@ -354,6 +391,7 @@ shape = SubResource("CircleShape2D_interact")
 debug_color = Color(0.600391, 0.54335, 0, 0.42)
 
 [node name="PuzzleEstatuas" type="Node2D" parent="OnTheGround"]
+position = Vector2(203, 151)
 
 [node name="Estatuas" type="Node2D" parent="OnTheGround/PuzzleEstatuas"]
 position = Vector2(111, 0)
@@ -361,6 +399,12 @@ position = Vector2(111, 0)
 [node name="Estatua1" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/Estatuas"]
 position = Vector2(23, 98)
 gravity_scale = 0.0
+script = ExtResource("40_estatua")
+sprite_path = NodePath("Estatua1Collision/Estatua1Sprite")
+textura_arriba = ExtResource("43_statue_up")
+textura_derecha = ExtResource("33_ddpwg")
+textura_abajo = ExtResource("32_cllw3")
+textura_izquierda = ExtResource("42_statue_left")
 
 [node name="Estatua1Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua1"]
 shape = SubResource("CircleShape2D_cllw3")
@@ -371,6 +415,13 @@ texture = ExtResource("32_cllw3")
 [node name="Estatua2" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/Estatuas"]
 position = Vector2(244, 97)
 gravity_scale = 0.0
+script = ExtResource("40_estatua")
+sprite_path = NodePath("Estatua2Collision/Estatua2Sprite")
+textura_arriba = ExtResource("43_statue_up")
+textura_derecha = ExtResource("33_ddpwg")
+textura_abajo = ExtResource("32_cllw3")
+textura_izquierda = ExtResource("42_statue_left")
+direccion_inicial = 1
 
 [node name="Estatua2Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua2"]
 shape = SubResource("CircleShape2D_ddpwg")
@@ -378,17 +429,65 @@ shape = SubResource("CircleShape2D_ddpwg")
 [node name="Estatua2Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua2/Estatua2Collision"]
 texture = ExtResource("33_ddpwg")
 
+[node name="Estatua3" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/Estatuas"]
+position = Vector2(132, -23)
+gravity_scale = 0.0
+script = ExtResource("40_estatua")
+sprite_path = NodePath("Estatua3Collision/Estatua3Sprite")
+textura_arriba = ExtResource("43_statue_up")
+textura_derecha = ExtResource("33_ddpwg")
+textura_abajo = ExtResource("32_cllw3")
+textura_izquierda = ExtResource("42_statue_left")
+direccion_inicial = 0
+
+[node name="Estatua3Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua3"]
+shape = SubResource("CircleShape2D_cllw3")
+
+[node name="Estatua3Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Estatuas/Estatua3/Estatua3Collision"]
+texture = ExtResource("32_cllw3")
+
 [node name="Switches" type="Node2D" parent="OnTheGround/PuzzleEstatuas"]
 position = Vector2(106, -1)
 
 [node name="Switch1" type="Node2D" parent="OnTheGround/PuzzleEstatuas/Switches"]
+script = ExtResource("39_switch")
+sprite_path = NodePath("Sprite2D")
+area_path = NodePath("Area2D")
+objetivos = Array[ExtResource("41_switch_obj")]([SubResource("Resource_switch_obj_1"), SubResource("Resource_switch_obj_2"), SubResource("Resource_uulsv")])
 
-[node name="Switch1Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch1"]
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch1"]
 position = Vector2(142, 100)
 scale = Vector2(0.86458325, 0.8749999)
 texture = ExtResource("34_mn1ft")
 
+[node name="Area2D" type="Area2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch1"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch1/Area2D"]
+position = Vector2(142, 100)
+shape = SubResource("CircleShape2D_switch")
+
+[node name="Switch2" type="Node2D" parent="OnTheGround/PuzzleEstatuas/Switches"]
+position = Vector2(109, -123)
+script = ExtResource("39_switch")
+sprite_path = NodePath("Sprite2D")
+area_path = NodePath("Area2D")
+objetivos = Array[ExtResource("41_switch_obj")]([SubResource("Resource_y1tyt"), SubResource("Resource_xb4h1")])
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch2"]
+position = Vector2(142, 100)
+scale = Vector2(0.86458325, 0.8749999)
+texture = ExtResource("34_mn1ft")
+
+[node name="Area2D" type="Area2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch2"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/Switches/Switch2/Area2D"]
+position = Vector2(142, 100)
+shape = SubResource("CircleShape2D_switch")
+
 [node name="PuzzleCajas" type="Node2D" parent="OnTheGround"]
+position = Vector2(67, -512)
 
 [node name="Tableros" type="Node2D" parent="OnTheGround/PuzzleCajas"]
 script = ExtResource("37_puzzle_cajas")

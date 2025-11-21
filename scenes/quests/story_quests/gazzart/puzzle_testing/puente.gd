@@ -2,54 +2,60 @@
 # SPDX-License-Identifier: MPL-2.0
 extends Node2D
 
-## Señal emitida cuando el puente se activa (colisión desactivada)
-signal puente_activado
-## Señal emitida cuando el puente se desactiva (colisión activada)
-signal puente_desactivado
+## Señal emitida cuando el bloque aparece (colisión activa)
+signal bloque_mostrado
+## Señal emitida cuando el bloque desaparece (colisión desactivada)
+signal bloque_ocultado
 
-## Si es true, el puente está activo (sin colisión, se puede cruzar)
-## Si es false, el puente está desactivado (con colisión, no se puede cruzar)
-@export var activo: bool = false
+## Si es true, el bloque está presente (visible y con colisión)
+## Si es false, el bloque desaparece (sin colisión)
+@export var activo: bool = true
 
 var static_body: StaticBody2D = null
 var collision_shape: CollisionShape2D = null
+var sprite: Node2D = null
 
 func _ready() -> void:
-	# Buscar el StaticBody2D hijo
 	static_body = get_node_or_null("StaticBody2D")
 	if not static_body:
-		print("Advertencia: No se encontró StaticBody2D en el puente ", name)
-		return
+		push_warning("No se encontró StaticBody2D en el puente ", name)
 	
-	# Buscar el CollisionShape2D dentro del StaticBody2D
-	collision_shape = static_body.get_node_or_null("CollisionShape2D")
-	if not collision_shape:
-		print("Advertencia: No se encontró CollisionShape2D en el puente ", name)
-		return
+	if static_body:
+		collision_shape = static_body.get_node_or_null("CollisionShape2D")
+		if not collision_shape:
+			push_warning("No se encontró CollisionShape2D en el puente ", name)
 	
-	# Configurar el estado inicial del puente
-	_set_colision_activa(not activo)
+	# Intentar obtener el sprite principal (opcional)
+	sprite = get_node_or_null("Sprite2D")
+	if not sprite:
+		# Si el sprite está en un hijo distinto, tomar el primero que exista
+		for child in get_children():
+			if child is Sprite2D:
+				sprite = child
+				break
+
+	_aplicar_estado()
 
 
-## Activa el puente (desactiva la colisión, permite cruzar)
+## Activa el bloque (aparece y bloquea el paso)
 func activar() -> void:
 	if activo:
 		return
 	activo = true
-	_set_colision_activa(false)
-	puente_activado.emit()
+	_aplicar_estado()
+	bloque_mostrado.emit()
 
 
-## Desactiva el puente (activa la colisión, bloquea el paso)
+## Desactiva el bloque (desaparece y deja pasar)
 func desactivar() -> void:
 	if not activo:
 		return
 	activo = false
-	_set_colision_activa(true)
-	puente_desactivado.emit()
+	_aplicar_estado()
+	bloque_ocultado.emit()
 
 
-## Alterna el estado del puente
+## Alterna el estado del bloque
 func alternar() -> void:
 	if activo:
 		desactivar()
@@ -57,7 +63,12 @@ func alternar() -> void:
 		activar()
 
 
-func _set_colision_activa(activa: bool) -> void:
+func _aplicar_estado() -> void:
+	var colision_activa := activo
 	if collision_shape:
-		collision_shape.disabled = not activa
+		collision_shape.disabled = not colision_activa
+	
+	visible = activo
+	if sprite:
+		sprite.visible = activo
 
