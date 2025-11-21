@@ -93,4 +93,3 @@ func _obtener_posicion_target(target: Node2D) -> Vector2:
 		# Calcular la posición global del sprite
 		posicion = target.global_position + sprite.position
 	return posicion
-
