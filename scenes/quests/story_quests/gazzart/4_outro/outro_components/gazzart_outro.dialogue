@@ -1,7 +1,38 @@
 # SPDX-FileCopyrightText: The Threadbare Authors
 # SPDX-License-Identifier: MPL-2.0
 ~ start
-You've made it to the closing scene!
-This is where you will tie up the loose ends of your story.
-Let's go back to Fray's End so you can return these threads to the Eternal Loom...
+do animation_player.play(&"walk_on")
+do animation_player.animation_finished
+Finalmente, llegaron a la Sala Principal del Castillo.
+Un espacio vasto donde el aire vibraba como si contuviera miles de voces olvidadas.
+En el centro, los esperaba él.
+El Señor del Castillo.
+Era un tejedor, sí… al igual que Magnus.
+Pero no uno que formara el destino, sino uno que lo forzaba a obedecerle.
+do animation_player.play(&"walk_off")
+Señor del Castillo: Así que los seis hilos han vuelto a ti.
+Señor del Castillo: Incluso después de que me deshice de ti joven… sigues empeñado en desobedecerme.
+Para el forastero, alguien con memorias perdidas… esta revelación fue una gran sorpresa...
+do animation_player.play(&"walk_to")
+Magnus: Así es joven...
+Magnus: Tú eras mucho más que eso. Tú veías el mundo como podía ser, no como él quería que fuera.
+Magnus: Me temo que al ser una de sus amenazas, él Señor del Castillo trató de deshacerse de tu existencia.
+Magnus: Pero ahora tú y yo nos hemos juntado para detenerlo.
+Señor del Castillo: ¡Basta!
+Señor del Castillo: ¡El destino de Gazzart me pertenece!
+Magnus: ¡Ahora joven! ¡Los seis hilos de la Memoria!
+do animation_player.play(&"hilos")
+do animation_player.animation_finished
+do animation_player.play(&"hilos_2")
+do animation_player.animation_finished
+Magnus: Sujeta bien los hilos… que esta vez nadie podrá reescribirlos.
+do animation_player.play(&"hilos_3")
+do animation_player.animation_finished
+do animation_player.play(&"explosion")
+El Señor del Castillo se desvaneció entre fibras rotas, su figura deshilándose hasta no dejar más que un eco lejano...
+Su ausencia sanaba el telar de Gazzart y su propia existencia.
+Y el forastero, realmente un joven aprendiz, recuperó su historia, su identidad, su propósito…
+El aprendiz había regresado.
+Había enfrentado aquello que una vez lo había borrado.
+Gazzart, finalmente, estaba libre.
 => END

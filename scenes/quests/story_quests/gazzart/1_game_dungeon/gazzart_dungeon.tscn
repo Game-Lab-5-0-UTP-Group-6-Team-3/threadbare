@@ -739,7 +739,7 @@ position_smoothing_enabled = true
 editor_draw_limits = true
 
 [node name="Marker2D2" type="Marker2D" parent="Player" groups=["light"]]
-position = Vector2(5.4494996, -6.198883e-06)
+position = Vector2(305.177, 217.98364)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.6196799, 0.6196799, 0.6196799, 1)

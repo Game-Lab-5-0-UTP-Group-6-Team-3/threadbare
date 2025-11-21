@@ -1,0 +1,1337 @@
+[gd_scene load_steps=90 format=4 uid="uid://dfocrdh2n83k2"]
+
+[ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_nfv0t"]
+[ext_resource type="Texture2D" uid="uid://bnl01xdnuhaih" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/tiles/tile_castle.png" id="2_8i1d1"]
+[ext_resource type="Texture2D" uid="uid://cuodpn5fgdrx" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/tiles/tile_castle2.png" id="3_ax1qm"]
+[ext_resource type="Texture2D" uid="uid://cpvvadwx3qsb6" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/tiles/stair.png" id="4_enua5"]
+[ext_resource type="SpriteFrames" uid="uid://jnmt5u3uyqdf" path="res://scenes/quests/story_quests/gazzart/player_components/gazzart_player.tres" id="5_enua5"]
+[ext_resource type="Texture2D" uid="uid://v0rn6gwg07e8" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/tiles/tile_rug.png" id="5_kr56j"]
+[ext_resource type="Texture2D" uid="uid://cbajo7i6i3j8d" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/tiles/baran_Tiles.png" id="6_qomcw"]
+[ext_resource type="PackedScene" uid="uid://lgu7aeqa7o3r" path="res://scenes/game_elements/props/door/door.tscn" id="7_enua5"]
+[ext_resource type="Texture2D" uid="uid://bggy1ay0umbuo" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/sprites/tejedor_idle_L.png" id="9_kr56j"]
+[ext_resource type="Texture2D" uid="uid://dss1gjoweledl" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/sprites/Tejedor_walkingt.png" id="10_qomcw"]
+[ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="11_fojjy"]
+[ext_resource type="Texture2D" uid="uid://dn7v6vax1x74o" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/villain_idle.png" id="11_gsveo"]
+[ext_resource type="Texture2D" uid="uid://6cr554qd8vt2" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/villain_floating.png" id="11_hf4wu"]
+[ext_resource type="Resource" uid="uid://bmv2x45m2p12m" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/gazzart_outro.dialogue" id="12_fojjy"]
+[ext_resource type="Texture2D" uid="uid://oynx43y1lghv" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/villain_particles.png" id="13_fns53"]
+[ext_resource type="Texture2D" uid="uid://cd5gxmcmfp86a" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/villain_shining.png" id="14_c8aid"]
+[ext_resource type="Texture2D" uid="uid://dg0vulthm82dx" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/villain_walking.png" id="15_3tpjc"]
+[ext_resource type="Texture2D" uid="uid://cs1rlnyu4b6hp" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/hilos_float.png" id="17_c8aid"]
+[ext_resource type="AudioStream" uid="uid://8dr5gdcd81d8" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/gazzart_outrofinal.mp3" id="18_3tpjc"]
+[ext_resource type="Texture2D" uid="uid://8dyggk2tdovh" path="res://scenes/quests/story_quests/gazzart/4_outro/outro_components/sprites/explotion.png" id="18_rbt67"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kr56j"]
+texture = ExtResource("2_8i1d1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qomcw"]
+texture = ExtResource("3_ax1qm")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fojjy"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_kr56j")
+sources/1 = SubResource("TileSetAtlasSource_qomcw")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fojjy"]
+texture = ExtResource("4_enua5")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gsveo"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_fojjy")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gsveo"]
+texture = ExtResource("5_kr56j")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_m4rtx"]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_gsveo")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vy3b4"]
+texture = ExtResource("6_qomcw")
+texture_region_size = Vector2i(31, 31)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+3:5/0 = 0
+2:5/0 = 0
+1:5/0 = 0
+0:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bwjj5"]
+tile_size = Vector2i(31, 31)
+sources/0 = SubResource("TileSetAtlasSource_vy3b4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enua5"]
+size = Vector2(22.75, 338.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofvon"]
+atlas = ExtResource("9_kr56j")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmqnj"]
+atlas = ExtResource("9_kr56j")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7ido"]
+atlas = ExtResource("9_kr56j")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aflbi"]
+atlas = ExtResource("9_kr56j")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks52r"]
+atlas = ExtResource("10_qomcw")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky0wj"]
+atlas = ExtResource("10_qomcw")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tmsc"]
+atlas = ExtResource("10_qomcw")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2osn"]
+atlas = ExtResource("10_qomcw")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fojjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofvon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmqnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7ido")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aflbi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks52r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky0wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tmsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2osn")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj24g"]
+atlas = ExtResource("11_hf4wu")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbt67"]
+atlas = ExtResource("11_hf4wu")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yko8d"]
+atlas = ExtResource("11_hf4wu")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8wb0"]
+atlas = ExtResource("11_hf4wu")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4rtx"]
+atlas = ExtResource("11_gsveo")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy3b4"]
+atlas = ExtResource("11_gsveo")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwjj5"]
+atlas = ExtResource("11_gsveo")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf4wu"]
+atlas = ExtResource("11_gsveo")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acwlw"]
+atlas = ExtResource("13_fns53")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdor5"]
+atlas = ExtResource("13_fns53")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfsak"]
+atlas = ExtResource("13_fns53")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhnnu"]
+atlas = ExtResource("13_fns53")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffmry"]
+atlas = ExtResource("13_fns53")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcig3"]
+atlas = ExtResource("13_fns53")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx20u"]
+atlas = ExtResource("13_fns53")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w7kc"]
+atlas = ExtResource("13_fns53")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el8fm"]
+atlas = ExtResource("13_fns53")
+region = Rect2(1536, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24lbl"]
+atlas = ExtResource("14_c8aid")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vbxj"]
+atlas = ExtResource("14_c8aid")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mblgf"]
+atlas = ExtResource("14_c8aid")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ajdy"]
+atlas = ExtResource("14_c8aid")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwnap"]
+atlas = ExtResource("15_3tpjc")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7iww"]
+atlas = ExtResource("15_3tpjc")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njuo2"]
+atlas = ExtResource("15_3tpjc")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs1sp"]
+atlas = ExtResource("15_3tpjc")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fns53"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj24g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbt67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yko8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8wb0")
+}],
+"loop": true,
+"name": &"floating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4rtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy3b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf4wu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acwlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdor5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfsak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhnnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffmry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcig3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx20u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w7kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el8fm")
+}],
+"loop": true,
+"name": &"particles",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24lbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vbxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mblgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ajdy")
+}],
+"loop": true,
+"name": &"shining",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwnap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7iww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njuo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs1sp")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_p7ytx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 349)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(902, 1692.0001)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walking"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(900, 643)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OnTheGround/Hilos_6:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("OnTheGround/Explosion:animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("OnTheGround/Explosion:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2749, 1130)]
+}
+
+[sub_resource type="Animation" id="Animation_e87qp"]
+resource_name = "walk_off"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8333333, 1.3333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walk", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 1.3333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(863, 950), Vector2(794, 1202)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(912, 1032), Vector2(965, 1113)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(896, 752), Vector2(893, 1008)]
+}
+
+[sub_resource type="Animation" id="Animation_bb3k3"]
+resource_name = "walk_on"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walk", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(881, 1665), Vector2(863, 950)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(902, 1692.0001), Vector2(912, 1032)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(900, 643), Vector2(896, 752)]
+}
+
+[sub_resource type="Animation" id="Animation_hf4wu"]
+resource_name = "walk_to"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(794, 1202)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(965, 1113), Vector2(864, 1203)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(893, 1008)]
+}
+
+[sub_resource type="Animation" id="Animation_fns53"]
+resource_name = "hilos"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walk", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(794, 1202), Vector2(897, 1204)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(864, 1203), Vector2(958, 1203)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.1333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(893, 1008), Vector2(895, 942)]
+}
+
+[sub_resource type="Animation" id="Animation_3tpjc"]
+resource_name = "hilos_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"idle", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(897, 1204), Vector2(893, 1181)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(958, 1203)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(895, 942)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OnTheGround/Hilos_6:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.33333334, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"new_animation"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("OnTheGround/Hilos_6:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.33333334),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(893, 1126)]
+}
+
+[sub_resource type="Animation" id="Animation_c8aid"]
+resource_name = "hilos_3"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(893, 1181)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walking", &"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(958, 1203), Vector2(894, 1113)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Señor_del_Castillo:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8666667, 1.6, 2.3333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"idle", &"floating", &"shining", &"particles", &"new_animation"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Señor_del_Castillo:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(895, 942), Vector2(895, 870)]
+}
+
+[sub_resource type="Animation" id="Animation_tj24g"]
+resource_name = "explosion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnTheGround/Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnTheGround/Character:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(893, 1181)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OnTheGround/Tejedor:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walking"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OnTheGround/Tejedor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(894, 1113)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OnTheGround/Explosion:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"new_animation"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OnTheGround/Explosion:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(881, 1145)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h6mes"]
+_data = {
+&"RESET": SubResource("Animation_p7ytx"),
+&"explosion": SubResource("Animation_tj24g"),
+&"hilos": SubResource("Animation_fns53"),
+&"hilos_2": SubResource("Animation_3tpjc"),
+&"hilos_3": SubResource("Animation_c8aid"),
+&"walk_off": SubResource("Animation_e87qp"),
+&"walk_on": SubResource("Animation_bb3k3"),
+&"walk_to": SubResource("Animation_hf4wu")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2rls"]
+atlas = ExtResource("18_rbt67")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cde5g"]
+atlas = ExtResource("18_rbt67")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw2n6"]
+atlas = ExtResource("18_rbt67")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeesp"]
+atlas = ExtResource("18_rbt67")
+region = Rect2(5760, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4c0p"]
+atlas = ExtResource("18_rbt67")
+region = Rect2(7680, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8ym1"]
+atlas = ExtResource("18_rbt67")
+region = Rect2(9600, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm0xf"]
+atlas = ExtResource("18_rbt67")
+region = Rect2(11520, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_842sh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2rls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cde5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw2n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeesp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4c0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8ym1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm0xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cde5g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tpjc"]
+atlas = ExtResource("17_c8aid")
+region = Rect2(0, 0, 775, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uixa1"]
+atlas = ExtResource("17_c8aid")
+region = Rect2(775, 0, 775, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k76mo"]
+atlas = ExtResource("17_c8aid")
+region = Rect2(1550, 0, 775, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m6gc"]
+atlas = ExtResource("17_c8aid")
+region = Rect2(2325, 0, 775, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk7n8"]
+atlas = ExtResource("17_c8aid")
+region = Rect2(3100, 0, 775, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik2w4"]
+atlas = ExtResource("17_c8aid")
+region = Rect2(3875, 0, 775, 436)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5awuw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tpjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uixa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k76mo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m6gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk7n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik2w4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="GazzartFinalRoom" type="Node2D"]
+
+[node name="TileMapLayers" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Void" type="TileMapLayer" parent="TileMapLayers"]
+position = Vector2(64, 2565)
+tile_map_data = PackedByteArray("AAADANv/CQABAAEAAAADANr/CQABAAEAAAADANn/CwABAAEAAAADANj/CgABAAEAAAACANv/CQABAAEAAAACANr/DAABAAEAAAACANn/CQABAAEAAAACANj/CAABAAEAAAABANv/CwABAAEAAAABANr/CQABAAEAAAABANn/CAABAAEAAAABANj/DAABAAEAAAAAANv/CQABAAEAAAAAANr/CwABAAEAAAAAANn/CQABAAEAAAAAANj/CwABAAEAAAD//9v/CQABAAEAAAD//9r/CAABAAEAAAD//9n/DAABAAEAAAD//9j/CAABAAEAAAAAAPX/CAABAAEAAAAAAPT/CQABAAEAAAAAAPP/CAABAAEAAAAAAPL/DAABAAEAAAAAAPH/CgABAAEAAAAAAPD/CwABAAEAAAAAAO//CgABAAEAAAAAAO7/CAABAAEAAAAAAO3/DAABAAEAAAAAAOz/DAABAAEAAAAAAOv/CgABAAEAAAAAAOr/CQABAAEAAAAAAOn/CwABAAEAAAAAAOj/CgABAAEAAAAAAOf/DAABAAEAAAAAAOb/CQABAAEAAAAAAOX/CAABAAEAAAAAAOT/CAABAAEAAAAAAOP/CgABAAEAAAAAAOL/DAABAAEAAAAAAOH/DAABAAEAAAAAAOD/DAABAAEAAAAAAN//DAABAAEAAAAAAN7/CQABAAEAAAAAAN3/DAABAAEAAAAAANz/CgABAAEAAAD///X/DAABAAEAAAD///T/CgABAAEAAAD///P/DAABAAEAAAD///L/CgABAAEAAAD///H/CwABAAEAAAD///D/CwABAAEAAAD//+//CQABAAEAAAD//+7/CAABAAEAAAD//+3/CwABAAEAAAD//+z/CgABAAEAAAD//+v/CAABAAEAAAD//+r/CAABAAEAAAD//+n/CQABAAEAAAD//+j/CQABAAEAAAD//+f/CwABAAEAAAD//+b/CQABAAEAAAD//+X/DAABAAEAAAD//+T/CwABAAEAAAD//+P/CAABAAEAAAD//+L/DAABAAEAAAD//+H/CwABAAEAAAD//+D/DAABAAEAAAD//9//CQABAAEAAAD//97/CQABAAEAAAD//93/CAABAAEAAAD//9z/CwABAAEAAAADAOD/CAABAAEAAAADAN//CQABAAEAAAADAN7/CQABAAEAAAADAN3/CQABAAEAAAADANz/CAABAAEAAAACAOD/CwABAAEAAAACAN//CgABAAEAAAACAN7/CQABAAEAAAACAN3/CwABAAEAAAACANz/DAABAAEAAAABAOD/DAABAAEAAAABAN//CQABAAEAAAABAN7/CAABAAEAAAABAN3/CAABAAEAAAABANz/CQABAAEAAAAYANz/CAABAAEAAAAYANv/CQABAAEAAAAYANr/CQABAAEAAAAYANn/CwABAAEAAAAYANj/CgABAAEAAAAXANz/CgABAAEAAAAXANv/CgABAAEAAAAXANr/CQABAAEAAAAXANn/CAABAAEAAAAXANj/DAABAAEAAAAWANz/CwABAAEAAAAWANv/CAABAAEAAAAWANr/CwABAAEAAAAWANn/CgABAAEAAAAWANj/CwABAAEAAAAVANz/CAABAAEAAAAVANv/CwABAAEAAAAVANr/DAABAAEAAAAVANn/CgABAAEAAAAVANj/CgABAAEAAAAUANz/CwABAAEAAAAUANv/CwABAAEAAAAUANr/CwABAAEAAAAUANn/DAABAAEAAAAUANj/DAABAAEAAAATANz/CQABAAEAAAATANv/DAABAAEAAAATANr/CQABAAEAAAATANn/CwABAAEAAAATANj/CQABAAEAAAASANz/CQABAAEAAAASANv/CgABAAEAAAASANr/CAABAAEAAAASANn/CwABAAEAAAASANj/CgABAAEAAAARANz/CAABAAEAAAARANv/CgABAAEAAAARANr/CAABAAEAAAARANn/DAABAAEAAAARANj/CAABAAEAAAAQANz/CwABAAEAAAAQANv/CQABAAEAAAAQANr/CQABAAEAAAAQANn/CwABAAEAAAAQANj/CwABAAEAAAAPANz/CwABAAEAAAAPANv/CgABAAEAAAAPANr/DAABAAEAAAAPANn/CwABAAEAAAAPANj/CwABAAEAAAAOANz/CgABAAEAAAAOANv/CwABAAEAAAAOANr/CAABAAEAAAAOANn/CAABAAEAAAAOANj/CAABAAEAAAANANz/DAABAAEAAAANANv/DAABAAEAAAANANr/CQABAAEAAAANANn/CAABAAEAAAANANj/CAABAAEAAAAMANz/CwABAAEAAAAMANv/CAABAAEAAAAMANr/CQABAAEAAAAMANn/CQABAAEAAAAMANj/DAABAAEAAAALANz/CAABAAEAAAALANv/DAABAAEAAAALANr/CAABAAEAAAALANn/DAABAAEAAAALANj/CQABAAEAAAAKANz/CAABAAEAAAAKANv/CQABAAEAAAAKANr/CwABAAEAAAAKANn/DAABAAEAAAAKANj/CAABAAEAAAAJANz/CAABAAEAAAAJANv/CgABAAEAAAAJANr/CwABAAEAAAAJANn/CgABAAEAAAAJANj/CQABAAEAAAAIANz/CQABAAEAAAAIANv/CQABAAEAAAAIANr/CwABAAEAAAAIANn/CQABAAEAAAAIANj/CAABAAEAAAAHANz/CAABAAEAAAAHANv/CAABAAEAAAAHANr/DAABAAEAAAAHANn/CQABAAEAAAAHANj/CAABAAEAAAAGANz/CwABAAEAAAAGANv/CwABAAEAAAAGANr/CwABAAEAAAAGANn/DAABAAEAAAAGANj/CwABAAEAAAAFANz/DAABAAEAAAAFANv/CAABAAEAAAAFANr/CQABAAEAAAAFANn/CwABAAEAAAAFANj/CwABAAEAAAAEANz/CgABAAEAAAAEANv/CQABAAEAAAAEANr/CQABAAEAAAAEANn/CAABAAEAAAAEANj/CAABAAEAAAAYAN3/CQABAAEAAAAXAN3/CAABAAEAAAAWAN3/CgABAAEAAAAVAN3/DAABAAEAAAAUAN3/CgABAAEAAAATAN3/CAABAAEAAAASAN3/CgABAAEAAAARAN3/CAABAAEAAAAQAN3/CAABAAEAAAAPAN3/CgABAAEAAAAOAN3/CAABAAEAAAANAN3/CgABAAEAAAAMAN3/CwABAAEAAAALAN3/CQABAAEAAAAKAN3/CwABAAEAAAAJAN3/CAABAAEAAAAIAN3/CwABAAEAAAAHAN3/DAABAAEAAAAGAN3/DAABAAEAAAAFAN3/CAABAAEAAAAEAN3/CQABAAEAAAAEAOH/DAABAAEAAAAEAOD/DAABAAEAAAAEAN//CgABAAEAAAAEAN7/CgABAAEAAAADAOH/CgABAAEAAAACAOH/CgABAAEAAAABAOH/CAABAAEAAAACAOL/DAABAAEAAAABAOL/CAABAAEAAAABAOP/CAABAAEAAAAYAOP/DAABAAEAAAAXAOL/CQABAAEAAAAWAOH/DAABAAEAAAAWAOD/CgABAAEAAAAaAOD/CQABAAEAAAAaAN//CAABAAEAAAAaAN7/CwABAAEAAAAaAN3/CwABAAEAAAAZAOD/DAABAAEAAAAZAN//CgABAAEAAAAZAN7/CgABAAEAAAAZAN3/CgABAAEAAAAYAOD/CQABAAEAAAAYAN//CgABAAEAAAAYAN7/CQABAAEAAAAXAOD/DAABAAEAAAAXAN//CgABAAEAAAAXAN7/DAABAAEAAAAWAN//CQABAAEAAAAWAN7/CAABAAEAAAAVAOD/DAABAAEAAAAVAN//CQABAAEAAAAVAN7/CgABAAEAAAAaAOL/CQABAAEAAAAaAOH/DAABAAEAAAAaANz/CgABAAEAAAAaANv/CwABAAEAAAAaANr/CwABAAEAAAAaANn/CQABAAEAAAAaANj/CAABAAEAAAAZAOL/CwABAAEAAAAZAOH/CAABAAEAAAAZANz/CAABAAEAAAAZANv/CQABAAEAAAAZANr/CgABAAEAAAAZANn/DAABAAEAAAAZANj/DAABAAEAAAAYAOL/CAABAAEAAAAYAOH/DAABAAEAAAAXAOH/CgABAAEAAAAaAPD/CAABAAEAAAAaAO//CAABAAEAAAAaAO7/CgABAAEAAAAaAO3/CwABAAEAAAAaAOz/CgABAAEAAAAaAOv/CgABAAEAAAAaAOr/CAABAAEAAAAaAOn/DAABAAEAAAAaAOj/CgABAAEAAAAaAOf/DAABAAEAAAAaAOb/CgABAAEAAAAaAOX/CAABAAEAAAAaAOT/CwABAAEAAAAaAOP/CQABAAEAAAAZAPD/CAABAAEAAAAZAO//CwABAAEAAAAZAO7/DAABAAEAAAAZAO3/CQABAAEAAAAZAOz/CgABAAEAAAAZAOv/CQABAAEAAAAZAOr/CwABAAEAAAAZAOn/CwABAAEAAAAZAOj/CAABAAEAAAAZAOf/DAABAAEAAAAZAOb/CwABAAEAAAAZAOX/CgABAAEAAAAZAOT/CwABAAEAAAAZAOP/CgABAAEAAAAYAPD/CwABAAEAAAAYAO//CwABAAEAAAAYAO7/CQABAAEAAAAYAO3/CQABAAEAAAAYAOz/CwABAAEAAAAYAOv/CAABAAEAAAAYAOr/CQABAAEAAAAYAOn/CwABAAEAAAAYAOj/DAABAAEAAAAYAOf/CAABAAEAAAAYAOb/CAABAAEAAAAYAOX/CgABAAEAAAAYAOT/CAABAAEAAAABAPX/CwABAAEAAAABAPT/DAABAAEAAAABAPP/CwABAAEAAAABAPL/CwABAAEAAAABAPH/DAABAAEAAAABAPD/CgABAAEAAAABAO//CQABAAEAAAABAO7/CgABAAEAAAABAO3/DAABAAEAAAABAOz/CwABAAEAAAABAOv/CQABAAEAAAABAOr/CAABAAEAAAABAOn/CwABAAEAAAABAOj/CgABAAEAAAABAOf/CgABAAEAAAABAOb/CgABAAEAAAABAOX/CgABAAEAAAABAOT/CgABAAEAAAAaAPX/CQABAAEAAAAaAPT/CAABAAEAAAAZAPX/CQABAAEAAAAZAPT/CQABAAEAAAAYAPX/CwABAAEAAAAYAPT/DAABAAEAAAAXAPX/CwABAAEAAAAXAPT/CwABAAEAAAAWAPX/CwABAAEAAAAWAPT/CQABAAEAAAAVAPX/CgABAAEAAAAVAPT/DAABAAEAAAAUAPX/CAABAAEAAAAUAPT/CgABAAEAAAATAPX/CQABAAEAAAATAPT/CAABAAEAAAASAPX/DAABAAEAAAASAPT/CAABAAEAAAARAPX/CQABAAEAAAARAPT/CgABAAEAAAAQAPX/CwABAAEAAAAQAPT/CAABAAEAAAAPAPX/CwABAAEAAAAPAPT/DAABAAEAAAAOAPX/CgABAAEAAAAOAPT/DAABAAEAAAANAPX/CgABAAEAAAANAPT/CwABAAEAAAAMAPX/CgABAAEAAAAMAPT/DAABAAEAAAALAPX/DAABAAEAAAALAPT/CAABAAEAAAAKAPX/CAABAAEAAAAKAPT/CAABAAEAAAAJAPX/CwABAAEAAAAJAPT/CQABAAEAAAAIAPX/CAABAAEAAAAIAPT/CAABAAEAAAAHAPX/CwABAAEAAAAHAPT/CgABAAEAAAAGAPX/CgABAAEAAAAGAPT/CwABAAEAAAAFAPX/CQABAAEAAAAFAPT/CQABAAEAAAAEAPX/CgABAAEAAAAEAPT/CQABAAEAAAADAPX/CwABAAEAAAADAPT/CQABAAEAAAACAPX/CwABAAEAAAACAPT/CQABAAEAAAAJAPP/CwABAAEAAAAJAPL/CwABAAEAAAAJAPH/CgABAAEAAAAIAPP/CgABAAEAAAAIAPL/CQABAAEAAAAIAPH/CQABAAEAAAAHAPP/CgABAAEAAAAHAPL/CwABAAEAAAAHAPH/CgABAAEAAAAGAPP/CgABAAEAAAAGAPL/DAABAAEAAAAGAPH/CwABAAEAAAAFAPP/CAABAAEAAAAFAPL/CgABAAEAAAAFAPH/CQABAAEAAAAEAPP/CwABAAEAAAAEAPL/CQABAAEAAAAEAPH/CQABAAEAAAADAPP/CAABAAEAAAADAPL/CgABAAEAAAADAPH/DAABAAEAAAACAPP/CgABAAEAAAACAPL/CwABAAEAAAACAPH/CwABAAEAAAAaAPP/CwABAAEAAAAaAPL/CQABAAEAAAAaAPH/CgABAAEAAAAZAPP/CAABAAEAAAAZAPL/CgABAAEAAAAZAPH/CwABAAEAAAAYAPP/CgABAAEAAAAYAPL/DAABAAEAAAAYAPH/CwABAAEAAAAXAPP/CwABAAEAAAAXAPL/CgABAAEAAAAXAPH/CQABAAEAAAAWAPP/CgABAAEAAAAWAPL/CAABAAEAAAAWAPH/CwABAAEAAAAVAPP/DAABAAEAAAAVAPL/CgABAAEAAAAVAPH/CQABAAEAAAAUAPP/DAABAAEAAAAUAPL/CwABAAEAAAAUAPH/DAABAAEAAAATAPP/CQABAAEAAAATAPL/CgABAAEAAAATAPH/DAABAAEAAAASAPP/CgABAAEAAAASAPL/CgABAAEAAAASAPH/CwABAAEAAAARAPP/CQABAAEAAAARAPL/DAABAAEAAAARAPH/CwABAAEAAAAQAPP/CgABAAEAAAAQAPL/CAABAAEAAAAQAPH/CQABAAEAAAAaAPb/CQABAAEAAAAZAPb/CQABAAEAAAAYAPb/CAABAAEAAAAXAPb/CQABAAEAAAAWAPb/CQABAAEAAAAVAPb/CQABAAEAAAAUAPb/CwABAAEAAAATAPb/CwABAAEAAAASAPb/CwABAAEAAAARAPb/CAABAAEAAAAQAPb/CQABAAEAAAAPAPb/CQABAAEAAAAOAPb/CgABAAEAAAANAPb/CQABAAEAAAAMAPb/CQABAAEAAAALAPb/CwABAAEAAAAKAPb/CgABAAEAAAAJAPb/CwABAAEAAAAIAPb/CAABAAEAAAAHAPb/CwABAAEAAAAGAPb/DAABAAEAAAAFAPb/CAABAAEAAAAEAPb/DAABAAEAAAADAPb/CwABAAEAAAACAPb/CAABAAEAAAABAPb/CwABAAEAAAAAAPb/CgABAAEAAAD///b/CwABAAEAAAALAOb/CQADAAIAAAALAOX/DAADAAEAAAALAOT/CAADAAEAAAAOAOb/CQADAAIAAAAOAOX/CAADAAEAAAAOAOT/DAADAAEAAAALAOP/CgACAAAAAAAOAOP/DAAAAAAAAAAPAOP/CAACAAIAAAAKAOP/CgAAAAIAAAAJAOL/DAAAAAMAAAAQAOL/CAACAAMAAAAPAOL/DAAAAAAAAAAKAOL/CQACAAAAAAAIAOH/CAACAAMAAAAHAOH/CQAAAAMAAAASAOH/CQACAAMAAAARAOH/CQAAAAMAAAA=")
+tile_set = ExtResource("1_nfv0t")
+
+[node name="Ground" type="TileMapLayer" parent="TileMapLayers"]
+position = Vector2(64, 2877)
+tile_map_data = PackedByteArray("AAAFANz/AQAAAAAAAAAFAN3/AQAAAAAAAAAFAN7/AQAAAAAAAAAFAN//AQAAAAAAAAAFAOD/AQAAAAAAAAAFAOH/AQAAAAAAAAAFAOL/AQAAAAAAAAAFAOP/AQAAAAAAAAAFAOT/AQAAAAAAAAAFAOX/AQAAAAAAAAAFAOb/AQAAAAAAAAAFAOf/AQAAAAAAAAAFAOj/AQAAAAAAAAAFAOn/AQAAAAAAAAAFAOr/AQACAAAAAAAFAOv/AQABAAAAAAAFAOz/AQAAAAAAAAAGANz/AQABAAAAAAAGAN3/AQABAAAAAAAGAN7/AQABAAAAAAAGAN//AQABAAAAAAAGAOD/AQABAAAAAAAGAOH/AQABAAAAAAAGAOL/AQABAAAAAAAGAOP/AQABAAAAAAAGAOT/AQABAAAAAAAGAOX/AQABAAAAAAAGAOb/AQABAAAAAAAGAOf/AQABAAAAAAAGAOj/AQABAAAAAAAGAOn/AQABAAAAAAAGAOr/AQABAAAAAAAGAOv/AQACAAAAAAAGAOz/AQABAAAAAAAHANz/AQACAAAAAAAHAN3/AQACAAAAAAAHAN7/AQACAAAAAAAHAN//AQACAAAAAAAHAOD/AQACAAAAAAAHAOH/AQACAAAAAAAHAOL/AQACAAAAAAAHAOP/AQACAAAAAAAHAOT/AQACAAAAAAAHAOX/AQACAAAAAAAHAOb/AQACAAAAAAAHAOf/AQACAAAAAAAHAOj/AQACAAAAAAAHAOn/AQACAAAAAAAHAOr/AQACAAAAAAAHAOv/AQACAAAAAAAHAOz/AQACAAAAAAAIANz/AQAAAAAAAAAIAN3/AQAAAAAAAAAIAN7/AQAAAAAAAAAIAN//AQAAAAAAAAAIAOD/AQAAAAAAAAAIAOH/AQAAAAAAAAAIAOL/AQAAAAAAAAAIAOP/AQAAAAAAAAAIAOT/AQAAAAAAAAAIAOX/AQAAAAAAAAAIAOb/AQAAAAAAAAAIAOf/AQAAAAAAAAAIAOj/AQAAAAAAAAAIAOn/AQAAAAAAAAAIAOr/AQAAAAAAAAAIAOv/AQAAAAAAAAAIAOz/AQAAAAAAAAAJANz/AQABAAAAAAAJAN3/AQABAAAAAAAJAN7/AQABAAAAAAAJAN//AQABAAAAAAAJAOD/AQABAAAAAAAJAOH/AQABAAAAAAAJAOL/AQABAAAAAAAJAOP/AQABAAAAAAAJAOT/AQABAAAAAAAJAOX/AQABAAAAAAAJAOb/AQABAAAAAAAJAOf/AQABAAAAAAAJAOj/AQABAAAAAAAJAOn/AQABAAAAAAAJAOr/AQABAAAAAAAJAOv/AQABAAAAAAAJAOz/AQABAAAAAAAKANz/AQACAAAAAAAKAN3/AQACAAAAAAAKAN7/AQACAAAAAAAKAN//AQACAAAAAAAKAOD/AQACAAAAAAAKAOH/AQACAAAAAAAKAOL/AQACAAAAAAAKAOP/AQACAAAAAAAKAOT/AQACAAAAAAAKAOX/AQACAAAAAAAKAOb/AQACAAAAAAAKAOf/AQACAAAAAAAKAOj/AQACAAAAAAAKAOn/AQACAAAAAAAKAOr/AQACAAAAAAAKAOv/AQACAAAAAAAKAOz/AQACAAAAAAALANz/AQAAAAAAAAALAN3/AQAAAAAAAAALAN7/AQAAAAAAAAALAN//AQAAAAAAAAALAOD/AQAAAAAAAAALAOH/AQAAAAAAAAALAOL/AQAAAAAAAAALAOP/AQAAAAAAAAALAOT/AQAAAAAAAAALAOX/AQAAAAAAAAALAOb/AQAAAAAAAAALAOf/AQAAAAAAAAALAOj/AQAAAAAAAAALAOn/AQAAAAAAAAALAOr/AQAAAAAAAAALAOv/AQAAAAAAAAALAOz/AQAAAAAAAAAMANz/AQABAAAAAAAMAN3/AQABAAAAAAAMAN7/AQABAAAAAAAMAN//AQABAAAAAAAMAOD/AQABAAAAAAAMAOH/AQABAAAAAAAMAOL/AQABAAAAAAAMAOP/AQABAAAAAAAMAOT/AQABAAAAAAAMAOX/AQABAAAAAAAMAOb/AQABAAAAAAAMAOf/AQABAAAAAAAMAOj/AQABAAAAAAAMAOn/AQABAAAAAAAMAOr/AQABAAAAAAAMAOv/AQABAAAAAAAMAOz/AQABAAAAAAANANz/AQACAAAAAAANAN3/AQACAAAAAAANAN7/AQACAAAAAAANAN//AQACAAAAAAANAOD/AQACAAAAAAANAOH/AQACAAAAAAANAOL/AQACAAAAAAANAOP/AQACAAAAAAANAOT/AQACAAAAAAANAOX/AQACAAAAAAANAOb/AQACAAAAAAANAOf/AQACAAAAAAANAOj/AQACAAAAAAANAOn/AQACAAAAAAANAOr/AQACAAAAAAANAOv/AQACAAAAAAANAOz/AQACAAAAAAAOANz/AQAAAAAAAAAOAN3/AQAAAAAAAAAOAN7/AQAAAAAAAAAOAN//AQAAAAAAAAAOAOD/AQAAAAAAAAAOAOH/AQAAAAAAAAAOAOL/AQAAAAAAAAAOAOP/AQAAAAAAAAAOAOT/AQAAAAAAAAAOAOX/AQAAAAAAAAAOAOb/AQAAAAAAAAAOAOf/AQAAAAAAAAAOAOj/AQAAAAAAAAAOAOn/AQAAAAAAAAAOAOr/AQAAAAAAAAAOAOv/AQAAAAAAAAAOAOz/AQAAAAAAAAAPANz/AQABAAAAAAAPAN3/AQABAAAAAAAPAN7/AQABAAAAAAAPAN//AQABAAAAAAAPAOD/AQABAAAAAAAPAOH/AQABAAAAAAAPAOL/AQABAAAAAAAPAOP/AQABAAAAAAAPAOT/AQABAAAAAAAPAOX/AQABAAAAAAAPAOb/AQABAAAAAAAPAOf/AQABAAAAAAAPAOj/AQABAAAAAAAPAOn/AQABAAAAAAAPAOr/AQABAAAAAAAPAOv/AQABAAAAAAAPAOz/AQABAAAAAAAQANz/AQACAAAAAAAQAN3/AQACAAAAAAAQAN7/AQACAAAAAAAQAN//AQACAAAAAAAQAOD/AQACAAAAAAAQAOH/AQACAAAAAAAQAOL/AQACAAAAAAAQAOP/AQACAAAAAAAQAOT/AQACAAAAAAAQAOX/AQACAAAAAAAQAOb/AQACAAAAAAAQAOf/AQACAAAAAAAQAOj/AQACAAAAAAAQAOn/AQACAAAAAAAQAOr/AQACAAAAAAAQAOv/AQACAAAAAAAQAOz/AQACAAAAAAARANz/AQAAAAAAAAARAN3/AQAAAAAAAAARAN7/AQAAAAAAAAARAN//AQAAAAAAAAARAOD/AQAAAAAAAAARAOH/AQAAAAAAAAARAOL/AQAAAAAAAAARAOP/AQAAAAAAAAARAOT/AQAAAAAAAAARAOX/AQAAAAAAAAARAOb/AQAAAAAAAAARAOf/AQAAAAAAAAARAOj/AQAAAAAAAAARAOn/AQAAAAAAAAARAOr/AQAAAAAAAAARAOv/AQAAAAAAAAARAOz/AQAAAAAAAAASANz/AQABAAAAAAASAN3/AQABAAAAAAASAN7/AQABAAAAAAASAN//AQABAAAAAAASAOD/AQABAAAAAAASAOH/AQABAAAAAAASAOL/AQABAAAAAAASAOP/AQABAAAAAAASAOT/AQABAAAAAAASAOX/AQABAAAAAAASAOb/AQABAAAAAAASAOf/AQABAAAAAAASAOj/AQABAAAAAAASAOn/AQABAAAAAAASAOr/AQABAAAAAAASAOv/AQABAAAAAAASAOz/AQABAAAAAAAFAO3/AQAAAAAAAAAFAO7/AQAAAAAAAAAGAO3/AQABAAAAAAAGAO7/AQABAAAAAAAHAO3/AQACAAAAAAAHAO7/AQACAAAAAAAIAO3/AQAAAAAAAAAIAO7/AQAAAAAAAAAJAO3/AQABAAAAAAAJAO7/AQABAAAAAAAKAO3/AQACAAAAAAAKAO7/AQACAAAAAAALAO3/AQAAAAAAAAALAO7/AQAAAAAAAAAMAO3/AQABAAAAAAAMAO7/AQABAAAAAAANAO3/AQACAAAAAAANAO7/AQACAAAAAAAOAO3/AQAAAAAAAAAOAO7/AQAAAAAAAAAPAO3/AQABAAAAAAAPAO7/AQABAAAAAAAQAO3/AQACAAAAAAAQAO7/AQACAAAAAAARAO3/AQAAAAAAAAARAO7/AQAAAAAAAAASAO3/AQABAAAAAAASAO7/AQABAAAAAAATANz/AQACAAAAAAATAN3/AQACAAAAAAATAN7/AQACAAAAAAATAN//AQACAAAAAAATAOD/AQACAAAAAAATAOH/AQACAAAAAAATAOL/AQACAAAAAAATAOP/AQACAAAAAAATAOT/AQACAAAAAAATAOX/AQACAAAAAAATAOb/AQACAAAAAAATAOf/AQACAAAAAAATAOj/AQACAAAAAAATAOn/AQACAAAAAAATAOr/AQACAAAAAAATAOv/AQACAAAAAAATAOz/AQACAAAAAAATAO3/AQACAAAAAAATAO7/AQACAAAAAAAUANz/AQAAAAAAAAAUAN3/AQAAAAAAAAAUAN7/AQAAAAAAAAAUAN//AQAAAAAAAAAUAOD/AQAAAAAAAAAUAOH/AQAAAAAAAAAUAOL/AQAAAAAAAAAUAOP/AQAAAAAAAAAUAOT/AQAAAAAAAAAUAOX/AQAAAAAAAAAUAOb/AQAAAAAAAAAUAOf/AQAAAAAAAAAUAOj/AQAAAAAAAAAUAOn/AQAAAAAAAAAUAOr/AQAAAAAAAAAUAOv/AQAAAAAAAAAUAOz/AQAAAAAAAAAUAO3/AQAAAAAAAAAUAO7/AQAAAAAAAAAVANz/AQABAAAAAAAVAN3/AQABAAAAAAAVAN7/AQABAAAAAAAVAN//AQABAAAAAAAVAOD/AQABAAAAAAAVAOH/AQABAAAAAAAVAOL/AQABAAAAAAAVAOP/AQABAAAAAAAVAOT/AQABAAAAAAAVAOX/AQABAAAAAAAVAOb/AQABAAAAAAAVAOf/AQABAAAAAAAVAOj/AQABAAAAAAAVAOn/AQABAAAAAAAVAOr/AQAAAAAAAAAVAOv/AQABAAAAAAAVAOz/AQABAAAAAAAVAO3/AQABAAAAAAAVAO7/AQABAAAAAAACAN//AQAAAAAAAAADAN//AQABAAAAAAAEAN//AQACAAAAAAACAOD/AQAAAAAAAAADAOD/AQABAAAAAAAEAOD/AQACAAAAAAACAOH/AQAAAAAAAAADAOH/AQABAAAAAAAEAOH/AQACAAAAAAACAOL/AQAAAAAAAAADAOL/AQABAAAAAAAEAOL/AQACAAAAAAACAOP/AQAAAAAAAAADAOP/AQABAAAAAAAEAOP/AQACAAAAAAACAOT/AQAAAAAAAAADAOT/AQABAAAAAAAEAOT/AQACAAAAAAACAOX/AQAAAAAAAAADAOX/AQABAAAAAAAEAOX/AQACAAAAAAACAOb/AQAAAAAAAAADAOb/AQABAAAAAAAEAOb/AQACAAAAAAACAOf/AQAAAAAAAAADAOf/AQABAAAAAAAEAOf/AQACAAAAAAACAOj/AQAAAAAAAAADAOj/AQABAAAAAAAEAOj/AQACAAAAAAACAOn/AQAAAAAAAAADAOn/AQABAAAAAAAEAOn/AQACAAAAAAAWAOn/AQAAAAAAAAAXAOn/AQABAAAAAAAYAOn/AQACAAAAAAAWAOj/AQAAAAAAAAAXAOj/AQABAAAAAAAYAOj/AQACAAAAAAAWAOf/AQAAAAAAAAAXAOf/AQABAAAAAAAYAOf/AQACAAAAAAAWAOb/AQAAAAAAAAAXAOb/AQABAAAAAAAYAOb/AQACAAAAAAAWAOX/AQAAAAAAAAAXAOX/AQABAAAAAAAYAOX/AQACAAAAAAAWAOT/AQAAAAAAAAAXAOT/AQABAAAAAAAYAOT/AQACAAAAAAAWAOP/AQAAAAAAAAAXAOP/AQABAAAAAAAYAOP/AQACAAAAAAAWAOL/AQAAAAAAAAAXAOL/AQABAAAAAAAYAOL/AQACAAAAAAAWAOH/AQAAAAAAAAAXAOH/AQABAAAAAAAYAOH/AQACAAAAAAAWAOD/AQAAAAAAAAAXAOD/AQABAAAAAAAYAOD/AQACAAAAAAAWAN//AQAAAAAAAAAXAN//AQABAAAAAAAYAN//AQACAAAAAAADAOr/AQAAAAAAAAAEAOr/AQABAAAAAAAEAOv/AQAAAAAAAAAWAOv/AQACAAAAAAAWAOr/AQABAAAAAAAXAOr/AQACAAAAAAA=")
+tile_set = SubResource("TileSet_fojjy")
+
+[node name="Ground2" type="TileMapLayer" parent="TileMapLayers"]
+position = Vector2(128, 5442)
+tile_map_data = PackedByteArray("AAAKALP/AAAAAAAAAAALALP/AAAAAAAAAAAMALP/AAAAAAAAAAAKALT/AAAAAAAAAAALALT/AAAAAAAAAAAMALT/AAAAAAAAAAAKALX/AAAAAAAAAAALALX/AAAAAAAAAAAMALX/AAAAAAAAAAAKALb/AAAAAAAAAAALALb/AAAAAAAAAAAMALb/AAAAAAAAAAANALP/AAAAAAAAAAANALT/AAAAAAAAAAANALX/AAAAAAAAAAANALb/AAAAAAAAAAAIALT/AAAAAAAAAAAJALT/AAAAAAAAAAAIALX/AAAAAAAAAAAJALX/AAAAAAAAAAAOALT/AAAAAAAAAAAPALT/AAAAAAAAAAAOALX/AAAAAAAAAAAPALX/AAAAAAAAAAAIALP/AAAAAAAAAAAJALP/AAAAAAAAAAAOALP/AAAAAAAAAAAPALP/AAAAAAAAAAAIALL/AAAAAAAAAAAJALL/AAAAAAAAAAAKALL/AAAAAAAAAAALALL/AAAAAAAAAAAMALL/AAAAAAAAAAANALL/AAAAAAAAAAAOALL/AAAAAAAAAAAPALL/AAAAAAAAAAAFALX/AAAAAAAAAAAEALX/AAAAAAAAAAAEALT/AAAAAAAAAAAFALT/AAAAAAAAAAASALT/AAAAAAAAAAASALX/AAAAAAAAAAATALT/AAAAAAAAAAATALX/AAAAAAAAAAAEALP/AAAAAAAAAAAFALP/AAAAAAAAAAAGALP/AAAAAAAAAAAHALP/AAAAAAAAAAAQALP/AAAAAAAAAAARALP/AAAAAAAAAAASALP/AAAAAAAAAAATALP/AAAAAAAAAAAGALT/AAAAAAAAAAARALT/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_fojjy")
+
+[node name="Wall" type="TileMapLayer" parent="TileMapLayers"]
+modulate = Color(0.9623843, 0.66570896, 0.6476446, 1)
+position = Vector2(64, 2877)
+tile_map_data = PackedByteArray("AAAKAO//BAABAAMAAAAJAO//BAABAAMAAAAIAO//BAABAAMAAAAHAO//BAABAAMAAAAGAO//BAABAAMAAAAFAO//BAABAAMAAAAKAO7/BAABAAIAAAAKAO3/BAABAAEAAAAKAOz/BAACAAAAAAAJAO7/BAABAAEAAAAJAO3/BAABAAEAAAAJAOz/BAABAAAAAAAIAO7/BAABAAEAAAAIAO3/BAABAAEAAAAIAOz/BAABAAAAAAAHAO7/BAABAAEAAAAHAO3/BAABAAEAAAAHAOz/BAABAAAAAAAGAO7/BAABAAEAAAAGAO3/BAABAAEAAAAGAOz/BAABAAAAAAAFAO7/BAABAAIAAAAFAO3/BAABAAEAAAAFAOz/BAABAAAAAAAEAO7/BAAAAAIAAAAEAO3/BAAAAAEAAAAEAOz/BAABAAAAAAAEAN7/BAACAAIAAAAEAN3/BAACAAEAAAAEANz/BAACAAEAAAAEANv/BAAAAAEAAAAVANv/BAACAAEAAAAVANr/BAACAAEAAAAVANn/BAACAAAAAAAUANr/BAABAAEAAAAUANn/BAABAAAAAAATANr/BAABAAEAAAATANn/BAABAAAAAAASANr/BAABAAEAAAASANn/BAABAAAAAAARANr/BAABAAEAAAARANn/BAABAAAAAAAQANr/BAABAAEAAAAQANn/BAABAAAAAAAPANr/BAABAAEAAAAPANn/BAABAAAAAAAOANr/BAABAAEAAAAOANn/BAABAAAAAAANANr/BAABAAEAAAANANn/BAABAAAAAAAMANr/BAABAAEAAAAMANn/BAABAAAAAAALANr/BAABAAEAAAALANn/BAABAAAAAAAKANr/BAABAAEAAAAKANn/BAABAAAAAAAJANr/BAABAAEAAAAJANn/BAABAAAAAAAIANr/BAABAAEAAAAIANn/BAABAAAAAAAHANr/BAABAAEAAAAHANn/BAABAAAAAAAGANr/BAABAAEAAAAGANn/BAABAAAAAAAFANr/BAABAAEAAAAFANn/BAABAAAAAAAEANr/BAAAAAEAAAAEANn/BAAAAAAAAAAVANz/BAAAAAEAAAAIANz/BAADAAAAAAADAN7/BAABAAIAAAACAN7/BAABAAIAAAADAN3/BAABAAEAAAACAN3/BAAAAAAAAAADANz/BAAAAAAAAAABAOr/BAAAAAIAAAABAOn/BAADAAEAAAABAOj/BAADAAEAAAABAOf/BAADAAEAAAABAOb/BAADAAEAAAABAOX/BAADAAEAAAABAOT/BAADAAEAAAABAOP/BAADAAEAAAABAOL/BAADAAEAAAABAOH/BAADAAEAAAABAOD/BAADAAEAAAABAN//BAADAAEAAAABAN7/BAAAAAAAAAACAOr/BAACAAAAAAADAOv/BAACAAAAAAACAOv/BAAAAAIAAAADAOz/BAAAAAIAAAABAOv/BAADAAMAAAACAOz/BAADAAMAAAADAO3/BAADAAMAAAAEAO//BAAAAAMAAAAEAN//BAACAAMAAAADAN//BAABAAMAAAACAN//BAAAAAMAAAAJAN7/BAAAAAMAAAALAN//BAADAAMAAAAOAN//BAADAAMAAAAQAN7/BAACAAMAAAARANz/BAADAAAAAAAQAOz/BAABAAAAAAAQAO3/BAABAAEAAAAQAO7/BAABAAEAAAAQAO//BAABAAMAAAARAOz/BAABAAAAAAARAO3/BAABAAEAAAARAO7/BAABAAEAAAARAO//BAABAAMAAAASAOz/BAABAAAAAAASAO3/BAABAAEAAAASAO7/BAABAAEAAAASAO//BAABAAMAAAATAOz/BAABAAAAAAATAO3/BAABAAEAAAATAO7/BAABAAEAAAATAO//BAABAAMAAAAUAOz/BAABAAAAAAAUAO3/BAABAAEAAAAUAO7/BAABAAIAAAAUAO//BAABAAMAAAAVAOz/BAABAAAAAAAVAO3/BAACAAEAAAAVAO7/BAACAAIAAAAVAO//BAACAAMAAAAWAOz/BAACAAIAAAAWAO3/BAADAAMAAAAPAOz/BAAAAAAAAAAPAO3/BAABAAEAAAAPAO7/BAABAAEAAAAPAO//BAABAAMAAAAWAOv/BAAAAAAAAAAWANz/BAACAAAAAAAWAN3/BAABAAEAAAAWAN7/BAABAAIAAAAWAN//BAABAAMAAAAXAN3/BAACAAAAAAAXAN7/BAABAAIAAAAXAN//BAACAAMAAAAYAN7/BAACAAAAAAAYAN//BAADAAEAAAAVAN3/BAAAAAEAAAAVAN7/BAAAAAIAAAAVAN//BAAAAAMAAAAYAOr/BAACAAIAAAAYAOv/BAADAAMAAAAXAOr/BAAAAAAAAAAXAOv/BAACAAIAAAAXAOz/BAADAAMAAAAYAOD/BAADAAEAAAAYAOH/BAADAAEAAAAYAOL/BAADAAEAAAAYAOP/BAADAAEAAAAYAOT/BAADAAEAAAAYAOX/BAADAAEAAAAYAOb/BAADAAEAAAAYAOf/BAADAAEAAAAYAOj/BAADAAEAAAAYAOn/BAADAAEAAAAKAOH/BAADAAAAAAAKAOL/BAADAAMAAAAPAOH/BAADAAAAAAAPAOL/BAADAAMAAAAHAOT/BAADAAAAAAAHAOX/BAADAAMAAAASAOT/BAADAAAAAAASAOX/BAADAAMAAAAEAOT/BAADAAAAAAAEAOX/BAADAAMAAAAVAOT/BAADAAAAAAAVAOX/BAADAAMAAAALAO7/BAACAAEAAAALAO3/BAACAAAAAAALAO//BAACAAMAAAAOAO//BAAAAAMAAAAOAO7/BAAAAAEAAAAOAO3/BAAAAAAAAAAHAN3/BAAAAAMAAAAHANz/BAADAAMAAAASANz/BAADAAMAAAASAN3/BAACAAMAAAAIAN3/BAACAAMAAAARAN3/BAAAAAMAAAAPAN7/BAAAAAMAAAAKAN7/BAACAAMAAAA=")
+tile_set = ExtResource("1_nfv0t")
+
+[node name="Wall2" type="TileMapLayer" parent="TileMapLayers"]
+modulate = Color(0.9623843, 0.66570896, 0.6476446, 1)
+position = Vector2(192, 8007)
+tile_map_data = PackedByteArray("AAAOAIr/BAABAAMAAAANAIr/BAAAAAMAAAAMAIr/BAACAAEAAAALAIr/BAABAAEAAAAKAIr/BAABAAEAAAAJAIr/BAAAAAEAAAAIAIr/BAACAAMAAAAHAIr/BAABAAMAAAAOAIn/BAABAAIAAAANAIn/BAABAAIAAAAMAIn/BAABAAEAAAALAIn/BAABAAEAAAAKAIn/BAABAAEAAAAJAIn/BAABAAEAAAAIAIn/BAABAAIAAAAHAIn/BAABAAIAAAAOAIj/BAABAAAAAAANAIj/BAABAAAAAAAMAIj/BAABAAAAAAALAIj/BAABAAAAAAAKAIj/BAABAAAAAAAJAIj/BAABAAAAAAAIAIj/BAABAAAAAAAHAIj/BAABAAAAAAAGAIn/BAABAAIAAAAGAIj/BAABAAAAAAAFAIn/BAABAAIAAAAFAIj/BAABAAAAAAAEAIn/BAABAAIAAAAEAIj/BAABAAAAAAADAIn/BAAAAAEAAAADAIj/BAABAAAAAAATAIn/BAACAAEAAAATAIj/BAACAAAAAAASAIn/BAABAAEAAAASAIj/BAABAAAAAAARAIn/BAABAAIAAAARAIj/BAABAAAAAAAQAIn/BAABAAIAAAAQAIj/BAABAAAAAAAPAIn/BAABAAIAAAAPAIj/BAABAAAAAAAGAIr/BAABAAMAAAAFAIr/BAABAAMAAAAEAIr/BAAAAAMAAAATAIr/BAACAAIAAAASAIr/BAAAAAEAAAARAIr/BAACAAMAAAAQAIr/BAABAAMAAAAPAIr/BAABAAMAAAACAIv/BAAAAAMAAAACAIr/BAAAAAIAAAACAIn/BAADAAEAAAATAIv/BAACAAMAAAACAIj/BAAAAAAAAAADAIr/BAACAAEAAAADAIv/BAACAAMAAAASAIv/BAAAAAMAAAAMAIv/BAACAAMAAAALAIv/BAABAAMAAAAKAIv/BAABAAMAAAAJAIv/BAAAAAMAAAA=")
+tile_set = ExtResource("1_nfv0t")
+
+[node name="stair" type="TileMapLayer" parent="TileMapLayers"]
+top_level = true
+tile_map_data = PackedByteArray("AAAGAAwAAAAAAAAAAAAGAA0AAAABAAEAAAAGAA4AAAAAAAIAAAAHAAwAAAABAAAAAAAHAA0AAAACAAEAAAAHAA4AAAABAAIAAAAUAAwAAAAAAAEAAAAUAA0AAAABAAEAAAAUAA4AAAAAAAIAAAAVAAwAAAABAAEAAAAVAA0AAAACAAEAAAAVAA4AAAABAAIAAAAGAAsAAAAAAAAAAAAHAAsAAAABAAAAAAAUAAsAAAAAAAIAAAAVAAsAAAABAAIAAAANAAwAAAAAAAAAAAANAA0AAAAAAAEAAAANAA4AAAAAAAIAAAAOAAwAAAACAAAAAAAOAA0AAAACAAEAAAAOAA4AAAACAAIAAAA=")
+tile_set = SubResource("TileSet_gsveo")
+
+[node name="rug" type="TileMapLayer" parent="TileMapLayers"]
+top_level = true
+position = Vector2(0, 312)
+tile_map_data = PackedByteArray("AAANAAoAAQAAAAAAAAANAAsAAQAAAAAAAAANAAwAAQAAAAAAAAANAA0AAQAAAAAAAAANAA4AAQAAAAAAAAANAA8AAQAAAAAAAAANABAAAQAAAAAAAAANABEAAQAAAAAAAAANABIAAQAAAAAAAAANABMAAQAAAAAAAAANABQAAQAAAAAAAAANABUAAQAAAAAAAAANABYAAQAAAAAAAAAOAAoAAQACAAAAAAAOAAsAAQACAAAAAAAOAAwAAQACAAAAAAAOAA0AAQACAAAAAAAOAA4AAQACAAAAAAAOAA8AAQACAAAAAAAOABAAAQACAAAAAAAOABEAAQACAAAAAAAOABIAAQACAAAAAAAOABMAAQACAAAAAAAOABQAAQACAAAAAAAOABUAAQACAAAAAAAOABYAAQACAAAAAAAHAAoAAQACAAAAAAAHAAsAAQACAAAAAAAHAAwAAQACAAAAAAAHAA0AAQACAAAAAAAGAAoAAQAAAAAAAAAGAAsAAQAAAAAAAAAGAAwAAQAAAAAAAAAGAA0AAQAAAAAAAAAUAAoAAQAAAAAAAAAUAAsAAQAAAAAAAAAUAAwAAQAAAAAAAAAUAA0AAQAAAAAAAAAVAAoAAQACAAAAAAAVAAsAAQACAAAAAAAVAAwAAQACAAAAAAAVAA0AAQACAAAAAAA=")
+tile_set = SubResource("TileSet_m4rtx")
+
+[node name="small wall" type="TileMapLayer" parent="TileMapLayers"]
+modulate = Color(0.9607843, 0.6666667, 0.64705884, 1)
+top_level = true
+tile_map_data = PackedByteArray("AAAUABQAAAAAAAEAAAAUABUAAAAAAAIAAAAlABQAAAACAAEAAAAlABUAAAACAAIAAAAUABYAAAAAAAMAAAAVABYAAAABAAMAAAAkABYAAAABAAMAAAAlABYAAAACAAMAAAAWABYAAAABAAMAAAAXABYAAAABAAMAAAAYABYAAAACAAEAAAAjABYAAAABAAMAAAAiABYAAAABAAMAAAAhABYAAAACAAEAAAAYABUAAAACAAAAAAAYABcAAAAAAAIAAAAhABcAAAACAAIAAAAhABgAAAACAAMAAAAYABgAAAAAAAMAAAAZABcAAAABAAIAAAAZABgAAAABAAMAAAAaABcAAAACAAAAAAAaABgAAAAAAAEAAAAfABcAAAAAAAAAAAAfABgAAAACAAEAAAAgABcAAAABAAIAAAAgABgAAAABAAMAAAAVABUAAAABAAAAAAAWABUAAAABAAAAAAAXABUAAAABAAAAAAAiABUAAAABAAAAAAAjABUAAAABAAAAAAAkABUAAAABAAAAAAAhABUAAAAAAAAAAAAUABIAAAACAAAAAAAUABMAAAAAAAEAAAAlABIAAAAAAAAAAAAlABMAAAACAAEAAAATABIAAAABAAAAAAATABMAAAABAAMAAAASABMAAAACAAIAAAASABQAAAABAAMAAAARABQAAAACAAIAAAARABUAAAABAAMAAAAmABIAAAABAAAAAAAmABMAAAABAAMAAAAnABMAAAAAAAIAAAAnABQAAAABAAMAAAAoABQAAAAAAAIAAAAoABUAAAABAAMAAAAQAB0AAAADAAIAAAAQAB4AAAADAAMAAAAQABUAAAADAAEAAAApABUAAAADAAEAAAApABYAAAACAAEAAAApAB0AAAADAAIAAAApAB4AAAADAAMAAAAMAB0AAAADAAIAAAAMAB4AAAADAAMAAAAtAB0AAAADAAIAAAAtAB4AAAADAAMAAAAQABYAAAADAAEAAAAQABcAAAADAAEAAAAQABgAAAADAAEAAAAQABkAAAADAAEAAAAQABoAAAADAAEAAAAQABsAAAADAAEAAAAQABwAAAADAAEAAAApABcAAAACAAEAAAApABgAAAACAAEAAAApABkAAAACAAEAAAApABoAAAACAAEAAAApABsAAAACAAEAAAApABwAAAACAAEAAAAMABoAAAADAAEAAAAMABsAAAADAAEAAAAMABwAAAADAAEAAAASABIAAAAAAAAAAAAnABIAAAACAAAAAAARABMAAAAAAAAAAAAQABQAAAAAAAAAAAAoABMAAAACAAAAAAApABQAAAACAAAAAAAaABoAAAAAAAEAAAAaABsAAAACAAEAAAAaABwAAAACAAEAAAAaAB0AAAADAAIAAAAaAB4AAAADAAMAAAAfABoAAAACAAEAAAAfABsAAAACAAEAAAAfABwAAAACAAEAAAAfAB0AAAADAAIAAAAfAB4AAAADAAMAAAAaABkAAAAAAAEAAAAfABkAAAACAAEAAAAMABIAAAADAAAAAAAMABMAAAADAAEAAAAMABQAAAADAAEAAAAtABIAAAADAAAAAAAtABMAAAADAAEAAAAtABQAAAADAAEAAAAtABoAAAADAAEAAAAtABsAAAADAAEAAAAtABwAAAADAAEAAAAMABUAAAADAAEAAAAMABYAAAADAAEAAAAMABcAAAADAAEAAAAMABgAAAADAAEAAAAMABkAAAADAAEAAAAtABUAAAADAAEAAAAtABYAAAADAAEAAAAtABcAAAADAAEAAAAtABgAAAADAAEAAAAtABkAAAADAAEAAAA=")
+tile_set = SubResource("TileSet_bwjj5")
+
+[node name="Door Exit" parent="." instance=ExtResource("7_enua5")]
+top_level = true
+position = Vector2(862, 1799)
+script = null
+
+[node name="Door Exit2" parent="." instance=ExtResource("7_enua5")]
+top_level = true
+position = Vector2(925, 1800)
+script = null
+
+[node name="Door Exit3" parent="." instance=ExtResource("7_enua5")]
+top_level = true
+position = Vector2(287, 830)
+script = null
+
+[node name="Door Exit4" parent="." instance=ExtResource("7_enua5")]
+top_level = true
+position = Vector2(1503, 828)
+script = null
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(388.25, 757.75)
+shape = SubResource("RectangleShape2D_enua5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(1414, 757)
+shape = SubResource("RectangleShape2D_enua5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(511.375, 794.125)
+shape = SubResource("RectangleShape2D_enua5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(1283, 792)
+shape = SubResource("RectangleShape2D_enua5")
+
+[node name="OnTheGround" type="Node2D" parent="."]
+top_level = true
+y_sort_enabled = true
+
+[node name="Character" type="AnimatedSprite2D" parent="OnTheGround"]
+position = Vector2(400, 349)
+scale = Vector2(0.367, 0.367)
+sprite_frames = ExtResource("5_enua5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="OnTheGround/Character" groups=["light"]]
+process_mode = 3
+position = Vector2(5.449524, -2.7248268)
+scale = Vector2(2.7247956, 2.7247956)
+limit_left = 0
+limit_top = 0
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="Tejedor" type="AnimatedSprite2D" parent="OnTheGround"]
+position = Vector2(902, 1692.0001)
+scale = Vector2(0.367, 0.367)
+sprite_frames = SubResource("SpriteFrames_fojjy")
+animation = &"walking"
+autoplay = "idle"
+
+[node name="Señor_del_Castillo" type="AnimatedSprite2D" parent="OnTheGround"]
+position = Vector2(900, 643)
+scale = Vector2(0.42708334, 0.42708334)
+sprite_frames = SubResource("SpriteFrames_fns53")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OnTheGround"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_h6mes")
+}
+
+[node name="Explosion" type="AnimatedSprite2D" parent="OnTheGround"]
+position = Vector2(2749, 1130)
+scale = Vector2(0.87452084, 0.8759259)
+sprite_frames = SubResource("SpriteFrames_842sh")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[node name="Hilos_6" type="AnimatedSprite2D" parent="OnTheGround"]
+position = Vector2(2205, 456)
+scale = Vector2(0.41972476, 0.41972476)
+sprite_frames = SubResource("SpriteFrames_5awuw")
+autoplay = "default"
+
+[node name="ColorRect" type="CanvasModulate" parent="."]
+color = Color(0.7136591, 0.7136591, 0.74258333, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_3tpjc")
+volume_db = 7.429
+autoplay = true
+bus = &"Music"
+
+[node name="Cinematic" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("11_fojjy")
+dialogue = ExtResource("12_fojjy")
+animation_player = NodePath("../OnTheGround/AnimationPlayer")
+next_scene = "uid://cufkthb25mpxy"
+metadata/_custom_type_script = "uid://x1mxt6bmei2o"

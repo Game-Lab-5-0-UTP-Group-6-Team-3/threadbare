@@ -50,11 +50,9 @@ func _check_conditions_and_transition() -> void:
 
 	if tiene_tres_items:
 		if next_scene:
-			SceneSwitcher.change_to_file_with_transition(
+			SceneSwitcher.change_to_file(
 				next_scene,
-				spawn_point_path,
-				Transition.Effect.FADE,
-				Transition.Effect.FADE
+				spawn_point_path 
 			)
 	else:
 		if puerta_dialogue and not dialogo_mostrado:

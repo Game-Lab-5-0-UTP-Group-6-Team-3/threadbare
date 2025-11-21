@@ -50,14 +50,14 @@
 [ext_resource type="Resource" uid="uid://ba0hdiay4vrkt" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gazzart_puerta_condicion.dialogue" id="41_yy1ff"]
 [ext_resource type="AudioStream" uid="uid://dn510mlean7eu" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gazzart_minigame_2.mp3" id="49_wlgob"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_upgsc"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wlgob"]
 texture = ExtResource("2_2meyv")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kajkp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m2llb"]
 texture = ExtResource("3_7fw1y")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -66,10 +66,10 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_24k5j"]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_upgsc")
-sources/1 = SubResource("TileSetAtlasSource_kajkp")
+sources/0 = SubResource("TileSetAtlasSource_wlgob")
+sources/1 = SubResource("TileSetAtlasSource_m2llb")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yxp2m"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n27rn"]
 texture = ExtResource("4_cbyi6")
 3:4/0 = 0
 4:4/0 = 0
@@ -82,14 +82,14 @@ texture = ExtResource("4_cbyi6")
 3:6/0 = 0
 4:6/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6q81"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j3e7y"]
 texture = ExtResource("5_1i5dj")
 texture_region_size = Vector2i(32, 32)
 1:2/0 = 0
 2:2/0 = 0
 1:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ckegk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htbh1"]
 texture = ExtResource("6_lrb8q")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
@@ -97,7 +97,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmsxu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_42ka0"]
 texture = ExtResource("7_oeyd3")
 texture_region_size = Vector2i(32, 36)
 1:0/0 = 0
@@ -107,7 +107,7 @@ texture_region_size = Vector2i(32, 36)
 0:0/0 = 0
 0:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xsupl"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b23wn"]
 texture = ExtResource("8_qx30p")
 texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
@@ -131,7 +131,7 @@ texture_region_size = Vector2i(32, 32)
 3:4/0 = 0
 4:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gxh87"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7dup"]
 texture = ExtResource("9_kahqc")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -144,7 +144,7 @@ texture_region_size = Vector2i(32, 32)
 1:2/0 = 0
 2:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_whpqk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5cmu7"]
 texture = ExtResource("10_ymi23")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -152,14 +152,14 @@ texture_region_size = Vector2i(32, 32)
 0:1/0 = 0
 1:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umq78"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3382x"]
 texture = ExtResource("11_yy1ff")
 1:1/0 = 0
 2:1/0 = 0
 1:2/0 = 0
 2:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eib0l"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqjoj"]
 texture = ExtResource("12_3clji")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
@@ -167,7 +167,7 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 0:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hpyeo"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_84fa6"]
 texture = ExtResource("13_e0gkp")
 2:0/0 = 0
 0:1/0 = 0
@@ -180,14 +180,14 @@ texture = ExtResource("13_e0gkp")
 3:2/0 = 0
 2:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0l5sx"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vyok1"]
 texture = ExtResource("14_wvp3d")
 1:1/0 = 0
 2:1/0 = 0
 1:2/0 = 0
 2:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_krpet"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1go2k"]
 texture = ExtResource("15_m0mwa")
 texture_region_size = Vector2i(32, 32)
 use_texture_padding = false
@@ -196,7 +196,7 @@ use_texture_padding = false
 0:0/0 = 0
 1:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_72bwe"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ugt7x"]
 texture = ExtResource("16_kuycp")
 texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
@@ -204,7 +204,7 @@ texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mm3fe"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bovf2"]
 texture = ExtResource("17_1agqv")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
@@ -214,20 +214,20 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_llift"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_yxp2m")
-sources/1 = SubResource("TileSetAtlasSource_x6q81")
-sources/2 = SubResource("TileSetAtlasSource_whpqk")
-sources/3 = SubResource("TileSetAtlasSource_umq78")
-sources/4 = SubResource("TileSetAtlasSource_eib0l")
-sources/5 = SubResource("TileSetAtlasSource_hpyeo")
-sources/6 = SubResource("TileSetAtlasSource_0l5sx")
-sources/7 = SubResource("TileSetAtlasSource_krpet")
-sources/8 = SubResource("TileSetAtlasSource_72bwe")
-sources/9 = SubResource("TileSetAtlasSource_mm3fe")
-sources/10 = SubResource("TileSetAtlasSource_ckegk")
-sources/11 = SubResource("TileSetAtlasSource_pmsxu")
-sources/12 = SubResource("TileSetAtlasSource_xsupl")
-sources/13 = SubResource("TileSetAtlasSource_gxh87")
+sources/0 = SubResource("TileSetAtlasSource_n27rn")
+sources/1 = SubResource("TileSetAtlasSource_j3e7y")
+sources/2 = SubResource("TileSetAtlasSource_5cmu7")
+sources/3 = SubResource("TileSetAtlasSource_3382x")
+sources/4 = SubResource("TileSetAtlasSource_wqjoj")
+sources/5 = SubResource("TileSetAtlasSource_84fa6")
+sources/6 = SubResource("TileSetAtlasSource_vyok1")
+sources/7 = SubResource("TileSetAtlasSource_1go2k")
+sources/8 = SubResource("TileSetAtlasSource_ugt7x")
+sources/9 = SubResource("TileSetAtlasSource_bovf2")
+sources/10 = SubResource("TileSetAtlasSource_htbh1")
+sources/11 = SubResource("TileSetAtlasSource_42ka0")
+sources/12 = SubResource("TileSetAtlasSource_b23wn")
+sources/13 = SubResource("TileSetAtlasSource_r7dup")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypsjw"]
 size = Vector2(168.25, 122)
@@ -727,9 +727,27 @@ script = ExtResource("13_6j3d7")
 tile_map_data = PackedByteArray("AAANAAQAAAAAAAAAAAAOAAMAAAAAAAAAAAAPAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAANAAMAAQAAAAAAAAAPAAMAAQAAAAAAAAANAAUAAQAAAAAAAAAPAAUAAQAAAAAAAAAGAAMAAQAAAAAAAAAIAAMAAQAAAAAAAAAHAAQAAQAAAAAAAAAGAAUAAQAAAAAAAAAIAAUAAQAAAAAAAAAHAAUAAAAAAAAAAAAIAAQAAAAAAAAAAAAHAAMAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_hgl6m")
 
+[node name="Table_white" type="TileMapLayer" parent="PuzzleCajas1/Tableros"]
+modulate = Color(1.6974981, 1.9306018, 2.1074393, 1)
+position = Vector2(-576, 576)
+tile_map_data = PackedByteArray("AAAPAPr/AAAAAAAAAAAQAPv/AAAAAAAAAAARAPz/AAAAAAAAAAARAPr/AAAAAAAAAAAPAPz/AAAAAAAAAAAWAPr/AAAAAAAAAAAXAPv/AAAAAAAAAAAYAPz/AAAAAAAAAAAWAPz/AAAAAAAAAAAYAPr/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
+[node name="Table_black" type="TileMapLayer" parent="PuzzleCajas1/Tableros"]
+modulate = Color(1.269, 1.445, 1.579, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAAZAPH/AAAAAAAAAAAaAPL/AAAAAAAAAAAZAPP/AAAAAAAAAAAYAPL/AAAAAAAAAAAgAPH/AAAAAAAAAAAfAPL/AAAAAAAAAAAhAPL/AAAAAAAAAAAgAPP/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
 [node name="Baldosas_Bloque" type="TileMapLayer" parent="PuzzleCajas1/Tableros"]
 tile_map_data = PackedByteArray("AAAOAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ykjoe")
+
+[node name="Table_red" type="TileMapLayer" parent="PuzzleCajas1/Tableros"]
+modulate = Color(1.5790963, 0.8511103, 1.0452397, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAAgAPL/AAAAAAAAAAAYAPL/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
 
 [node name="Target1" type="Node2D" parent="PuzzleCajas1/Tableros"]
 position = Vector2(320, 0)
@@ -813,9 +831,27 @@ script = ExtResource("13_6j3d7")
 tile_map_data = PackedByteArray("AAAXAAAAAAAAAAAAAAAXAAEAAQAAAAAAAAAXAAIAAAAAAAAAAAAXAAMAAQAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAQAAAAAAAAAYAAMAAAAAAAAAAAAZAAAAAAAAAAAAAAAZAAEAAQAAAAAAAAAZAAMAAQAAAAAAAAAaAAAAAQAAAAAAAAAaAAEAAAAAAAAAAAAaAAMAAAAAAAAAAAAbAAAAAAAAAAAAAAAbAAEAAQAAAAAAAAAbAAIAAAAAAAAAAAAbAAMAAQAAAAAAAAAfAAAAAAAAAAAAAAAfAAIAAAAAAAAAAAAfAAMAAQAAAAAAAAAgAAAAAQAAAAAAAAAgAAEAAAAAAAAAAAAgAAMAAAAAAAAAAAAhAAEAAQAAAAAAAAAhAAMAAQAAAAAAAAAiAAAAAQAAAAAAAAAiAAEAAAAAAAAAAAAiAAIAAQAAAAAAAAAiAAMAAAAAAAAAAAAjAAAAAAAAAAAAAAAjAAEAAQAAAAAAAAAjAAIAAAAAAAAAAAAjAAMAAQAAAAAAAAAgAAIAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_5qekm")
 
+[node name="Table_white" type="TileMapLayer" parent="PuzzleCajas2/Tableros"]
+modulate = Color(1.6974981, 1.9306018, 2.1074393, 1)
+position = Vector2(-576, 576)
+tile_map_data = PackedByteArray("AAAkAPf/AAAAAAAAAAAiAPf/AAAAAAAAAAAjAPj/AAAAAAAAAAAkAPn/AAAAAAAAAAAgAPf/AAAAAAAAAAAhAPj/AAAAAAAAAAAiAPn/AAAAAAAAAAAjAPr/AAAAAAAAAAAgAPn/AAAAAAAAAAAhAPr/AAAAAAAAAAAoAPf/AAAAAAAAAAApAPj/AAAAAAAAAAAqAPn/AAAAAAAAAAArAPr/AAAAAAAAAAAoAPn/AAAAAAAAAAApAPr/AAAAAAAAAAAqAPf/AAAAAAAAAAArAPj/AAAAAAAAAAAsAPn/AAAAAAAAAAAsAPf/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
+[node name="Table_black" type="TileMapLayer" parent="PuzzleCajas2/Tableros"]
+modulate = Color(1.269, 1.445, 1.579, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAApAO//AAAAAAAAAAApAPH/AAAAAAAAAAAqAO7/AAAAAAAAAAAqAPD/AAAAAAAAAAArAO//AAAAAAAAAAArAPH/AAAAAAAAAAAsAO7/AAAAAAAAAAAtAO//AAAAAAAAAAAtAPH/AAAAAAAAAAAxAO//AAAAAAAAAAAxAPH/AAAAAAAAAAAyAO7/AAAAAAAAAAAyAPD/AAAAAAAAAAAzAO//AAAAAAAAAAAzAPH/AAAAAAAAAAA0AO7/AAAAAAAAAAA0APD/AAAAAAAAAAA1AO//AAAAAAAAAAA1APH/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
 [node name="Baldosas_Bloque" type="TileMapLayer" parent="PuzzleCajas2/Tableros"]
 tile_map_data = PackedByteArray("AAAYAAAAAAAAAAAAAAAZAAIAAAAAAAAAAAAaAAIAAAAAAAAAAAAhAAAAAAAAAAAAAAAhAAIAAAAAAAAAAAAfAAEAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_p2yj3")
+
+[node name="Table_red" type="TileMapLayer" parent="PuzzleCajas2/Tableros"]
+modulate = Color(1.5790963, 0.8511103, 1.0452397, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAAqAO7/AAAAAAAAAAArAPD/AAAAAAAAAAAsAPD/AAAAAAAAAAAxAO//AAAAAAAAAAAzAO7/AAAAAAAAAAAzAPD/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
 
 [node name="Target1" type="Node2D" parent="PuzzleCajas2/Tableros"]
 position = Vector2(320, 0)
@@ -898,9 +934,27 @@ script = ExtResource("13_6j3d7")
 tile_map_data = PackedByteArray("AAAFAAIAAQAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAQAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAQAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAQAAAAAAAAAGAAUAAQAAAAAAAAAGAAYAAAAAAAAAAAAHAAIAAQAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAQAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAQAAAAAAAAAIAAIAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAQAAAAAAAAAJAAIAAQAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAQAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAQAAAAAAAAAOAAIAAQAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAQAAAAAAAAAOAAUAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAQAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAQAAAAAAAAAPAAYAAAAAAAAAAAAQAAIAAQAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAQAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAQAAAAAAAAARAAIAAAAAAAAAAAARAAMAAQAAAAAAAAARAAUAAQAAAAAAAAARAAYAAAAAAAAAAAASAAIAAQAAAAAAAAASAAQAAQAAAAAAAAASAAUAAAAAAAAAAAASAAYAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_pwkcn")
 
+[node name="Table_white" type="TileMapLayer" parent="PuzzleCajas3/Tableros"]
+modulate = Color(1.6974981, 1.9306018, 2.1074393, 1)
+position = Vector2(-576, 576)
+tile_map_data = PackedByteArray("AAAQAPr/AAAAAAAAAAARAPv/AAAAAAAAAAAPAPv/AAAAAAAAAAAQAPz/AAAAAAAAAAASAPz/AAAAAAAAAAARAP3/AAAAAAAAAAASAPr/AAAAAAAAAAAPAP3/AAAAAAAAAAARAPn/AAAAAAAAAAAPAPn/AAAAAAAAAAAOAPr/AAAAAAAAAAAOAPz/AAAAAAAAAAAYAPn/AAAAAAAAAAAXAPr/AAAAAAAAAAAXAPz/AAAAAAAAAAAYAP3/AAAAAAAAAAAYAPv/AAAAAAAAAAAZAPz/AAAAAAAAAAAZAPr/AAAAAAAAAAAaAPn/AAAAAAAAAAAaAPv/AAAAAAAAAAAaAP3/AAAAAAAAAAAbAPz/AAAAAAAAAAAbAPr/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
+[node name="Table_black" type="TileMapLayer" parent="PuzzleCajas3/Tableros"]
+modulate = Color(1.269, 1.445, 1.579, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAAXAPD/AAAAAAAAAAAZAPD/AAAAAAAAAAAbAPD/AAAAAAAAAAAYAPH/AAAAAAAAAAAaAPH/AAAAAAAAAAAXAPL/AAAAAAAAAAAZAPL/AAAAAAAAAAAbAPL/AAAAAAAAAAAaAPP/AAAAAAAAAAAYAPP/AAAAAAAAAAAXAPT/AAAAAAAAAAAZAPT/AAAAAAAAAAAbAPT/AAAAAAAAAAAgAPD/AAAAAAAAAAAiAPD/AAAAAAAAAAAkAPD/AAAAAAAAAAAhAPH/AAAAAAAAAAAjAPH/AAAAAAAAAAAgAPL/AAAAAAAAAAAiAPL/AAAAAAAAAAAkAPL/AAAAAAAAAAAhAPP/AAAAAAAAAAAjAPP/AAAAAAAAAAAgAPT/AAAAAAAAAAAiAPT/AAAAAAAAAAAkAPT/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
 [node name="Baldosas_Bloque" type="TileMapLayer" parent="PuzzleCajas3/Tableros"]
 tile_map_data = PackedByteArray("AAAIAAYAAAAAAAAAAAAGAAQAAAAAAAAAAAAIAAMAAAAAAAAAAAASAAMAAAAAAAAAAAARAAQAAAAAAAAAAAAOAAYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_i3aov")
+
+[node name="Table_red" type="TileMapLayer" parent="PuzzleCajas3/Tableros"]
+modulate = Color(1.5790963, 0.8511103, 1.0452397, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAAYAPL/AAAAAAAAAAAaAPH/AAAAAAAAAAAaAPT/AAAAAAAAAAAgAPT/AAAAAAAAAAAjAPL/AAAAAAAAAAAkAPH/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
 
 [node name="Target1" type="Node2D" parent="PuzzleCajas3/Tableros"]
 position = Vector2(320, 0)
@@ -984,9 +1038,27 @@ script = ExtResource("13_6j3d7")
 tile_map_data = PackedByteArray("AAAGAP//AAAAAAAAAAAGAAAAAQAAAAAAAAAHAP//AQAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAQAAAAAAAAAIAAEAAAAAAAAAAAAJAP//AQAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAQAAAAAAAAAGAAMAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAMAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAQAAAAAAAAAIAAUAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAQAAAAAAAAAIAAAAAQAAAAAAAAAGAAQAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_1agqv")
 
+[node name="Table_white" type="TileMapLayer" parent="PuzzleCajas4/Tableros"]
+modulate = Color(1.6974981, 1.9306018, 2.1074393, 1)
+position = Vector2(-576, 576)
+tile_map_data = PackedByteArray("AAAPAPr/AAAAAAAAAAAQAPv/AAAAAAAAAAARAPz/AAAAAAAAAAARAPr/AAAAAAAAAAAPAPz/AAAAAAAAAAASAPv/AAAAAAAAAAAPAPb/AAAAAAAAAAAQAPf/AAAAAAAAAAARAPj/AAAAAAAAAAASAPf/AAAAAAAAAAARAPb/AAAAAAAAAAAPAPj/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
+[node name="Table_black" type="TileMapLayer" parent="PuzzleCajas4/Tableros"]
+modulate = Color(1.269, 1.445, 1.579, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAAZAPH/AAAAAAAAAAAaAPL/AAAAAAAAAAAZAPP/AAAAAAAAAAAYAPL/AAAAAAAAAAAbAPP/AAAAAAAAAAAbAPH/AAAAAAAAAAAYAO7/AAAAAAAAAAAZAO//AAAAAAAAAAAZAO3/AAAAAAAAAAAaAO7/AAAAAAAAAAAbAO//AAAAAAAAAAAbAO3/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
+
 [node name="Baldosas_Bloque" type="TileMapLayer" parent="PuzzleCajas4/Tableros"]
 tile_map_data = PackedByteArray("AAAHAAQAAAAAAAAAAAAIAP//AAAAAAAAAAAJAAMAAAAAAAAAAAAGAAEAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_gvdks")
+
+[node name="Table_red" type="TileMapLayer" parent="PuzzleCajas4/Tableros"]
+modulate = Color(1.5790963, 0.8511103, 1.0452397, 1)
+position = Vector2(-1152, 1152)
+tile_map_data = PackedByteArray("AAAYAO//AAAAAAAAAAAaAO3/AAAAAAAAAAAbAPH/AAAAAAAAAAAZAPL/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_24k5j")
 
 [node name="Target1" type="Node2D" parent="PuzzleCajas4/Tableros"]
 position = Vector2(320, 0)
@@ -1074,7 +1146,7 @@ script = ExtResource("40_ymi23")
 required_items = Array[ExtResource("9_egw57")]([SubResource("Resource_kahqc"), SubResource("Resource_ymi23"), SubResource("Resource_yy1ff")])
 puerta_dialogue = ExtResource("41_yy1ff")
 dialogue = ExtResource("20_upgsc")
-next_scene = "uid://dryinuip71yvm"
+next_scene = "uid://dfocrdh2n83k2"
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

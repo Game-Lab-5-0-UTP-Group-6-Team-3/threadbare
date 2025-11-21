@@ -36,11 +36,9 @@ func _process(_delta: float) -> void:
 	if player.position.x > 3190:
 		if next_scene:
 			(
-				SceneSwitcher.change_to_file_with_transition(
+				SceneSwitcher.change_to_file(
 				next_scene,
-				spawn_point_path,
-				Transition.Effect.FADE,
-				Transition.Effect.FADE,
+				spawn_point_path 
 				)
 			)
 	
