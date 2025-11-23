@@ -1,0 +1,937 @@
+[gd_scene load_steps=78 format=4 uid="uid://dryinuip71yvm"]
+
+[ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_c5656"]
+[ext_resource type="Texture2D" uid="uid://cuodpn5fgdrx" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/tiles/tile_castle2.png" id="2_cllw3"]
+[ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_wm0bx"]
+[ext_resource type="SpriteFrames" uid="uid://jnmt5u3uyqdf" path="res://scenes/quests/story_quests/gazzart/player_components/gazzart_player.tres" id="3_7xmax"]
+[ext_resource type="PackedScene" uid="uid://lgu7aeqa7o3r" path="res://scenes/game_elements/props/door/door.tscn" id="3_ddpwg"]
+[ext_resource type="PackedScene" uid="uid://be4o3ythda4cu" path="res://scenes/game_elements/props/sequence_puzzle_hint_sign/sequence_puzzle_hint_sign.tscn" id="4_mn1ft"]
+[ext_resource type="Script" uid="uid://ckwylcef1otey" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gd/castle_hint_sign.gd" id="5_iuy7r"]
+[ext_resource type="Resource" uid="uid://d1d8rr6tcpiq" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/gazzart_puzzle_sumas_estatuas.dialogue" id="6_iuy7r"]
+[ext_resource type="Texture2D" uid="uid://bkt30vudiwm7" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/Antorcha_costadot.png" id="7_avfkk"]
+[ext_resource type="Texture2D" uid="uid://cmh6yyjr0h1by" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/antorcha_frente.png" id="8_qajpc"]
+[ext_resource type="Texture2D" uid="uid://baeqq82ancfd" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/Antorcha_costado_L.png" id="9_gicmc"]
+[ext_resource type="PackedScene" uid="uid://fuhl3l6gxq5k" path="res://scenes/game_elements/props/collectible_item/collectible_item.tscn" id="17_3rrd2"]
+[ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="18_7cqpc"]
+[ext_resource type="Resource" uid="uid://dtubaac2ws53c" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/gazzart_sequence_puzzle.dialogue" id="19_6gaxm"]
+[ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="21_ca12e"]
+[ext_resource type="Texture2D" uid="uid://cjvspnd1yufe2" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge5.png" id="22_mn1ft"]
+[ext_resource type="Texture2D" uid="uid://nqx5858wdd53" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge6.png" id="23_iuy7r"]
+[ext_resource type="Texture2D" uid="uid://dv487oiscabb6" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge1.png" id="24_avfkk"]
+[ext_resource type="Texture2D" uid="uid://bdg1kleu2swm0" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge2.png" id="25_1devu"]
+[ext_resource type="Texture2D" uid="uid://ccqvkh3nuycr7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge7.png" id="25_qx8cf"]
+[ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="26_interact"]
+[ext_resource type="Texture2D" uid="uid://cubtn1v2dpyue" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number1_sprite.png" id="26_qbn36"]
+[ext_resource type="Texture2D" uid="uid://cv5i6bxfxmo7y" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge4.png" id="27_464pv"]
+[ext_resource type="Script" uid="uid://8xo5f21u6msr" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_1.gd" id="27_number1"]
+[ext_resource type="Script" uid="uid://c2lbftbqre78x" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_2.gd" id="28_d1r8i"]
+[ext_resource type="Texture2D" uid="uid://1judetxxx5cd" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number2_sprite.png" id="29_8k25n"]
+[ext_resource type="Texture2D" uid="uid://dja6ow7lgngy7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/puentes/bridge3.png" id="29_c4a2k"]
+[ext_resource type="Script" uid="uid://b7gql5ketshdk" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_3.gd" id="29_p0ape"]
+[ext_resource type="Script" uid="uid://mgl5d6o11dmm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/number_4.gd" id="30_kmrtp"]
+[ext_resource type="Texture2D" uid="uid://cgq411tidsdjm" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number3_sprite.png" id="31_1devu"]
+[ext_resource type="Texture2D" uid="uid://bn0tqynlmidc8" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_down.png" id="32_cllw3"]
+[ext_resource type="Texture2D" uid="uid://dcxm45eg2ifui" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_right.png" id="33_ddpwg"]
+[ext_resource type="Texture2D" uid="uid://cybuabtqleui7" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/number4_sprite.png" id="33_vto3y"]
+[ext_resource type="Texture2D" uid="uid://2035jimxvq6o" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/switch_statues.png" id="34_mn1ft"]
+[ext_resource type="Script" uid="uid://ci48rupjewi20" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puente.gd" id="38_puente"]
+[ext_resource type="Script" uid="uid://hwgr5n0p6c0y" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/switch_estatua.gd" id="39_switch"]
+[ext_resource type="Script" uid="uid://beou85h1nvp0j" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/estatua.gd" id="40_estatua"]
+[ext_resource type="Script" uid="uid://38b66a7x042c" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/switch_estatua_objetivo.gd" id="41_switch_obj"]
+[ext_resource type="Texture2D" uid="uid://tupgep8a0dg2" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_left.png" id="42_statue_left"]
+[ext_resource type="Texture2D" uid="uid://2twdc2jq4krr" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/minijuego3/statue_up.png" id="43_statue_up"]
+[ext_resource type="Script" uid="uid://bxl4dbn1x4w8i" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/nivel_3_cinematic.gd" id="44_iuy7r"]
+[ext_resource type="Script" uid="uid://bcfa8287p0uv4" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puzzle_sumas_controller.gd" id="44_puzzle_sumas"]
+[ext_resource type="AudioStream" uid="uid://dn510mlean7eu" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gazzart_minigame_2.mp3" id="45_avfkk"]
+[ext_resource type="Script" uid="uid://bbbsmc47wbsnh" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puzzle_estatuas_controller.gd" id="45_puzzle_estatuas"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qajpc"]
+texture = ExtResource("2_cllw3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gicmc"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_qajpc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vym1o"]
+atlas = ExtResource("7_avfkk")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6lv6"]
+atlas = ExtResource("7_avfkk")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtm06"]
+atlas = ExtResource("7_avfkk")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o3gc"]
+atlas = ExtResource("7_avfkk")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_40gge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vym1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6lv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtm06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o3gc")
+}],
+"loop": true,
+"name": &"costado",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dnth"]
+atlas = ExtResource("8_qajpc")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vpb4"]
+atlas = ExtResource("8_qajpc")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foe5q"]
+atlas = ExtResource("8_qajpc")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh2ah"]
+atlas = ExtResource("8_qajpc")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_226s1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dnth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vpb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foe5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh2ah")
+}],
+"loop": true,
+"name": &"frente",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whumn"]
+atlas = ExtResource("9_gicmc")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnv5n"]
+atlas = ExtResource("9_gicmc")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djiyr"]
+atlas = ExtResource("9_gicmc")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k64pu"]
+atlas = ExtResource("9_gicmc")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1tyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whumn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnv5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djiyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k64pu")
+}],
+"loop": true,
+"name": &"costado_L",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_n8tm3"]
+script = ExtResource("18_7cqpc")
+type = 2
+metadata/_custom_type_script = "uid://bgmwplmj3bfls"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puente"]
+size = Vector2(48, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0krk3"]
+radius = 21.023796
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 25.0
+
+[sub_resource type="Resource" id="Resource_statue_goal_1"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("Estatuas/Estatua1")
+direccion = "right"
+
+[sub_resource type="Resource" id="Resource_statue_goal_2"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("Estatuas/Estatua2")
+direccion = "left"
+
+[sub_resource type="Resource" id="Resource_statue_goal_3"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("Estatuas/Estatua3")
+direccion = "up"
+
+[sub_resource type="Resource" id="Resource_statue_goal_4"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("Estatuas/Estatua4")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cllw3"]
+radius = 24.020824
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddpwg"]
+radius = 24.020824
+
+[sub_resource type="Resource" id="Resource_switch_obj_1"]
+resource_name = "SwitchEstatuaObjetivo"
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua1")
+direccion = "right"
+
+[sub_resource type="Resource" id="Resource_switch_obj_2"]
+resource_name = "SwitchEstatuaObjetivo"
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua2")
+direccion = "left"
+
+[sub_resource type="Resource" id="Resource_uulsv"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua3")
+metadata/_custom_type_script = "uid://38b66a7x042c"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_switch"]
+radius = 28.0
+
+[sub_resource type="Resource" id="Resource_y1tyt"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua3")
+direccion = "up"
+metadata/_custom_type_script = "uid://38b66a7x042c"
+
+[sub_resource type="Resource" id="Resource_xb4h1"]
+script = ExtResource("41_switch_obj")
+estatua_path = NodePath("../../Estatuas/Estatua4")
+metadata/_custom_type_script = "uid://38b66a7x042c"
+
+[node name="SequencePuzzleTemplate" type="Node2D"]
+
+[node name="TileMapLayers" type="Node2D" parent="."]
+position = Vector2(0, 129)
+
+[node name="Void" type="TileMapLayer" parent="TileMapLayers"]
+tile_map_data = PackedByteArray("AAANAAIADAABAAEAAAANAAEACwABAAEAAAAMAAIACAABAAEAAAAMAAEACQABAAEAAAALAAIACgABAAEAAAALAAEACwABAAEAAAAKAAIADAABAAEAAAAGAAIADAABAAEAAAAFAAIACAABAAEAAAAFAAEACAABAAEAAAAEAAIACwABAAEAAAAEAAEACgABAAEAAAADAAIACQABAAEAAAADAAEACAABAAEAAAACAAMACgABAAEAAAACAAIADAABAAEAAAACAAEACQABAAEAAAABAAMACQABAAEAAAABAAIADAABAAEAAAABAAEACQABAAEAAAACAAQACwABAAEAAAABAAQACwABAAEAAAAAAAQACwABAAEAAAAGAAAADAABAAEAAAAHAAAACQABAAEAAAAFAAAACAABAAEAAAAIAAAADAABAAEAAAAJAAAACAABAAEAAAALAAAACQABAAEAAAAMAAAACQABAAEAAAAKAAAACgABAAEAAAANAAAACwABAAEAAAAEAAAADAABAAEAAAADAAAACgABAAEAAAACAAAACwABAAEAAAABAAAACAABAAEAAAAAAAAACAABAAEAAAAAAAEACgABAAEAAAAAAAIADAABAAEAAAAAAAMACwABAAEAAAAAAAgADAABAAEAAAABAAgACAABAAEAAAACAAgACgABAAEAAAAOAAIACQABAAEAAAAOAAEACAABAAEAAAAOAAAACgABAAEAAAAAAAUACAABAAEAAAABAAUACQABAAEAAAACAAUADAABAAEAAAACAAYACgABAAEAAAABAAYACwABAAEAAAAAAAYADAABAAEAAAAAAAcADAABAAEAAAABAAcADAABAAEAAAACAAcACQABAAEAAAAGAAEACgABAAEAAAAHAAEADAABAAEAAAAIAAEACQABAAEAAAAJAAEACAABAAEAAAAKAAEACAABAAEAAAAPAAIACwABAAEAAAAPAAEACAABAAEAAAAPAAAADAABAAEAAAACAAkACQABAAEAAAABAAkACwABAAEAAAAAAAkACgABAAEAAAAHAAIACgABAAEAAAAIAAIACAABAAEAAAAJAAIACQABAAEAAAAVAAIACgABAAEAAAAVAAEACAABAAEAAAAVAAAACwABAAEAAAAUAAIACgABAAEAAAAUAAEACwABAAEAAAAUAAAACwABAAEAAAATAAIACgABAAEAAAATAAEADAABAAEAAAATAAAACAABAAEAAAASAAIADAABAAEAAAASAAEACQABAAEAAAASAAAACwABAAEAAAARAAIACQABAAEAAAARAAEACQABAAEAAAARAAAADAABAAEAAAAQAAIACgABAAEAAAAQAAEACAABAAEAAAAQAAAACAABAAEAAAAVAAQACwABAAEAAAAVAAMACQABAAEAAAAUAAQACgABAAEAAAAUAAMACAABAAEAAAATAAQACQABAAEAAAATAAMACQABAAEAAAASAAQACgABAAEAAAASAAMACAABAAEAAAAaAAAADAABAAEAAAAZAAAACwABAAEAAAAYAAAACAABAAEAAAAXAAAACQABAAEAAAAWAAAACAABAAEAAAACABEACAABAAEAAAACABAADAABAAEAAAACAA8ADAABAAEAAAACAA4ACwABAAEAAAACAA0ACAABAAEAAAACAAwACwABAAEAAAACAAsADAABAAEAAAACAAoADAABAAEAAAABABEACAABAAEAAAABABAADAABAAEAAAABAA8ADAABAAEAAAABAA4ACwABAAEAAAABAA0ACgABAAEAAAABAAwADAABAAEAAAABAAsACgABAAEAAAABAAoACAABAAEAAAAAABEADAABAAEAAAAAABAADAABAAEAAAAAAA8ADAABAAEAAAAAAA4ACgABAAEAAAAAAA0ACgABAAEAAAAAAAwACwABAAEAAAAAAAsACQABAAEAAAAAAAoACwABAAEAAAADABEACAABAAEAAAADABAACQABAAEAAAADAA8ADAABAAEAAAADAA4ACAABAAEAAAADAA0ACQABAAEAAAADAAwACgABAAEAAAAXABMACwABAAEAAAAXABIACQABAAEAAAAXABEACQABAAEAAAAWABMACwABAAEAAAAWABIACgABAAEAAAAWABEACgABAAEAAAAVABMACgABAAEAAAAVABIACgABAAEAAAAVABEADAABAAEAAAAUABMACgABAAEAAAAUABIADAABAAEAAAAUABEACAABAAEAAAATABMACgABAAEAAAATABIADAABAAEAAAATABEACQABAAEAAAASABMADAABAAEAAAASABIACQABAAEAAAASABEACwABAAEAAAARABMADAABAAEAAAARABIACgABAAEAAAARABEADAABAAEAAAAQABMACgABAAEAAAAQABIACAABAAEAAAAQABEADAABAAEAAAAPABMACAABAAEAAAAPABIADAABAAEAAAAPABEACgABAAEAAAAOABMACAABAAEAAAAOABIADAABAAEAAAAOABEACAABAAEAAAANABMACQABAAEAAAANABIACQABAAEAAAANABEACQABAAEAAAAMABMACAABAAEAAAAMABIADAABAAEAAAAMABEACQABAAEAAAALABMACQABAAEAAAALABIACQABAAEAAAALABEADAABAAEAAAAKABMADAABAAEAAAAKABIACQABAAEAAAAKABEACwABAAEAAAAJABMACAABAAEAAAAJABIACwABAAEAAAAJABEACQABAAEAAAAIABMACwABAAEAAAAIABIACgABAAEAAAAIABEACAABAAEAAAAHABMACwABAAEAAAAHABIACQABAAEAAAAHABEACQABAAEAAAAGABMACgABAAEAAAAGABIACAABAAEAAAAGABEACAABAAEAAAAFABMACgABAAEAAAAFABIACgABAAEAAAAFABEACwABAAEAAAAEABMADAABAAEAAAAEABIACwABAAEAAAAEABEADAABAAEAAAADABMADAABAAEAAAADABIACgABAAEAAAACABMACwABAAEAAAACABIACgABAAEAAAABABMADAABAAEAAAABABIACQABAAEAAAAAABMACgABAAEAAAAAABIACQABAAEAAAAbABQADAABAAEAAAAbABMACQABAAEAAAAbABIACAABAAEAAAAbABEACAABAAEAAAAbABAACgABAAEAAAAbAA8ACwABAAEAAAAbAA4ACAABAAEAAAAbAA0ACwABAAEAAAAbAAwACAABAAEAAAAaABQACAABAAEAAAAaABMACgABAAEAAAAaABIACwABAAEAAAAaABEACgABAAEAAAAaABAACwABAAEAAAAaAA8ACgABAAEAAAAaAA4ACgABAAEAAAAaAA0ADAABAAEAAAAaAAwADAABAAEAAAAZABQACgABAAEAAAAZABMACAABAAEAAAAZABIACgABAAEAAAAZABEACgABAAEAAAAZABAACQABAAEAAAAZAA8ADAABAAEAAAAZAA4ADAABAAEAAAAZAA0ACAABAAEAAAAZAAwACQABAAEAAAAYABQACAABAAEAAAAYABMACQABAAEAAAAYABIADAABAAEAAAAYABEACgABAAEAAAAYABAACAABAAEAAAAYAA8ACwABAAEAAAAYAA4ACQABAAEAAAAYAA0ACAABAAEAAAAYAAwACAABAAEAAAAXABQACwABAAEAAAAXABAACQABAAEAAAAXAA8ACwABAAEAAAAXAA4ACwABAAEAAAAXAA0ADAABAAEAAAAXAAwACAABAAEAAAAWABQACAABAAEAAAAWABAACAABAAEAAAAWAA8ACwABAAEAAAAWAA4ACwABAAEAAAAWAA0ACQABAAEAAAAWAAwACQABAAEAAAAVABQACgABAAEAAAAVABAACgABAAEAAAAVAA8ACQABAAEAAAAVAA4ACAABAAEAAAAVAA0ACgABAAEAAAAVAAwACwABAAEAAAAUABQADAABAAEAAAAUABAACAABAAEAAAAUAA8ADAABAAEAAAAUAA4ACwABAAEAAAAUAA0ACAABAAEAAAAUAAwACAABAAEAAAATABQACQABAAEAAAATABAACAABAAEAAAATAA8ADAABAAEAAAATAA4ADAABAAEAAAATAA0ACAABAAEAAAATAAwACwABAAEAAAASABQACQABAAEAAAASABAACwABAAEAAAASAA8ACgABAAEAAAASAA4ADAABAAEAAAASAA0ACgABAAEAAAASAAwACQABAAEAAAARABQACAABAAEAAAARABAACwABAAEAAAARAA8ACgABAAEAAAARAA4ADAABAAEAAAARAA0ACwABAAEAAAARAAwACAABAAEAAAAQABQACgABAAEAAAAQABAACgABAAEAAAAQAA8ADAABAAEAAAAQAA4ADAABAAEAAAAQAA0ACgABAAEAAAAQAAwACgABAAEAAAAPABQACwABAAEAAAAPABAACAABAAEAAAAPAA8ACgABAAEAAAAPAA4ACAABAAEAAAAPAA0ACQABAAEAAAAPAAwACQABAAEAAAAOABQACAABAAEAAAAOABAACQABAAEAAAAOAA8ACgABAAEAAAAOAA4ACQABAAEAAAAOAA0ADAABAAEAAAAOAAwACgABAAEAAAANABQACwABAAEAAAANABAACQABAAEAAAANAA8ADAABAAEAAAANAA4ACwABAAEAAAANAA0ADAABAAEAAAANAAwADAABAAEAAAAMABQACAABAAEAAAAMABAACwABAAEAAAAMAA8ACQABAAEAAAAMAA4ADAABAAEAAAAMAA0ACAABAAEAAAAMAAwACAABAAEAAAALABQACQABAAEAAAALABAACwABAAEAAAALAA8ACgABAAEAAAALAA4ACgABAAEAAAALAA0ACgABAAEAAAALAAwACwABAAEAAAAKABQACQABAAEAAAAKABAADAABAAEAAAAKAA8ACAABAAEAAAAKAA4ADAABAAEAAAAKAA0ACgABAAEAAAAKAAwACQABAAEAAAAJABQADAABAAEAAAAJABAACQABAAEAAAAJAA8ACQABAAEAAAAJAA4ADAABAAEAAAAJAA0ACgABAAEAAAAJAAwADAABAAEAAAAIABQACAABAAEAAAAIABAACwABAAEAAAAIAA8ACgABAAEAAAAIAA4ACwABAAEAAAAIAA0ACwABAAEAAAAIAAwACQABAAEAAAAHABQACgABAAEAAAAHABAACgABAAEAAAAHAA8ACgABAAEAAAAHAA4ACwABAAEAAAAHAA0ACAABAAEAAAAHAAwADAABAAEAAAAbAAsACgABAAEAAAAbAAoACgABAAEAAAAbAAkACAABAAEAAAAbAAgACgABAAEAAAAbAAcACwABAAEAAAAaAAsACwABAAEAAAAaAAoADAABAAEAAAAaAAkACwABAAEAAAAaAAgACwABAAEAAAAaAAcACAABAAEAAAAZAAsADAABAAEAAAAZAAoACwABAAEAAAAZAAkACgABAAEAAAAZAAgADAABAAEAAAAZAAcACgABAAEAAAAYAAsACwABAAEAAAAYAAoACwABAAEAAAAYAAkACgABAAEAAAAYAAgADAABAAEAAAAYAAcACgABAAEAAAAXAAsACwABAAEAAAAXAAoACgABAAEAAAAXAAkADAABAAEAAAAXAAgACQABAAEAAAAXAAcACAABAAEAAAAWAAsACAABAAEAAAAWAAoACAABAAEAAAAWAAkACQABAAEAAAAWAAgACAABAAEAAAAWAAcACwABAAEAAAAVAAsADAABAAEAAAAVAAoACQABAAEAAAAVAAkACAABAAEAAAAVAAgADAABAAEAAAAVAAcACAABAAEAAAAUAAsADAABAAEAAAAUAAoACgABAAEAAAAUAAkACAABAAEAAAAUAAgACwABAAEAAAAUAAcACAABAAEAAAATAAsACgABAAEAAAATAAoACAABAAEAAAATAAkACwABAAEAAAATAAgACAABAAEAAAATAAcACwABAAEAAAASAAsACgABAAEAAAASAAoACAABAAEAAAASAAkACgABAAEAAAASAAgACgABAAEAAAASAAcACwABAAEAAAAbAAYACQABAAEAAAAbAAUACwABAAEAAAAbAAQACAABAAEAAAAbAAMACwABAAEAAAAbAAIACgABAAEAAAAbAAEACgABAAEAAAAbAAAACAABAAEAAAAaAAYADAABAAEAAAAaAAUACwABAAEAAAAaAAQACAABAAEAAAAaAAMACQABAAEAAAAaAAIADAABAAEAAAAaAAEADAABAAEAAAAGABQACgABAAEAAAAFABQACQABAAEAAAAEABQACgABAAEAAAADABQACgABAAEAAAACABQACgABAAEAAAABABQADAABAAEAAAAAABQADAABAAEAAAAbAP//DAABAAEAAAAbAP7/DAABAAEAAAAaAP//DAABAAEAAAAaAP7/CwABAAEAAAAZAP//DAABAAEAAAAZAP7/DAABAAEAAAAYAP//CAABAAEAAAAYAP7/DAABAAEAAAAXAP//CgABAAEAAAAXAP7/CwABAAEAAAAWAP//CAABAAEAAAAWAP7/CwABAAEAAAAVAP//CAABAAEAAAAVAP7/CQABAAEAAAAUAP//CAABAAEAAAAUAP7/CwABAAEAAAATAP//CgABAAEAAAATAP7/CAABAAEAAAASAP//CgABAAEAAAASAP7/CgABAAEAAAARAP//DAABAAEAAAARAP7/DAABAAEAAAAQAP//CQABAAEAAAAQAP7/CAABAAEAAAAPAP//CQABAAEAAAAPAP7/CgABAAEAAAAOAP//CgABAAEAAAAOAP7/CwABAAEAAAANAP//CgABAAEAAAANAP7/CgABAAEAAAAMAP//CAABAAEAAAAMAP7/CgABAAEAAAALAP//CAABAAEAAAALAP7/CQABAAEAAAAKAP//CwABAAEAAAAKAP7/CQABAAEAAAAJAP//CwABAAEAAAAJAP7/CgABAAEAAAAIAP//CAABAAEAAAAIAP7/CQABAAEAAAAHAP//CAABAAEAAAAHAP7/CQABAAEAAAAGAP//DAABAAEAAAAGAP7/CwABAAEAAAAFAP//DAABAAEAAAAFAP7/CgABAAEAAAAEAP//CgABAAEAAAAEAP7/CQABAAEAAAADAP//CgABAAEAAAADAP7/CwABAAEAAAACAP//CQABAAEAAAACAP7/CgABAAEAAAABAP//CgABAAEAAAABAP7/CQABAAEAAAAAAP//CQABAAEAAAAAAP7/CQABAAEAAAA=")
+tile_set = ExtResource("1_c5656")
+
+[node name="Ground" type="TileMapLayer" parent="TileMapLayers"]
+tile_map_data = PackedByteArray("AAADAAMAAAAAAAAAAAAEAAMAAAABAAAAAAAFAAMAAAACAAAAAAADAAQAAAAAAAAAAAAEAAQAAAABAAAAAAAFAAQAAAACAAAAAAADAAUAAAAAAAAAAAAEAAUAAAABAAAAAAAFAAUAAAACAAAAAAADAAYAAAAAAAAAAAAEAAYAAAABAAAAAAAFAAYAAAACAAAAAAADAAcAAAAAAAAAAAAEAAcAAAABAAAAAAAFAAcAAAACAAAAAAADAAgAAAAAAAAAAAAEAAgAAAABAAAAAAAFAAgAAAACAAAAAAADAAkAAAAAAAAAAAAEAAkAAAABAAAAAAAFAAkAAAACAAAAAAADAAoAAAAAAAAAAAAEAAoAAAABAAAAAAAFAAoAAAACAAAAAAADAAsAAAAAAAAAAAAEAAsAAAABAAAAAAAFAAsAAAACAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAABAAAAAAAIAAMAAAACAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAABAAAAAAAIAAQAAAACAAAAAAAGAAUAAAAAAAAAAAAHAAUAAAABAAAAAAAIAAUAAAACAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAABAAAAAAAIAAYAAAACAAAAAAAGAAcAAAAAAAAAAAAHAAcAAAABAAAAAAAIAAcAAAACAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAABAAAAAAAIAAgAAAACAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAABAAAAAAAIAAkAAAACAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAABAAAAAAAIAAoAAAACAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAABAAAAAAAIAAsAAAACAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAABAAAAAAALAAMAAAACAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAABAAAAAAALAAQAAAACAAAAAAAJAAUAAAAAAAAAAAAKAAUAAAABAAAAAAALAAUAAAACAAAAAAAJAAYAAAAAAAAAAAAKAAYAAAABAAAAAAALAAYAAAACAAAAAAAJAAcAAAAAAAAAAAAKAAcAAAABAAAAAAALAAcAAAACAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAABAAAAAAALAAgAAAACAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAABAAAAAAALAAkAAAACAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAABAAAAAAALAAoAAAACAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAABAAAAAAALAAsAAAACAAAAAAAMAAMAAAAAAAAAAAANAAMAAAABAAAAAAAOAAMAAAACAAAAAAAMAAQAAAAAAAAAAAANAAQAAAABAAAAAAAOAAQAAAACAAAAAAAMAAUAAAAAAAAAAAANAAUAAAABAAAAAAAOAAUAAAACAAAAAAAMAAYAAAAAAAAAAAANAAYAAAABAAAAAAAOAAYAAAACAAAAAAAMAAcAAAAAAAAAAAANAAcAAAABAAAAAAAOAAcAAAACAAAAAAAMAAgAAAAAAAAAAAANAAgAAAABAAAAAAAOAAgAAAACAAAAAAAMAAkAAAAAAAAAAAANAAkAAAABAAAAAAAOAAkAAAACAAAAAAAMAAoAAAAAAAAAAAANAAoAAAABAAAAAAAOAAoAAAACAAAAAAAMAAsAAAAAAAAAAAANAAsAAAABAAAAAAAOAAsAAAACAAAAAAAPAAMAAAAAAAAAAAAQAAMAAAABAAAAAAARAAMAAAACAAAAAAAPAAQAAAAAAAAAAAAQAAQAAAABAAAAAAARAAQAAAACAAAAAAAPAAUAAAAAAAAAAAAQAAUAAAABAAAAAAARAAUAAAACAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAABAAAAAAARAAYAAAACAAAAAAAPAAcAAAAAAAAAAAAQAAcAAAABAAAAAAARAAcAAAACAAAAAAAPAAgAAAAAAAAAAAAQAAgAAAABAAAAAAARAAgAAAACAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAABAAAAAAARAAkAAAACAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAABAAAAAAARAAoAAAACAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAABAAAAAAARAAsAAAACAAAAAAASAAUAAAAAAAAAAAATAAUAAAABAAAAAAAUAAUAAAACAAAAAAASAAYAAAAAAAAAAAATAAYAAAABAAAAAAAUAAYAAAACAAAAAAAVAAUAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAEAAAAAAAAAAAAXAAEAAAABAAAAAAAYAAEAAAACAAAAAAAWAAIAAAAAAAAAAAAXAAIAAAABAAAAAAAYAAIAAAACAAAAAAAWAAMAAAAAAAAAAAAXAAMAAAABAAAAAAAYAAMAAAACAAAAAAAWAAQAAAAAAAAAAAAXAAQAAAABAAAAAAAYAAQAAAACAAAAAAAWAAUAAAAAAAAAAAAXAAUAAAABAAAAAAAYAAUAAAACAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAABAAAAAAAYAAYAAAACAAAAAAAZAAEAAAAAAAAAAAAZAAIAAAAAAAAAAAAZAAMAAAAAAAAAAAAZAAQAAAAAAAAAAAAZAAUAAAAAAAAAAAAZAAYAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAABAAAAAAAGAAwAAAACAAAAAAAEAA0AAAAAAAAAAAAFAA0AAAABAAAAAAAGAA0AAAACAAAAAAAEAA4AAAAAAAAAAAAFAA4AAAABAAAAAAAGAA4AAAACAAAAAAAEAA8AAAAAAAAAAAAFAA8AAAABAAAAAAAGAA8AAAACAAAAAAAEABAAAAAAAAAAAAAFABAAAAABAAAAAAAGABAAAAACAAAAAAAEABEAAAAAAAAAAAAFABEAAAABAAAAAAAGABEAAAACAAAAAAADAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAABAAAAAAAFAAIAAAACAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAABAAAAAAAIAAIAAAACAAAAAAAJAAIAAAAAAAAAAAAKAAIAAAABAAAAAAALAAIAAAACAAAAAAAMAAIAAAAAAAAAAAANAAIAAAABAAAAAAAOAAIAAAACAAAAAAAPAAIAAAAAAAAAAAAQAAIAAAABAAAAAAARAAIAAAACAAAAAAASAAQAAAAAAAAAAAATAAQAAAABAAAAAAAUAAQAAAACAAAAAAAVAAQAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAABAAAAAAAYAAAAAAACAAAAAAAZAAAAAAAAAAAAAAASAAcAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_gicmc")
+
+[node name="Wall" type="TileMapLayer" parent="TileMapLayers"]
+modulate = Color(0.9607843, 0.6666667, 0.64705884, 1)
+tile_map_data = PackedByteArray("AAASAAIABAADAAEAAAARAAIABAACAAMAAAAQAAIABAABAAMAAAAPAAIABAABAAMAAAAOAAIABAABAAMAAAANAAIABAABAAMAAAAMAAIABAABAAMAAAALAAIABAABAAMAAAAKAAIABAABAAMAAAAJAAIABAABAAMAAAAIAAIABAABAAMAAAAHAAIABAABAAMAAAAGAAIABAABAAMAAAAFAAIABAABAAMAAAAEAAIABAABAAMAAAADAAIABAAAAAMAAAADAA0ABAADAAEAAAADABEABAAAAAEAAAADABIABAABAAMAAAAHABIABAACAAMAAAAGABIABAAAAAMAAAAEABIABAACAAMAAAASAA0ABAABAAMAAAARAA0ABAABAAMAAAAQAA0ABAABAAMAAAAPAA0ABAABAAMAAAAOAA0ABAABAAMAAAANAA0ABAABAAMAAAAMAA0ABAABAAMAAAALAA0ABAABAAMAAAAKAA0ABAABAAMAAAAJAA0ABAABAAMAAAAIAA0ABAAAAAMAAAAVAAQABAABAAMAAAAUAAQABAABAAMAAAATAAQABAABAAMAAAASAAQABAABAAMAAAAaAAgABAACAAMAAAAZAAgABAABAAMAAAAYAAgABAABAAMAAAAXAAgABAABAAMAAAAWAAgABAABAAMAAAAVAAgABAABAAMAAAAUAAgABAABAAMAAAATAAgABAAAAAMAAAASAAgABAADAAEAAAAaAAAABAADAAEAAAAZAAAABAACAAMAAAAYAAAABAABAAMAAAAXAAAABAABAAMAAAAWAAAABAAAAAMAAAAVAAAABAADAAEAAAASAAEABAACAAAAAAARAAEABAABAAQAAAAQAAEABAABAAAAAAAPAAEABAABAAAAAAAOAAEABAABAAAAAAANAAEABAABAAAAAAAMAAEABAABAAAAAAALAAEABAABAAAAAAAKAAEABAABAAAAAAAJAAEABAABAAAAAAAIAAEABAABAAAAAAAHAAEABAABAAAAAAAGAAEABAABAAAAAAAFAAEABAABAAAAAAAEAAEABAABAAAAAAADAAEABAABAAAAAAACAAEABAAAAAAAAAASAAMABAAAAAEAAAAVAAMABAACAAEAAAAUAAMABAABAAAAAAATAAMABAABAAAAAAAVAAIABAADAAEAAAAVAAEABAADAAEAAAACAAwABAAAAAIAAAACAAsABAADAAEAAAACAAoABAADAAEAAAACAAkABAADAAEAAAACAAgABAADAAEAAAACAAcABAADAAEAAAACAAYABAADAAEAAAACAAUABAADAAEAAAACAAQABAADAAEAAAACAAMABAADAAEAAAACAAIABAADAAEAAAADAAwABAACAAAAAAADABAABAADAAEAAAADAA8ABAADAAEAAAADAA4ABAADAAEAAAAHABEABAACAAEAAAAGABEABAAAAAAAAAAEABEABAACAAAAAAAHABAABAADAAEAAAAHAA8ABAADAAEAAAAHAA4ABAADAAEAAAAHAA0ABAADAAEAAAAHAAwABAAAAAAAAAASAAwABAACAAEAAAARAAwABAABAAAAAAAQAAwABAABAAAAAAAPAAwABAABAAAAAAAOAAwABAABAAAAAAANAAwABAABAAAAAAAMAAwABAABAAAAAAALAAwABAABAAAAAAAKAAwABAABAAAAAAAJAAwABAABAAAAAAAIAAwABAABAAAAAAASAAsABAADAAEAAAASAAoABAADAAEAAAASAAkABAADAAEAAAASAAcABAAAAAAAAAAaAAcABAACAAEAAAAZAAcABAABAAAAAAAYAAcABAABAAAAAAAXAAcABAABAAAAAAAWAAcABAABAAAAAAAVAAcABAABAAAAAAAUAAcABAABAAAAAAATAAcABAABAAAAAAAaAAYABAADAAEAAAAaAAUABAADAAEAAAAaAAQABAADAAEAAAAaAAMABAADAAEAAAAaAAIABAADAAEAAAAaAAEABAADAAEAAAAaAP//BAACAAAAAAAZAP//BAABAAAAAAAYAP//BAABAAAAAAAXAP//BAABAAAAAAAWAP//BAABAAAAAAAVAP//BAAAAAAAAAACAA0ABAADAAMAAAA=")
+tile_set = ExtResource("1_c5656")
+
+[node name="Door Exit2" parent="." instance=ExtResource("3_ddpwg")]
+position = Vector2(1504, 191)
+script = null
+
+[node name="Door Exit3" parent="." instance=ExtResource("3_ddpwg")]
+position = Vector2(1567, 192)
+script = null
+
+[node name="Signs" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="HintSign1" parent="Signs" instance=ExtResource("4_mn1ft")]
+position = Vector2(345, 384)
+script = ExtResource("5_iuy7r")
+sign_dialogue = ExtResource("6_iuy7r")
+
+[node name="Torch" type="Node2D" parent="."]
+position = Vector2(1877, 167)
+
+[node name="costado_R" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1659, 495)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_40gge")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="frente2" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1140, 118)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_L" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1454, 923)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_y1tyt")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_L2" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-234.99994, 358)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_y1tyt")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R2" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1658, 622)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_40gge")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="frente5" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-433, -16)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente6" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-247, -15)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente8" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1462, 116)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_L3" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1451, 799)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_y1tyt")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="frente11" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-819, 119)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente16" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1591, 117)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente18" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1267, 119)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="frente19" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-950, 121)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_226s1")
+animation = &"frente"
+autoplay = "frente"
+
+[node name="costado_R5" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1596.9998, 800)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_40gge")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_L4" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-237, 115)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_y1tyt")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R9" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1662, 353)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_40gge")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_L8" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-748, 625)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_y1tyt")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R6" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-446, 116)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_40gge")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_L7" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-748, 217)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_y1tyt")
+animation = &"costado_L"
+autoplay = "costado_L"
+
+[node name="costado_R8" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1601, 925)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_40gge")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="costado_R10" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(-1663, 233)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_40gge")
+animation = &"costado"
+autoplay = "costado"
+
+[node name="OnTheGround" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="OnTheGround" instance=ExtResource("2_wm0bx")]
+position = Vector2(342, 1141)
+scale = Vector2(0.367, 0.367)
+sprite_frames = ExtResource("3_7xmax")
+
+[node name="Camera2D" type="Camera2D" parent="OnTheGround/Player" groups=["light"]]
+process_mode = 3
+position = Vector2(5.449524, -2.7248268)
+scale = Vector2(2.7247956, 2.7247956)
+limit_left = 0
+limit_top = 0
+limit_right = 1790
+limit_bottom = 1470
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+
+[node name="CollectibleItem" parent="OnTheGround" instance=ExtResource("17_3rrd2")]
+position = Vector2(1535, 347)
+revealed = false
+next_scene = "uid://dfocrdh2n83k2"
+item = SubResource("Resource_n8tm3")
+collected_dialogue = ExtResource("19_6gaxm")
+dialogue_title = &"well_done"
+
+[node name="PuzzleSumas" type="Node2D" parent="OnTheGround"]
+position = Vector2(-32, 413)
+script = ExtResource("44_puzzle_sumas")
+botones_paths = Array[NodePath]([NodePath("Numeros/Number1"), NodePath("Numeros/Number2"), NodePath("Numeros/Number3"), NodePath("Numeros/Number4")])
+rondas_paths = Array[NodePath]([NodePath("Puentes/PuzzleSuma1"), NodePath("Puentes/PuzzleSuma2"), NodePath("Puentes/PuzzleSuma3"), NodePath("Puentes/PuzzleSuma4"), NodePath("Puentes/PuzzleSuma5")])
+
+[node name="Puentes" type="Node2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(528, 108)
+
+[node name="PuzzleSuma1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+position = Vector2(545, 148)
+
+[node name="Puente1_PS1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1"]
+script = ExtResource("38_puente")
+valor_objetivo = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente1_PS1"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente1_PS1/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente1_PS1"]
+position = Vector2(7, 183)
+texture = ExtResource("25_1devu")
+
+[node name="Puente2_PS1" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1"]
+position = Vector2(-48, -47)
+script = ExtResource("38_puente")
+valor_objetivo = 5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1/StaticBody2D"]
+position = Vector2(55, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma1/Puente2_PS1"]
+position = Vector2(55, 183)
+texture = ExtResource("22_mn1ft")
+
+[node name="PuzzleSuma2" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+position = Vector2(545, 28)
+
+[node name="Puente1_PS2" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2"]
+script = ExtResource("38_puente")
+valor_objetivo = 7
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente1_PS2"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente1_PS2/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente1_PS2"]
+position = Vector2(7, 183)
+texture = ExtResource("25_qx8cf")
+
+[node name="Puente2_PS2" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2"]
+position = Vector2(0, -47)
+script = ExtResource("38_puente")
+valor_objetivo = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente2_PS2"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente2_PS2/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente2_PS2"]
+position = Vector2(7, 183)
+texture = ExtResource("24_avfkk")
+
+[node name="Puente3_PS2" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2"]
+position = Vector2(0, -94)
+script = ExtResource("38_puente")
+valor_objetivo = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente3_PS2"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente3_PS2/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma2/Puente3_PS2"]
+position = Vector2(7, 183)
+texture = ExtResource("25_1devu")
+
+[node name="PuzzleSuma3" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+position = Vector2(545, -93)
+
+[node name="Puente1_PS3" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3"]
+position = Vector2(0, -47)
+script = ExtResource("38_puente")
+valor_objetivo = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente1_PS3"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente1_PS3/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente1_PS3"]
+position = Vector2(7, 183)
+texture = ExtResource("25_1devu")
+
+[node name="Puente2_PS3" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3"]
+position = Vector2(0, -94)
+script = ExtResource("38_puente")
+valor_objetivo = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente2_PS3"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente2_PS3/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente2_PS3"]
+position = Vector2(7, 183)
+texture = ExtResource("27_464pv")
+
+[node name="Puente1_PS4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3"]
+position = Vector2(0, -141)
+script = ExtResource("38_puente")
+valor_objetivo = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente1_PS4"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente1_PS4/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma3/Puente1_PS4"]
+position = Vector2(7, 183)
+texture = ExtResource("24_avfkk")
+
+[node name="PuzzleSuma4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+position = Vector2(531, -317)
+
+[node name="Puente1_PS4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4"]
+position = Vector2(21, 211)
+script = ExtResource("38_puente")
+valor_objetivo = 6
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente1_PS4"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente1_PS4/StaticBody2D"]
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente1_PS4"]
+texture = ExtResource("23_iuy7r")
+
+[node name="Puente2_PS4" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4"]
+position = Vector2(-44, -42)
+script = ExtResource("38_puente")
+valor_objetivo = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente2_PS4"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente2_PS4/StaticBody2D"]
+position = Vector2(65, 206)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma4/Puente2_PS4"]
+position = Vector2(65, 206)
+texture = ExtResource("24_avfkk")
+
+[node name="PuzzleSuma5" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes"]
+position = Vector2(619, 143)
+
+[node name="Puente1_PS5" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5"]
+position = Vector2(0, -47)
+script = ExtResource("38_puente")
+valor_objetivo = 5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente1_PS5"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente1_PS5/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente1_PS5"]
+position = Vector2(7, 183)
+texture = ExtResource("22_mn1ft")
+
+[node name="Puente2_PS5" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5"]
+position = Vector2(0, -94)
+script = ExtResource("38_puente")
+valor_objetivo = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente2_PS5"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente2_PS5/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente2_PS5"]
+position = Vector2(7, 183)
+texture = ExtResource("29_c4a2k")
+
+[node name="Puente3_PS5" type="Node2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5"]
+position = Vector2(0, -141)
+script = ExtResource("38_puente")
+valor_objetivo = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente3_PS5"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente3_PS5/StaticBody2D"]
+position = Vector2(7, 183)
+shape = SubResource("RectangleShape2D_puente")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Puentes/PuzzleSuma5/Puente3_PS5"]
+position = Vector2(7, 183)
+texture = ExtResource("25_1devu")
+
+[node name="Numeros" type="Node2D" parent="OnTheGround/PuzzleSumas"]
+position = Vector2(-29, 0)
+
+[node name="Number1" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
+position = Vector2(263, 197)
+gravity_scale = 0.0
+script = ExtResource("27_number1")
+
+[node name="ColllsionNumber1" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber1" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1/ColllsionNumber1"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("26_qbn36")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1"]
+unique_name_in_owner = true
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number1/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="Number2" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
+position = Vector2(391, 195)
+gravity_scale = 0.0
+script = ExtResource("28_d1r8i")
+
+[node name="ColllsionNumber2" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber2" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2/ColllsionNumber2"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("29_8k25n")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number2/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="Number3" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
+position = Vector2(263, 294)
+gravity_scale = 0.0
+script = ExtResource("29_p0ape")
+
+[node name="ColllsionNumber3" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber3" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3/ColllsionNumber3"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("31_1devu")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number3/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="Number4" type="RigidBody2D" parent="OnTheGround/PuzzleSumas/Numeros"]
+position = Vector2(390, 296)
+gravity_scale = 0.0
+script = ExtResource("30_kmrtp")
+
+[node name="ColllsionNumber4" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_0krk3")
+
+[node name="SpriteNumber4" type="Sprite2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4/ColllsionNumber4"]
+position = Vector2(-1.2397766e-05, -2)
+scale = Vector2(0.7378472, 0.7395833)
+texture = ExtResource("33_vto3y")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("26_interact")
+interact_label_position = Vector2(85, -20)
+action = "Tap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleSumas/Numeros/Number4/InteractArea"]
+position = Vector2(86, 55)
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.600391, 0.54335, 0, 0.42)
+
+[node name="PuzzleEstatuas" type="Node2D" parent="OnTheGround"]
+position = Vector2(476, 568)
+
+[node name="PuzzleEstatuas1" type="Node2D" parent="OnTheGround/PuzzleEstatuas"]
+script = ExtResource("45_puzzle_estatuas")
+objetivos = Array[ExtResource("41_switch_obj")]([SubResource("Resource_statue_goal_1"), SubResource("Resource_statue_goal_2"), SubResource("Resource_statue_goal_3"), SubResource("Resource_statue_goal_4")])
+
+[node name="Estatuas" type="Node2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1"]
+position = Vector2(111, 0)
+
+[node name="Estatua1" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas"]
+position = Vector2(23, 98)
+gravity_scale = 0.0
+script = ExtResource("40_estatua")
+sprite_path = NodePath("Estatua1Collision/Estatua1Sprite")
+textura_arriba = ExtResource("43_statue_up")
+textura_derecha = ExtResource("33_ddpwg")
+textura_abajo = ExtResource("32_cllw3")
+textura_izquierda = ExtResource("42_statue_left")
+
+[node name="Estatua1Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua1"]
+shape = SubResource("CircleShape2D_cllw3")
+
+[node name="Estatua1Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua1/Estatua1Collision"]
+texture = ExtResource("32_cllw3")
+
+[node name="Estatua2" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas"]
+position = Vector2(244, 97)
+gravity_scale = 0.0
+script = ExtResource("40_estatua")
+sprite_path = NodePath("Estatua2Collision/Estatua2Sprite")
+textura_arriba = ExtResource("43_statue_up")
+textura_derecha = ExtResource("33_ddpwg")
+textura_abajo = ExtResource("32_cllw3")
+textura_izquierda = ExtResource("42_statue_left")
+direccion_inicial = 1
+
+[node name="Estatua2Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua2"]
+shape = SubResource("CircleShape2D_ddpwg")
+
+[node name="Estatua2Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua2/Estatua2Collision"]
+texture = ExtResource("33_ddpwg")
+
+[node name="Estatua3" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas"]
+position = Vector2(133, 0)
+gravity_scale = 0.0
+script = ExtResource("40_estatua")
+sprite_path = NodePath("Estatua3Collision/Estatua3Sprite")
+textura_arriba = ExtResource("43_statue_up")
+textura_derecha = ExtResource("33_ddpwg")
+textura_abajo = ExtResource("32_cllw3")
+textura_izquierda = ExtResource("42_statue_left")
+direccion_inicial = 0
+
+[node name="Estatua3Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua3"]
+shape = SubResource("CircleShape2D_cllw3")
+
+[node name="Estatua3Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua3/Estatua3Collision"]
+texture = ExtResource("32_cllw3")
+
+[node name="Estatua4" type="RigidBody2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas"]
+position = Vector2(132, -189)
+gravity_scale = 0.0
+script = ExtResource("40_estatua")
+sprite_path = NodePath("Estatua3Collision/Estatua4Sprite")
+textura_arriba = ExtResource("43_statue_up")
+textura_derecha = ExtResource("33_ddpwg")
+textura_abajo = ExtResource("32_cllw3")
+textura_izquierda = ExtResource("42_statue_left")
+direccion_inicial = 0
+
+[node name="Estatua3Collision" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua4"]
+shape = SubResource("CircleShape2D_cllw3")
+
+[node name="Estatua4Sprite" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Estatuas/Estatua4/Estatua3Collision"]
+texture = ExtResource("32_cllw3")
+
+[node name="Switches" type="Node2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1"]
+position = Vector2(106, -1)
+
+[node name="Switch1" type="Node2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches"]
+position = Vector2(-2, -6)
+script = ExtResource("39_switch")
+sprite_path = NodePath("Sprite2D")
+area_path = NodePath("Area2D")
+objetivos = Array[ExtResource("41_switch_obj")]([SubResource("Resource_switch_obj_1"), SubResource("Resource_switch_obj_2"), SubResource("Resource_uulsv")])
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches/Switch1"]
+position = Vector2(142, 100)
+scale = Vector2(0.86458325, 0.8749999)
+texture = ExtResource("34_mn1ft")
+
+[node name="Area2D" type="Area2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches/Switch1"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches/Switch1/Area2D"]
+position = Vector2(142, 100)
+shape = SubResource("CircleShape2D_switch")
+
+[node name="Switch2" type="Node2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches"]
+position = Vector2(-4, -194)
+script = ExtResource("39_switch")
+sprite_path = NodePath("Sprite2D")
+area_path = NodePath("Area2D")
+objetivos = Array[ExtResource("41_switch_obj")]([SubResource("Resource_y1tyt"), SubResource("Resource_xb4h1")])
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches/Switch2"]
+position = Vector2(142, 100)
+scale = Vector2(0.86458325, 0.8749999)
+texture = ExtResource("34_mn1ft")
+
+[node name="Area2D" type="Area2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches/Switch2"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/PuzzleEstatuas/PuzzleEstatuas1/Switches/Switch2/Area2D"]
+position = Vector2(142, 100)
+shape = SubResource("CircleShape2D_switch")
+
+[node name="JefeFinal" type="Node2D" parent="OnTheGround"]
+position = Vector2(265, 345)
+
+[node name="Door Exit" parent="." instance=ExtResource("3_ddpwg")]
+position = Vector2(351, 1314)
+script = null
+
+[node name="ScreenOverlay" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("21_ca12e")]
+visible = false
+
+[node name="Nivel_3_Cinematic" type="Node2D" parent="."]
+script = ExtResource("44_iuy7r")
+dialogue = ExtResource("19_6gaxm")
+metadata/_custom_type_script = "uid://x1mxt6bmei2o"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("45_avfkk")
+autoplay = true
+bus = &"Music"

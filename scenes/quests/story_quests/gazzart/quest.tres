@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_lim7a")
 title = "Gazzart"
-description = "Grupo 6 Equipo 3"
+description = "Un forastero es acusado de alterar el destino de las deshiladas tierras de Gazzart y encerrado en el castillo. En las mazmorras encuentra a Magnus, capaz de restaurar los hilos del mundo. Juntos deben escapar y enfrentar al Señor que busca reescribir la realidad."
 first_scene = "uid://c44p4wfwyywxk"
 metadata/_custom_type_script = "uid://dts1hwdy3phin"

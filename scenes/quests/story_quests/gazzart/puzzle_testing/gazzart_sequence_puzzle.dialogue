@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: The Threadbare Authors
+# SPDX-License-Identifier: MPL-2.0
+~ start
+Marcus: Queda poco.
+Marcus: Puedo sentir que estamos cada vez más cerca al Señor del Castillo.
+Marcus: Si logras superar este último tramo... estaremos frente a nuestro objetivo.
+Marcus: Suerte joven, por Gazzart.
+=> END
+~ well_done
+Marcus: Al fin he sido liberado.
+Marcus: Vamos joven, es hora.
+=> END

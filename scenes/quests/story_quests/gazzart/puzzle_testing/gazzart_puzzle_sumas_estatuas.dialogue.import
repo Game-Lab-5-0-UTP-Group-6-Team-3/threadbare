@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d1d8rr6tcpiq"
+path="res://.godot/imported/gazzart_puzzle_sumas_estatuas.dialogue-d6bbae69eeee1f3c1eca8462c615e10d.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/gazzart/puzzle_testing/gazzart_puzzle_sumas_estatuas.dialogue"
+dest_files=["res://.godot/imported/gazzart_puzzle_sumas_estatuas.dialogue-d6bbae69eeee1f3c1eca8462c615e10d.tres"]
+
+[params]
+
+defaults=true

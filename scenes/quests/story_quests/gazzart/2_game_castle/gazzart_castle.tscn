@@ -21,26 +21,26 @@
 [ext_resource type="Texture2D" uid="uid://b10hdfd5m5mj4" path="res://assets/third_party/tiny-swords/Deco/04.png" id="11_yy1ff"]
 [ext_resource type="Texture2D" uid="uid://cw330muutqql7" path="res://assets/third_party/tiny-swords/Deco/05.png" id="12_3clji"]
 [ext_resource type="PackedScene" uid="uid://lgu7aeqa7o3r" path="res://scenes/game_elements/props/door/door.tscn" id="12_xqm1i"]
-[ext_resource type="Script" uid="uid://dxe8k6lp04uhi" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gd/puzzle_cajas_controller.gd" id="13_6j3d7"]
+[ext_resource type="Script" uid="uid://dxe8k6lp04uhi" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/puzzle_cajas_controller.gd" id="13_6j3d7"]
 [ext_resource type="Texture2D" uid="uid://ctwx8gghts62p" path="res://assets/third_party/tiny-swords/Deco/06.png" id="13_e0gkp"]
-[ext_resource type="Texture2D" uid="uid://c4hks1t7cv5us" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/target_boxes.png" id="14_aa2h0"]
+[ext_resource type="Texture2D" uid="uid://c4hks1t7cv5us" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/target_boxes.png" id="14_aa2h0"]
 [ext_resource type="Texture2D" uid="uid://b6r7cbgs6tjcr" path="res://assets/third_party/tiny-swords/Deco/07.png" id="14_wvp3d"]
-[ext_resource type="Script" uid="uid://c83qdc8rpl4se" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gd/box_1.gd" id="15_evtu5"]
+[ext_resource type="Script" uid="uid://c83qdc8rpl4se" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/box_1.gd" id="15_evtu5"]
 [ext_resource type="Texture2D" uid="uid://bmhrkna5uimd4" path="res://assets/third_party/tiny-swords/Deco/08.png" id="15_m0mwa"]
 [ext_resource type="Texture2D" uid="uid://baelulw1inl6s" path="res://assets/third_party/tiny-swords/Deco/09.png" id="16_kuycp"]
-[ext_resource type="Texture2D" uid="uid://cf34tb5m4t6a1" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/box1.png" id="16_upgsc"]
+[ext_resource type="Texture2D" uid="uid://cf34tb5m4t6a1" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/box1.png" id="16_upgsc"]
 [ext_resource type="Texture2D" uid="uid://bdhfcs6igu6di" path="res://assets/third_party/tiny-swords/Deco/14.png" id="17_1agqv"]
-[ext_resource type="Script" uid="uid://bltpep3g48huc" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gd/box_2.gd" id="17_kajkp"]
-[ext_resource type="Texture2D" uid="uid://c2m3jeidfq6ai" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/box2.png" id="18_gskcb"]
+[ext_resource type="Script" uid="uid://bltpep3g48huc" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/box_2.gd" id="17_kajkp"]
+[ext_resource type="Texture2D" uid="uid://c2m3jeidfq6ai" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/box2.png" id="18_gskcb"]
 [ext_resource type="Resource" uid="uid://cs17pa76msdog" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gazzart_castle.dialogue" id="20_upgsc"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="21_upgsc"]
 [ext_resource type="PackedScene" uid="uid://1vunygl4wpj6" path="res://scenes/game_elements/props/button_item/button_item.tscn" id="22_kajkp"]
 [ext_resource type="PackedScene" uid="uid://be4o3ythda4cu" path="res://scenes/game_elements/props/sequence_puzzle_hint_sign/sequence_puzzle_hint_sign.tscn" id="26_3clji"]
 [ext_resource type="Script" uid="uid://ckwylcef1otey" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/gd/castle_hint_sign.gd" id="27_hkyt3"]
 [ext_resource type="Resource" uid="uid://1iq0mft4sap7" path="res://scenes/quests/story_quests/gazzart/2_game_castle/gazzart_sign_tablero.dialogue" id="28_wlgob"]
-[ext_resource type="Texture2D" uid="uid://cdv5vhr41uupn" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/tablero_tile1.png" id="31_m0mwa"]
-[ext_resource type="Texture2D" uid="uid://dirolfjcohxc" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/tablero_tile2.png" id="32_kuycp"]
-[ext_resource type="Texture2D" uid="uid://b7vi7bvu1mpf1" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/tablero_block.png" id="33_1agqv"]
+[ext_resource type="Texture2D" uid="uid://cdv5vhr41uupn" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/tablero_tile1.png" id="31_m0mwa"]
+[ext_resource type="Texture2D" uid="uid://dirolfjcohxc" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/tablero_tile2.png" id="32_kuycp"]
+[ext_resource type="Texture2D" uid="uid://b7vi7bvu1mpf1" path="res://scenes/quests/story_quests/gazzart/puzzle_testing/components/tablero_block.png" id="33_1agqv"]
 [ext_resource type="Texture2D" uid="uid://bmigtxbrctwu1" path="res://scenes/quests/story_quests/gazzart/1_game_dungeon/stealth_components/sprites/celda puertapng.png" id="37_oeyd3"]
 [ext_resource type="Texture2D" uid="uid://cf3iaha824tqs" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/celda_doble.png" id="38_qx30p"]
 [ext_resource type="Texture2D" uid="uid://s67q73seg4i7" path="res://scenes/quests/story_quests/gazzart/2_game_castle/combat_components/sprites/celda_triple.png" id="39_kahqc"]
@@ -1480,6 +1480,13 @@ sprite_frames = SubResource("SpriteFrames_r7dup")
 animation = &"costado"
 autoplay = "costado"
 
+[node name="costado_R10" type="AnimatedSprite2D" parent="Torch"]
+position = Vector2(3479, 725)
+scale = Vector2(0.46, 0.46)
+sprite_frames = SubResource("SpriteFrames_r7dup")
+animation = &"costado"
+autoplay = "costado"
+
 [node name="Player" parent="." groups=["light"] instance=ExtResource("4_7fw1y")]
 position = Vector2(732, 3147)
 scale = Vector2(0.367, 0.367)
@@ -1513,17 +1520,10 @@ script = ExtResource("40_ymi23")
 required_items = Array[ExtResource("9_egw57")]([SubResource("Resource_kahqc"), SubResource("Resource_ymi23"), SubResource("Resource_yy1ff")])
 puerta_dialogue = ExtResource("41_yy1ff")
 dialogue = ExtResource("20_upgsc")
-next_scene = "uid://dfocrdh2n83k2"
+next_scene = "uid://dryinuip71yvm"
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("49_wlgob")
 autoplay = true
 bus = &"Music"
-
-[node name="costado_R8" type="AnimatedSprite2D" parent="."]
-position = Vector2(3479, 725)
-scale = Vector2(0.46, 0.46)
-sprite_frames = SubResource("SpriteFrames_r7dup")
-animation = &"costado"
-autoplay = "costado"
