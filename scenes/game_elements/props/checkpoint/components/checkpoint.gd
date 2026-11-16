@@ -29,6 +29,10 @@ const REQUIRED_ANIMATIONS := [&"idle", &"appear"]
 ## be able to interact with the checkpoint.
 @export var dialogue: DialogueResource = preload("uid://bug2aqd47jgyu")
 
+## Determines if the enemies and the void layer should save their state when
+## the player activates this checkpoint.
+@export var save_void_and_enemies: bool = false
+
 ## The point where the player will spawn.
 @onready var spawn_point: SpawnPoint = %SpawnPoint
 
@@ -65,13 +69,17 @@ func _ready() -> void:
 
 	talk_behavior.dialogue = dialogue
 	sprite.visible = false
-	body_entered.connect(func(_body: Node2D) -> void: self.activate())
+	body_entered.connect(
+		func(_body: Node2D) -> void:
+			self.activate(),
+	)
 	interact_area.interaction_started.connect(_on_interaction_started)
 	interact_area.interaction_ended.connect(_on_interaction_ended)
 
 
 ## Makes this the active checkpoint.
 func activate() -> void:
+	GameState.scene.activate_checkpoint()
 	GameState.scene.spawn_point = owner.get_path_to(spawn_point)
 	GameState.save()
 

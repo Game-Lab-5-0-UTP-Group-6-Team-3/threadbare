@@ -5,6 +5,10 @@ extends Resource
 
 @export var quest: Quest
 
+## Generic game state facts about the current quest. Outside quests, use [member GlobalState.facts]
+## instead.
+@export var facts: Dictionary[String, Variant]
+
 ## Resource path of [member quest], which is what is actually saved to disk.
 ## Use [member quest] instead.
 @export_storage var quest_path: String:
@@ -22,19 +26,24 @@ extends Resource
 ## player returns to if they run out of lives. If not set, defaults to
 ## [member quest]'s [Quest.first_scene].
 @export var challenge_start_scene: String:
-	get = get_challenge_start_scene,
-	set = set_challenge_start_scene
+	get = get_challenge_start_scene, set = set_challenge_start_scene
 
-## Set when the loom transports the player to a trio of Sokoban puzzles, so that
-## when the player returns to Fray's End the loom can trigger a brief cutscene.
-@export var incorporating_threads: bool
-
-## Player state within [member quest]. If [member Quest.is_lore_quest] is
-## [code]true[/code], this will be initialised as a copy of [member
+## Player state within [member quest]. If the quest is a [LoreQuest],
+## this will be initialised as a copy of [member
 ## GlobalState.player], and propagated back to [GlobalState] if the quest is
 ## completed. For StoryQuests, this is a fresh state at the start of the quest
 ## and is discarded at the end.
 @export var player: PlayerState = PlayerState.new()
+
+## The path to the scene to return to if the quest is abandoned.
+@export var abandon_scene_path: String
+
+## [SpawnPoint] node within [member abandon_scene_path] to return to if the
+## quest is abandoned.
+@export var abandon_spawn_point: NodePath
+
+## Inventory of collected threads.
+@export var inventory := InventoryState.new()
 
 
 func _init(q: Quest = null, p: PlayerState = null) -> void:
@@ -59,4 +68,4 @@ func get_challenge_start_scene() -> String:
 
 func set_challenge_start_scene(value: String) -> void:
 	challenge_start_scene = ResourceUID.ensure_path(value)
-	changed.emit()
+	emit_changed()

@@ -24,8 +24,11 @@ const _DURATION: float = 0.25
 ## Nodes whose direct children (but not grandchildren) can be consumed.
 @export var consumable_node_holders: Array[Node]
 
-var _unconsumed_nodes: Dictionary[Vector2i, Array] = {}
-var _consumed_nodes: Dictionary[Vector2i, Array] = {}
+## Wether to save the tilemap cover in this scene state.
+@export var save_state: bool
+
+var _unconsumed_nodes: Dictionary[Vector2i, Array] = { }
+var _consumed_nodes: Dictionary[Vector2i, Array] = { }
 
 var _terrain_id: int = -1
 
@@ -101,6 +104,9 @@ func _ready() -> void:
 		return
 
 	for parent: Node in consumable_node_holders:
+		# Filter unsassigned elements:
+		if parent == null:
+			continue
 		for child: Node in parent.get_children():
 			if child is Node2D:
 				var coord := coord_for(child)
@@ -110,6 +116,9 @@ func _ready() -> void:
 
 	for coord: Vector2i in get_used_cells():
 		consume(coord, true)
+	if save_state:
+		GameState.scene.checkpoint_activated.connect(_on_checkpoint_activated)
+		_load_state()
 
 
 ## Cover all [param cells] with [member terrain_name], hiding any nodes in those cells which are
@@ -147,7 +156,8 @@ func consume(coord: Vector2i, immediate: bool = false) -> void:
 	else:
 		var tween := create_tween().set_parallel(true)
 		for node: Node2D in nodes.filter(
-			func(node: Node2D) -> bool: return is_instance_valid(node)
+			func(node: Node2D) -> bool:
+				return is_instance_valid(node),
 		):
 			tween.tween_property(node, "modulate:a", 0.0, _DURATION).set_ease(Tween.EASE_OUT)
 		await tween.finished
@@ -159,12 +169,15 @@ func consume(coord: Vector2i, immediate: bool = false) -> void:
 	_consumed_nodes[coord] = nodes
 
 
-## Clear this layer, and reveal all previously-"consumed" nodes, with an animation.
-func uncover_all(duration: float) -> void:
+## Reveal all previously-"consumed" nodes, with a fade animation.
+## Optionally, fade out the tiles too.
+## Then, clear all the tiles of this layer.
+func uncover_all(duration: float, animate_modulate: bool = false) -> void:
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	tween.set_parallel(true)
-	tween.tween_property(self, "modulate:a", 0.0, duration / 2)
+	if animate_modulate:
+		tween.tween_property(self, "modulate:a", 0.0, duration / 2)
 	for nodes: Array in _consumed_nodes.values():
 		for node: Node2D in nodes:
 			tween.tween_property(node, "modulate:a", 1.0, duration)
@@ -173,4 +186,20 @@ func uncover_all(duration: float) -> void:
 
 	await tween.finished
 	clear()
-	self.modulate.a = 1.0
+	if animate_modulate:
+		self.modulate.a = 1.0
+
+
+## Responds to the checkpoint's activated signal and saves consumed tiles.
+func _on_checkpoint_activated() -> void:
+	var save_key := str(get_path())
+	GameState.scene.facts[save_key] = get_used_cells()
+
+
+## Reconstructs the holes in the TileMap immediately on scene load.
+## Executes without animation to prevent visual glitches upon respawn.
+func _load_state() -> void:
+	var save_key := str(get_path())
+	if GameState.scene.facts.has(save_key):
+		var saved_tiles: Array = GameState.scene.facts[save_key]
+		consume_cells(saved_tiles, true)

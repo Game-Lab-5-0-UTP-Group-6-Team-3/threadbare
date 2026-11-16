@@ -2,14 +2,28 @@
 # SPDX-License-Identifier: MPL-2.0
 extends Control
 
-@export var tutorial_quest: Quest
+var opening_quest: Quest
 
 @onready var main_menu: Control = %MainMenu
 @onready var options: Control = %Options
 @onready var credits: Control = %Credits
 
 
+func _enter_tree() -> void:
+	MouseManager.hold()
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+
+func _exit_tree() -> void:
+	MouseManager.release()
+	Input.set_default_cursor_shape(Input.CURSOR_CROSS)
+
+
 func _ready() -> void:
+	opening_quest = load(
+		ThreadbareProjectSettings.get_setting(ThreadbareProjectSettings.OPENING_QUEST)
+	)
+
 	if ProjectSettings.get_setting(ThreadbareProjectSettings.SKIP_SPLASH):
 		if GameState.can_restore():
 			_on_main_menu_continue_pressed()
@@ -24,8 +38,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_main_menu_continue_pressed() -> void:
 	(
-		SceneSwitcher
-		. change_to_file_with_transition(
+		SceneSwitcher.change_to_file_with_transition(
 			GameState.scene.path,
 			GameState.scene.spawn_point,
 			Transition.Effect.FADE,
@@ -37,9 +50,12 @@ func _on_main_menu_continue_pressed() -> void:
 func _on_start_pressed() -> void:
 	GameState.clear()
 
-	GameState.start_quest(tutorial_quest)
+	GameState.set_quest(opening_quest)
 	SceneSwitcher.change_to_file_with_transition(
-		tutorial_quest.first_scene, ^"", Transition.Effect.FADE, Transition.Effect.FADE
+		opening_quest.first_scene,
+		^"",
+		Transition.Effect.FADE,
+		Transition.Effect.FADE,
 	)
 
 

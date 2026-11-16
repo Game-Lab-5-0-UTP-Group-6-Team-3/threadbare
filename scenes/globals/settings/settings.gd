@@ -2,6 +2,16 @@
 # SPDX-License-Identifier: MPL-2.0
 extends Node
 
+## Emitted when [member keyboard_only] changes.
+signal keyboard_only_changed
+
+## Emitted when [member touch_controls] changes, or when
+## [method can_choose_touch_controls] does.
+signal touch_controls_changed
+
+## Emitted when [member left_handed] changes.
+signal left_handed_changed
+
 const SETTINGS_PATH := "user://settings.cfg"
 
 const META_SECTION := "Meta"
@@ -9,14 +19,19 @@ const VERSION_KEY := "Version"
 const VERSION := 1
 
 const VOLUME_SECTION := "Volume"
-const MIN_VOLUME := 0.0
-const MAX_VOLUME := 1.0
-const DEFAULT_VOLUMES: Dictionary[String, float] = {
-	"Music": 0.5,
-}
 
 const DISPLAY_SECTION := "Display"
 const SHOW_HUD_KEY := "Show HUD"
+const LARGE_TEXT_KEY := "Large Text"
+
+const INPUT_SECTION := "Input"
+const KEYBOARD_ONLY_KEY := "Keyboard Only"
+const VIBRATION_STRENGTH_KEY := "Vibration Strength"
+const TOUCH_CONTROLS_KEY := "Touch Controls"
+const LEFT_HANDED_KEY := "Left Handed"
+const TOUCHSCREEN_DETECTED_KEY := "Touchscreen Detected"
+const KEYBOARD_DETECTED_KEY := "Keyboard Detected"
+const JOYPAD_DETECTED_KEY := "Joypad Detected"
 
 const LANGUAGE_SECTION := "Language"
 const LOCALE_KEY := "Locale"
@@ -28,9 +43,12 @@ const MINIMUM_ASPECT_RATIO := 1.25
 ## An arbitrary wide ratio, lower than 21:9 ("ultrawide").
 const MAXIMUM_ASPECT_RATIO := 2.2
 
+## Screens whose shortest side is under this are considered small, like phones.
+## This is the threshold that Android uses to tell phones from tablets.
+const SMALL_SCREEN_SHORTEST_SIDE_DP := 600.0
+
 @export var fullscreen: bool:
-	get = is_fullscreen,
-	set = set_fullscreen
+	get = is_fullscreen, set = set_fullscreen
 
 @export var show_input_hud := true:
 	get:
@@ -39,10 +57,110 @@ const MAXIMUM_ASPECT_RATIO := 2.2
 		_settings.set_value(DISPLAY_SECTION, SHOW_HUD_KEY, new_value)
 		_save()
 
+## Show the text of dialogues and signs with a bigger font. Unless the player
+## changes it, this is on for small screens like phones, and off otherwise.
+@export var large_text: bool:
+	get:
+		return _settings.get_value(DISPLAY_SECTION, LARGE_TEXT_KEY, is_small_screen())
+	set(new_value):
+		_settings.set_value(DISPLAY_SECTION, LARGE_TEXT_KEY, new_value)
+		_save()
+
+## Play with the keyboard only, instead of keyboard + mouse. This decides
+## whether the mouse or the aim keys aim the grappling hook, and whether the
+## input hints show the mouse buttons or the keys. It doesn't matter while
+## playing with a joypad.
+@export var keyboard_only: bool:
+	get:
+		return _settings.get_value(INPUT_SECTION, KEYBOARD_ONLY_KEY, false)
+	set(new_value):
+		_settings.set_value(INPUT_SECTION, KEYBOARD_ONLY_KEY, new_value)
+		_save()
+		keyboard_only_changed.emit()
+
+## How strong the joypad vibrates, from 0.0 (off) to 1.0 (full strength).
+## Use [method JoypadVibration.start] to vibrate the joypad with this applied.
+@export_range(0.0, 1.0, 0.1) var vibration_strength: float = 1.0:
+	get:
+		var stored: float = _settings.get_value(INPUT_SECTION, VIBRATION_STRENGTH_KEY, 1.0)
+		return clampf(stored, 0.0, 1.0)
+	set(new_value):
+		_settings.set_value(INPUT_SECTION, VIBRATION_STRENGTH_KEY, clampf(new_value, 0.0, 1.0))
+		_save()
+
+## Play with the touch controls instead of the input hints. Unless the player
+## changes it, this is on in mobile web browsers, and off otherwise, including on
+## laptops and desktops with a touchscreen. The first touch turns it on, unless
+## a keyboard or joypad was detected before.
+## [br][br]
+## Use this instead of [method DisplayServer.is_touchscreen_available], which is
+## also true on a laptop with a touchscreen while the player uses the keyboard.
+@export var touch_controls: bool:
+	get:
+		return _settings.get_value(INPUT_SECTION, TOUCH_CONTROLS_KEY, is_mobile_browser())
+	set(new_value):
+		if new_value == touch_controls:
+			return
+		_settings.set_value(INPUT_SECTION, TOUCH_CONTROLS_KEY, new_value)
+		_save()
+		touch_controls_changed.emit()
+
+## Mirror the touch controls horizontally, for left-handed players: the virtual
+## joystick goes to the bottom right, and the input hints to the bottom left.
+## The pause button stays at the top left, because the top right is for other
+## parts of the HUD.
+@export var left_handed: bool:
+	get:
+		return _settings.get_value(INPUT_SECTION, LEFT_HANDED_KEY, false)
+	set(new_value):
+		if new_value == left_handed:
+			return
+		_settings.set_value(INPUT_SECTION, LEFT_HANDED_KEY, new_value)
+		_save()
+		left_handed_changed.emit()
+
+## True once the player has touched the screen, which confirms that the device
+## has a touchscreen. Set from [signal InputHelper.touchscreen_detected].
+var touchscreen_detected: bool:
+	get:
+		return _settings.get_value(INPUT_SECTION, TOUCHSCREEN_DETECTED_KEY, false)
+	set(new_value):
+		if new_value == touchscreen_detected:
+			return
+		_settings.set_value(INPUT_SECTION, TOUCHSCREEN_DETECTED_KEY, new_value)
+		_save()
+		touch_controls_changed.emit()
+
+## True once the player has pressed a key, which confirms that the device has a
+## keyboard. Set from [signal InputHelper.keyboard_detected].
+var keyboard_detected: bool:
+	get:
+		return _settings.get_value(INPUT_SECTION, KEYBOARD_DETECTED_KEY, false)
+	set(new_value):
+		if new_value == keyboard_detected:
+			return
+		_settings.set_value(INPUT_SECTION, KEYBOARD_DETECTED_KEY, new_value)
+		_save()
+		touch_controls_changed.emit()
+
+## True once the player has used a joypad, which confirms that the device has a
+## joypad. Set from [signal InputHelper.joypad_detected].
+var joypad_detected: bool:
+	get:
+		return _settings.get_value(INPUT_SECTION, JOYPAD_DETECTED_KEY, false)
+	set(new_value):
+		if new_value == joypad_detected:
+			return
+		_settings.set_value(INPUT_SECTION, JOYPAD_DETECTED_KEY, new_value)
+		_save()
+		touch_controls_changed.emit()
+
 var _settings := ConfigFile.new()
 
 var _overrides_path: String
 var _overrides := ConfigFile.new()
+
+var _default_volumes: Dictionary[String, float]
 
 
 func _ready() -> void:
@@ -60,15 +178,19 @@ func _ready() -> void:
 	_load_project_settings_overrides()
 	_set_minimum_window_size()
 
+	InputHelper.touchscreen_detected.connect(_on_touchscreen_detected)
+	InputHelper.keyboard_detected.connect(_on_keyboard_detected)
+	InputHelper.joypad_detected.connect(_on_joypad_detected)
+
 
 func _restore_volumes() -> void:
 	for bus_idx in AudioServer.bus_count:
 		var bus := AudioServer.get_bus_name(bus_idx)
-		var volume_linear: float = _settings.get_value(
-			VOLUME_SECTION, bus, DEFAULT_VOLUMES.get(bus, MAX_VOLUME)
-		)
-
-		_set_volume(bus_idx, volume_linear)
+		# The default bus layout volumes double as the max volumes
+		var max_volume_linear := AudioServer.get_bus_volume_linear(bus_idx)
+		_default_volumes[bus] = max_volume_linear
+		var volume_linear: float = _settings.get_value(VOLUME_SECTION, bus, max_volume_linear)
+		_set_volume(bus_idx, clampf(volume_linear, 0.0, max_volume_linear))
 
 
 func _load_project_settings_overrides() -> void:
@@ -90,15 +212,18 @@ func _load_project_settings_overrides() -> void:
 func _set_minimum_window_size() -> void:
 	var minimum_window_size := Vector2i(
 		ProjectSettings.get_setting("display/window/size/viewport_width"),
-		ProjectSettings.get_setting("display/window/size/viewport_height")
+		ProjectSettings.get_setting("display/window/size/viewport_height"),
 	)
 	get_window().min_size = minimum_window_size
 
 
 func get_volume(bus: String) -> float:
 	var bus_idx := AudioServer.get_bus_index(bus)
-
 	return AudioServer.get_bus_volume_linear(bus_idx)
+
+
+func get_max_volume(bus: String) -> float:
+	return _default_volumes.get(bus, 1.0)
 
 
 func set_volume(bus: String, volume_linear: float) -> void:
@@ -109,8 +234,47 @@ func set_volume(bus: String, volume_linear: float) -> void:
 	_save()
 
 
+## The first touch ever on this device. It also turns the touch controls on,
+## unless a keyboard or joypad was detected before. In that case the player
+## already plays without touch, so the touch controls are only offered in the
+## Input Settings.
+func _on_touchscreen_detected() -> void:
+	if touchscreen_detected:
+		return
+	touchscreen_detected = true
+	if not keyboard_detected and not joypad_detected:
+		touch_controls = true
+
+
+func _on_keyboard_detected() -> void:
+	keyboard_detected = true
+
+
+func _on_joypad_detected() -> void:
+	joypad_detected = true
+
+
+## Return true if the player can choose [member touch_controls], because the
+## device has both a touchscreen and a keyboard or joypad. On desktop a touch
+## confirms the touchscreen, and in mobile web browsers a key press or joypad
+## input confirms the keyboard or joypad.
+func can_choose_touch_controls() -> bool:
+	if is_mobile_browser():
+		return keyboard_detected or joypad_detected
+	return touchscreen_detected
+
+
+## Return true in the web build on a phone or tablet.
+static func is_mobile_browser() -> bool:
+	return OS.has_feature("web_android") or OS.has_feature("web_ios")
+
+
 func is_fullscreen() -> bool:
-	return DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
+	# On the web, Godot reports the non-exclusive fullscreen mode instead.
+	return (
+		DisplayServer.window_get_mode()
+		in [DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN, DisplayServer.WINDOW_MODE_FULLSCREEN]
+	)
 
 
 func set_fullscreen(toggled_on: bool) -> void:
@@ -118,6 +282,25 @@ func set_fullscreen(toggled_on: bool) -> void:
 		set_window_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		set_window_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+## Return true on touchscreen devices with a small screen, like phones, and
+## false on tablets and desktops.
+func is_small_screen() -> bool:
+	if not DisplayServer.is_touchscreen_available():
+		return false
+	var screen_size := Vector2(DisplayServer.screen_get_size())
+	var shortest_side := minf(screen_size.x, screen_size.y)
+	var shortest_side_dp: float
+	if OS.has_feature("web"):
+		# On the web, the screen size divided by the scale is in CSS pixels,
+		# which are close to density-independent pixels. The DPI can't be used,
+		# because browsers derive it from the scale instead of the real screen.
+		shortest_side_dp = shortest_side / DisplayServer.screen_get_scale()
+	else:
+		# Density-independent pixels are 1/160 inch.
+		shortest_side_dp = shortest_side * 160.0 / DisplayServer.screen_get_dpi()
+	return shortest_side_dp < SMALL_SCREEN_SHORTEST_SIDE_DP
 
 
 func get_locale() -> String:

@@ -29,15 +29,14 @@ const REQUIRED_ANIMATION_FRAMES: Dictionary[StringName, int] = {
 
 ## Optional animations which, if provided by [member sprite_frames], must have the corresponding
 ## number of frames.
-const OPTIONAL_ANIMATION_FRAMES: Dictionary[StringName, int] = {
-	&"run": 6,
-}
+const OPTIONAL_ANIMATION_FRAMES: Dictionary[StringName, int] = { &"run": 6 }
 
 const DEFAULT_SPRITE_FRAME: SpriteFrames = preload("uid://vwf8e1v8brdp")
+const DEFAULT_PLAYER_NAME := "Player Name"
 
 ## The character's name. This is used to highlight when the player's character
 ## is speaking during dialogue.
-@export var player_name: String = "Player Name"
+@export var player_name: String = DEFAULT_PLAYER_NAME
 
 ## The current player state.
 @export var mode: Mode = Mode.USER_CONTROLLED:
@@ -63,11 +62,16 @@ const DEFAULT_SPRITE_FRAME: SpriteFrames = preload("uid://vwf8e1v8brdp")
 
 var _initial_speeds: CharacterSpeeds
 
+var _system_controllers: Array[Node] = []
+
 @onready var input_walk_behavior: InputWalkBehavior = %InputWalkBehavior
 @onready var player_interaction: PlayerInteraction = %PlayerInteraction
 @onready var player_repel: Node2D = %PlayerRepel
 @onready var player_hook: PlayerHook = %PlayerHook
 @onready var player_sprite: AnimatedSprite2D = %PlayerSprite
+@onready var player_dust_particles: GPUParticles2D = %PlayerDustParticles
+@onready var stuck_shaker: Shaker = %StuckShaker
+@onready var stuck_timer: Timer = %StuckTimer
 @onready var _walk_sound: AudioStreamPlayer2D = %WalkSound
 
 
@@ -148,6 +152,9 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 
+	input_walk_behavior.stuck_changed.connect(_on_input_walk_behavior_stuck_changed)
+	stuck_timer.timeout.connect(defeat)
+
 	GameState.player.abilities_changed.connect(_on_abilities_changed)
 	GameState.player_changed.connect(_on_player_state_changed)
 
@@ -156,6 +163,14 @@ func _on_player_state_changed(old: PlayerState, new: PlayerState) -> void:
 	old.abilities_changed.disconnect(_on_abilities_changed)
 	new.abilities_changed.connect(_on_abilities_changed)
 	_on_abilities_changed()
+
+
+func _on_input_walk_behavior_stuck_changed(is_stuck: bool) -> void:
+	if is_stuck:
+		stuck_shaker.shake()
+		stuck_timer.start()
+	else:
+		stuck_timer.stop()
 
 
 func _set_speeds(new_speeds: CharacterSpeeds) -> void:
@@ -169,7 +184,7 @@ func _set_speeds(new_speeds: CharacterSpeeds) -> void:
 func teleport_to(
 	tele_position: Vector2,
 	smooth_camera: bool = false,
-	look_side: Enums.LookAtSide = Enums.LookAtSide.UNSPECIFIED
+	look_side: Enums.LookAtSide = Enums.LookAtSide.UNSPECIFIED,
 ) -> void:
 	var camera: Camera2D = get_viewport().get_camera_2d()
 
@@ -206,6 +221,8 @@ func defeat(falling: bool = false) -> void:
 	# Stop moving the player.
 	velocity = Vector2.ZERO
 
+	player_dust_particles.emitting = false
+
 	GameState.player.decrement_lives()
 
 	if falling:
@@ -223,12 +240,15 @@ func defeat(falling: bool = false) -> void:
 		_handle_game_over()
 
 
-func take_control(_controlled_by: Node) -> void:
+func take_control(controlled_by: Node) -> void:
+	_system_controllers.append(controlled_by)
 	mode = Mode.SYSTEM_CONTROLLED
 
 
-func return_control(_controlled_by: Node) -> void:
-	mode = Mode.USER_CONTROLLED
+func return_control(controlled_by: Node) -> void:
+	_system_controllers.erase(controlled_by)
+	if not _system_controllers:
+		mode = Mode.USER_CONTROLLED
 
 
 func _toggle_abilities() -> void:
@@ -267,7 +287,10 @@ func _handle_game_over() -> void:
 	else:
 		# Restart from the challenge start scene
 		SceneSwitcher.change_to_file_with_transition(
-			challenge_start_scene, ^"", Transition.Effect.FADE, Transition.Effect.FADE
+			challenge_start_scene,
+			^"",
+			Transition.Effect.FADE,
+			Transition.Effect.FADE,
 		)
 
 

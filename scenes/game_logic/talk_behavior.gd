@@ -7,18 +7,21 @@ extends Node
 ##
 ## It displays the [member dialogue] passing the parent node and the player as the extra game
 ## state.
-## If [member title] is set, it will display the dialogue at that title.[br][br]
+## If [member dialogue_cue] is set, it will display the dialogue at that cue.[br][br]
 ## When the dialogue ends, it finishes the interaction by calling [method
 ## InteractArea.end_interaction].
-## If the parent is an NPC, it sets the [member InteractArea.action] to "Talk to NAME",
+## If the parent is an NPC, it sets the [member InteractArea.action_text] to "Talk to NAME",
 ## where NAME is the [member NPC.npc_name].[br][br]
-## Optionally, an awaitable function can be passed to [member before_dialogue] if
-## something needs to happen before the [member dialogue] is displayed. This can be used,
-## for example, to dynamically set the [member title] of the dialogue considering the
-## game state at the moment the interaction happens.
 
+## The dialogue to display.
 @export var dialogue: DialogueResource = preload("uid://cc3paugq4mma4")
-@export var title: String = ""
+
+## Cue within [member dialogue] to play. If empty, start at the top of [member dialogue].
+@export var dialogue_cue: String = "":
+	set = _set_dialogue_cue
+
+## The area that the player-character should interact to display the dialogue.
+## The interaction will last until the dialogue ends.
 @export var interact_area: InteractArea:
 	set = _set_interact_area
 
@@ -28,19 +31,38 @@ extends Node
 ## Having multiple nodes in this list with the same name is not advised.
 @export var extra_context: Array[Node]
 
-var before_dialogue: Callable
+
+#region Setters
+
+func _set_dialogue_cue(new_value: String) -> void:
+	dialogue_cue = new_value
+	update_configuration_warnings()
 
 
 func _set_interact_area(new_interact_area: InteractArea) -> void:
 	interact_area = new_interact_area
 	update_configuration_warnings()
 
+#endregion
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
 	if not interact_area:
 		warnings.append("Interact Area property must be set.")
+	if dialogue and dialogue_cue and dialogue_cue not in dialogue.get_cues():
+		warnings.append("Dialogue Cue '%s' does not exist" % dialogue_cue)
 	return warnings
+
+
+func _set(property: StringName, value: Variant) -> bool:
+	# Scenes saved before the renames store the cue as title or cue. Map them to
+	# dialogue_cue, which is the name the editor saves from now on.
+	# Can be removed when we don't expect to have to rewrite any new quests being merged.
+	if property in [&"title", &"cue"]:
+		dialogue_cue = value
+		return true
+	return false
 
 
 func _ready() -> void:
@@ -50,15 +72,13 @@ func _ready() -> void:
 
 	var npc := get_parent() as NPC
 	if npc and npc.npc_name:
-		interact_area.action = "Talk to %s" % npc.npc_name
+		interact_area.action_text = tr("Talk to %s") % npc.npc_name
 
 
 func _on_interaction_started(player: Player, _from_right: bool) -> void:
-	if before_dialogue:
-		await before_dialogue.call()
 	var extra: Dictionary[String, Node]
 	for node: Node in extra_context:
 		extra[node.name] = node
-	DialogueManager.show_dialogue_balloon(dialogue, title, [get_parent(), player, extra])
+	DialogueManager.show_dialogue_balloon(dialogue, dialogue_cue, [get_parent(), player, extra])
 	await DialogueManager.dialogue_ended
 	interact_area.end_interaction()

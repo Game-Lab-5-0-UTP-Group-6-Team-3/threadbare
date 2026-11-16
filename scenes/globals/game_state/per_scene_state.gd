@@ -12,6 +12,9 @@ extends Resource
 ## lights should turn on gradually.
 signal lights_changed(lights_on: bool, immediate: bool)
 
+## Emitted when the player activates a checkpoint.
+signal checkpoint_activated
+
 ## The path to the current scene.
 @export var path: String
 
@@ -24,9 +27,16 @@ signal lights_changed(lights_on: bool, immediate: bool)
 ## Set when any introductory dialogue has been played for the current scene.
 @export var intro_dialogue_shown: bool
 
+## Dictionary to store arbitrary persistent scene facts, such as enemy states and consumed tiles.
+@export var facts: Dictionary = { }
+
 ## Current state of artificial lights. Set with [member set_lights_on]. This is
 ## not saved to disk since the lights are controlled programmatically.
 var lights_on: bool
+
+## Set when the zone name has been displayed for the current world map level scene. So it is
+## displayed only once.
+var zone_name_displayed: String
 
 
 func _init(scene_path: String = "") -> void:
@@ -41,6 +51,10 @@ func set_lights_on(new_value: bool, immediate: bool = false) -> void:
 	lights_changed.emit(new_value, immediate)
 
 
+func activate_checkpoint() -> void:
+	checkpoint_activated.emit()
+
+
 func set_spawn_point(new_value: NodePath) -> void:
 	spawn_point = new_value
-	changed.emit()
+	emit_changed()

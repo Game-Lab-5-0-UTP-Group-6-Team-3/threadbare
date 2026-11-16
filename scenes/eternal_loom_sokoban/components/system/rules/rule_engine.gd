@@ -25,9 +25,6 @@ const RULE_REPEAT_LIMIT := 99
 ## Every tag being used by pieces need to be set here to be recognized as tags.
 @export var tags_legend: Array[StringName] = ["controllable"]
 
-## When all goals are met, the RuleEngine will attempt to load this scene next.
-@export_file("*.tscn") var next_scene: String
-
 ## Offer skipping to the next scene after this amount of seconds.
 @export var seconds_to_offer_skip: int = 120
 
@@ -97,9 +94,8 @@ func _reset() -> void:
 
 
 func _skip() -> void:
-	if not next_scene:
-		return
-	SceneSwitcher.change_to_file_with_transition(next_scene)
+	goals_reached.emit()
+	directional_input.enabled = false
 
 
 func _setup_first_state() -> void:
@@ -164,7 +160,6 @@ func _take_turn(direction_2d: Vector2i) -> bool:
 	# run late rules here
 
 	# commands are run here
-
 	if not undo_state.is_empty():
 		undo_steps.append(undo_state)
 		return true
@@ -179,8 +174,6 @@ func _check_goal() -> void:
 	if result:
 		goals_reached.emit()
 		directional_input.enabled = false
-		if next_scene:
-			SceneSwitcher.change_to_file_with_transition(next_scene)
 
 
 func piece_can_move(piece: Piece2D, checked_pieces: Array[Piece2D]) -> bool:
@@ -196,7 +189,8 @@ func piece_can_move(piece: Piece2D, checked_pieces: Array[Piece2D]) -> bool:
 
 	# get all colliding tiles
 	var collision_pieces := board.get_pieces_at(
-		piece.get_new_grid_position(), Board2D.Query.new().add_layer(piece.layer)
+		piece.get_new_grid_position(),
+		Board2D.Query.new().add_layer(piece.layer),
 	)
 
 	# check if colliding with moving tiles

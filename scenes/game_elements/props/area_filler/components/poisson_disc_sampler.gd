@@ -13,7 +13,7 @@ const K := 30
 ## Generated points
 var points: PackedVector2Array
 
-var _polygon: PackedVector2Array
+var _polygons: Array[PackedVector2Array]
 var _bbox: Rect2
 
 ## Radius: minimum distance between generated points
@@ -43,20 +43,28 @@ var _grid_size: Vector2i
 var _active: PackedVector2Array
 
 
-static func _bounding_box(polygon: PackedVector2Array) -> Rect2:
-	if polygon.is_empty():
+static func _bounding_box(polygons: Array[PackedVector2Array]) -> Rect2:
+	var ps: PackedVector2Array
+	for polygon: PackedVector2Array in polygons:
+		ps.append_array(polygon)
+
+	if ps.is_empty():
 		return Rect2()
 
-	var bbox: Rect2 = Rect2(polygon[0], Vector2.ZERO)
-	for point: Vector2 in polygon:
+	var bbox: Rect2 = Rect2(ps[0], Vector2.ZERO)
+	for point: Vector2 in ps:
 		bbox = bbox.expand(point)
 
 	return bbox
 
 
-func initialise(polygon: PackedVector2Array, minimum_separation: float = 64) -> void:
-	_polygon = polygon
-	_bbox = _bounding_box(polygon)
+func initialise(
+	polygons: Array[PackedVector2Array],
+	initial_points: PackedVector2Array,
+	minimum_separation: float = 64,
+) -> void:
+	_polygons = polygons
+	_bbox = _bounding_box(polygons)
 
 	_r = minimum_separation
 	_r_squared = _r * _r
@@ -65,16 +73,16 @@ func initialise(polygon: PackedVector2Array, minimum_separation: float = 64) -> 
 	# contains at most one sample. sin(45°) = sqrt(0.5)
 	_cell_size = _r * sqrt(0.5)
 	_grid_origin = _bbox.position
-	_grid_size = Vector2i(
-		ceili(_bbox.size.x / _cell_size),
-		ceili(_bbox.size.y / _cell_size),
-	)
+	_grid_size = Vector2i(ceili(_bbox.size.x / _cell_size), ceili(_bbox.size.y / _cell_size))
 	_grid.resize(_grid_size.x * _grid_size.y)
 	assert(_grid.size() < ((1 << 31) - 1), "Grid is too large for int32 indices")
 	_grid.fill(-1)
 
 	points.clear()
 	_active.clear()
+
+	for point: Vector2 in initial_points:
+		add_sample(point)
 
 
 ## Runs generate until no more points can be discovered
@@ -83,21 +91,26 @@ func fill() -> void:
 		pass
 
 
-func _generate_first_point() -> Vector2:
+func _generate_first_point(polygon: PackedVector2Array) -> Vector2:
 	# TODO: Triangulate polygon; pick triangle, weighted by area; pick random point in triangle
 	# (search keyword: barycentric).
 
 	# Simpler implementation: Pick a random point on a random edge.
-	var i := randi_range(0, _polygon.size() - 1)
-	var j := (i + 1) % _polygon.size()
-	return _polygon[i].lerp(_polygon[j], randf())
+	var i := randi_range(0, polygon.size() - 1)
+	var j := (i + 1) % polygon.size()
+	return polygon[i].lerp(polygon[j], randf())
 
 
 ## Generates a single point and appends it to [member points].
 ## Returns [code]false[/code] when no more points can be generated.
 func generate() -> bool:
 	if not points:
-		_add_sample(_generate_first_point())
+		for polygon: PackedVector2Array in _polygons:
+			var p := _generate_first_point(polygon)
+			if not _has_nearby_point(p):
+				add_sample(p)
+			# ...otherwise the two polygons must be close enough together that
+			# they can be reached in 2*minimum_separation.
 
 	while _active:
 		# While the active list is not empty, choose a random index
@@ -108,9 +121,10 @@ func generate() -> bool:
 
 		for j in range(K):
 			var q := _generate_around(p)
-			if Geometry2D.is_point_in_polygon(q, _polygon) and not _has_nearby_point(q):
-				_add_sample(q)
-				return true
+			for polygon: PackedVector2Array in _polygons:
+				if Geometry2D.is_point_in_polygon(q, polygon) and not _has_nearby_point(q):
+					add_sample(q)
+					return true
 
 		# No suitable candidate found near p; remove it from the queue
 		_active[i] = _active[n]
@@ -126,13 +140,10 @@ func finished() -> bool:
 
 func _to_grid_coords(point: Vector2) -> Vector2i:
 	var transformed := point - _grid_origin
-	return Vector2i(
-		floori(transformed.x / _cell_size),
-		floori(transformed.y / _cell_size),
-	)
+	return Vector2i(floori(transformed.x / _cell_size), floori(transformed.y / _cell_size))
 
 
-func _add_sample(point: Vector2) -> void:
+func add_sample(point: Vector2) -> void:
 	points.push_back(point)
 	_active.push_back(point)
 
@@ -141,14 +152,7 @@ func _add_sample(point: Vector2) -> void:
 	var existing_ix := _grid[grid_index]
 	assert(
 		existing_ix == -1,
-		(
-			"Existing point %s at grid coord %s when inserting %s"
-			% [
-				points[existing_ix],
-				gc,
-				point,
-			]
-		)
+		("Existing point %s at grid coord %s when inserting %s" % [points[existing_ix], gc, point]),
 	)
 	_grid[grid_index] = points.size() - 1
 

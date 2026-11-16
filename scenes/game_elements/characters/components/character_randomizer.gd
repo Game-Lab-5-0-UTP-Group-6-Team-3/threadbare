@@ -43,11 +43,14 @@ var animated_sprites: Array[AnimatedSprite2D] = []
 ## The inner nodes that randomize sprites textures.
 var random_texture_nodes: Array[RandomTextureSpriteBehavior] = []
 
-var _undoredo: Object  # EditorUndoRedoManager
+var _undoredo: Object # EditorUndoRedoManager
 
 var _random_number_generator := RandomNumberGenerator.new()
 
 var _previous_look_at_side: Enums.LookAtSide = Enums.LookAtSide.UNSPECIFIED
+
+## The character head node. This can be used to show the head only in the HUD.
+@onready var head: AnimatedSprite2D = %AnimatedSprite2DHead
 
 
 ## Randomize the skin color and textures of the character.
@@ -79,6 +82,7 @@ func randomize_character() -> void:
 	else:
 		character_seed = new_character_seed
 		apply_character_randomizations()
+		_randomize_all_sprites_progress()
 
 
 func _ready() -> void:

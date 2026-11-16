@@ -8,15 +8,33 @@ extends Node2D
 ## This can be used directly, but acts primarily a base class for other
 ## components: [Cinematic], [CollectibleItem], and the Teleporter scene.
 
-const SPAWN_POINT_GROUP_NAME: String = "spawn_point"
+enum Target {
+	## The scene specified in [member SceneLink.next_scene].
+	SPECIFIED_SCENE,
+	## The scene from [constant ThreadbareProjectSettings.HOME_SCENE], typically
+	## Fray's End. Use this at the end of quests.
+	HOME_SCENE,
+}
+
+@export var target: Target = Target.SPECIFIED_SCENE:
+	set(new_value):
+		target = new_value
+		_update_available_spawn_points()
 
 ## Scene to switch to when the player enters this teleport. If empty, the player
 ## will teleport within the current scene, to the position specified by [member
 ## spawn_point_path].
 @export_file("*.tscn") var next_scene: String:
+	get():
+		if target == Target.HOME_SCENE:
+			return ThreadbareProjectSettings.get_setting(ThreadbareProjectSettings.HOME_SCENE)
+
+		return next_scene
 	set(new_value):
 		next_scene = new_value
 		_update_available_spawn_points()
+
+@export_tool_button("Open Next Scene") var open_next_scene: Callable = _open_next_scene
 
 ## Which SpawnPoint in [member next_scene] the player character should start at;
 ## or blank/NONE to start at the default position in the scene.
@@ -52,13 +70,17 @@ func _ready() -> void:
 
 
 ## Trigger the scene-switch or teleport described by [member next_scene] and
-## [member spawn_point_path], with the configured transition.
+## [member spawn_point_path], with the configured transition, and awaits the end
+## of the transition (if any).
 func switch() -> void:
 	var next_scene_path := _get_next_scene_path()
 	if next_scene_path and next_scene_path != get_tree().current_scene.scene_file_path:
 		if use_transition:
-			SceneSwitcher.change_to_file_with_transition(
-				next_scene, spawn_point_path, enter_transition, exit_transition
+			await SceneSwitcher.change_to_file_with_transition(
+				next_scene,
+				spawn_point_path,
+				enter_transition,
+				exit_transition,
 			)
 		else:
 			SceneSwitcher.change_to_file(next_scene, spawn_point_path)
@@ -70,7 +92,7 @@ func switch() -> void:
 				await Transitions.do_transition(
 					self._teleport_to_spawn_point.bind(spawn_point),
 					enter_transition,
-					exit_transition
+					exit_transition,
 				)
 			else:
 				self._teleport_to_spawn_point(spawn_point)
@@ -84,17 +106,24 @@ func _get_next_scene_path() -> String:
 	return ResourceUID.ensure_path(next_scene) if next_scene else ""
 
 
+func _open_next_scene() -> void:
+	var editor_interface := Engine.get_singleton("EditorInterface")
+	var next_scene_path: String = _get_next_scene_path()
+	if (
+		editor_interface and next_scene_path
+		and next_scene_path != get_tree().edited_scene_root.scene_file_path
+	):
+		editor_interface.open_scene_from_path.call_deferred(next_scene_path)
+
+
 func _update_available_spawn_points() -> void:
 	if not Engine.is_editor_hint() or not is_inside_tree():
 		return
 
 	var next_scene_path: String = _get_next_scene_path()
 	if not next_scene_path or next_scene_path == get_tree().edited_scene_root.scene_file_path:
-		var spawn_points := get_tree().get_nodes_in_group("spawn_point")
-		_available_spawn_points.assign(
-			spawn_points.map(func(spawn_point: Node) -> String: return get_path_to(spawn_point))
-		)
-
+		var spawn_points := get_tree().get_nodes_in_group(SpawnPoint.GROUP_NAME)
+		_available_spawn_points.assign(spawn_points.map(get_path_to))
 	elif ResourceLoader.exists(next_scene, "PackedScene"):
 		var packed_scene: PackedScene = load(next_scene)
 		var paths: Array[NodePath] = []
@@ -106,7 +135,7 @@ func _update_available_spawn_points() -> void:
 			var instance := scene_state.get_node_instance(i)
 			if instance:
 				node_groups.append_array(instance.get_state().get_node_groups(0))
-			if SPAWN_POINT_GROUP_NAME in node_groups:
+			if SpawnPoint.GROUP_NAME in node_groups:
 				var node_path_as_string := String(path)
 
 				paths.push_back(NodePath(node_path_as_string.replace("./", "")))
@@ -119,6 +148,20 @@ func _update_available_spawn_points() -> void:
 
 func _validate_property(property: Dictionary) -> void:
 	match property.name:
+		"next_scene":
+			if target == Target.HOME_SCENE:
+				property.usage |= PROPERTY_USAGE_READ_ONLY
+				property.usage &= ~PROPERTY_USAGE_STORAGE
+
+		"open_next_scene":
+			var next_scene_path: String = _get_next_scene_path()
+			var edited_scene_root := get_tree().edited_scene_root if is_inside_tree() else null
+			if (
+				not next_scene_path
+				or (edited_scene_root and next_scene_path == edited_scene_root.scene_file_path)
+			):
+				property.usage |= PROPERTY_USAGE_READ_ONLY
+
 		"spawn_point_path":
 			property.type = TYPE_STRING
 			property.hint = PROPERTY_HINT_ENUM

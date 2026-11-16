@@ -5,16 +5,17 @@ extends MarginContainer
 ## A control that displays a [Quest].
 
 ## Emitted when the player chooses the quest shown on this page
-signal selected(quest: Quest)
+signal selected(quest: Quest, restart: bool)
 
 ## The quest displayed on this page
-var quest: Quest = preload("uid://dwl8letaanhhi"):
+var quest: Quest = preload("uid://ddxn14xw66ud8"):
 	set = _set_quest
 
 @onready var title: Label = %Title
 @onready var description: Label = %Description
 @onready var authors: Label = %Authors
 @onready var animation: AnimatedTextureRect = %Animation
+@onready var restart_button: Button = %RestartButton
 @onready var play_button: Button = %PlayButton
 
 
@@ -23,11 +24,7 @@ static func _chadify(author_name: String) -> String:
 	if author_name != "Justin Bourque":
 		return author_name
 
-	var options := [
-		author_name,
-		"Chad Bourque",
-		"Eric Bourque",
-	]
+	var options := [author_name, "Chad Bourque", "Eric Bourque", "Gerald Bourque", "Jason Bourque"]
 	return options.pick_random()
 
 
@@ -39,17 +36,7 @@ func _make_author_list() -> String:
 		1:
 			return "A story by " + names[0]
 		_:
-			return (
-				" "
-				. join(
-					[
-						"A story by",
-						", ".join(names.slice(0, -1)),
-						"and",
-						names[-1],
-					]
-				)
-			)
+			return (" ".join(["A story by", ", ".join(names.slice(0, -1)), "and", names[-1]]))
 
 
 func _set_quest(new_quest: Quest) -> void:
@@ -68,11 +55,23 @@ func _set_quest(new_quest: Quest) -> void:
 	animation.sprite_frames = quest.sprite_frames
 	animation.animation_name = quest.animation_name
 
+	if quest.resource_path in GameState.global.suspended_quests:
+		restart_button.show()
+		play_button.text = tr("Continue")
+	else:
+		restart_button.hide()
+		play_button.text = tr("Play")
+
 
 func _ready() -> void:
 	_set_quest(quest)
+	restart_button.pressed.connect(_on_restart_button_pressed)
 	play_button.pressed.connect(_on_play_button_pressed)
 
 
+func _on_restart_button_pressed() -> void:
+	selected.emit(quest, true)
+
+
 func _on_play_button_pressed() -> void:
-	selected.emit(quest)
+	selected.emit(quest, false)

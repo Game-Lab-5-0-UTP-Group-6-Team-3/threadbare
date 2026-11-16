@@ -12,8 +12,13 @@ extends Node2D
 ## The [b]throw[/b] action is used for throwing.
 ## [br][br]
 ## The [b]aim_up, aim_down, aim_left and aim_right[/b] actions are used for aiming.
-## Additionally, the mouse movement can also be used for aiming,
-## but the mouse not considered the primary input.
+## When playing with keyboard + mouse, the mouse movement aims instead, and the
+## aim keys are ignored. They are also the movement keys. See
+## [member Settings.keyboard_only]. Aiming with a joypad works in both cases.
+## [br][br]
+## On touchscreens, swiping aims in the swipe direction, and lifting the finger
+## throws. A swipe shorter than [constant SWIPE_MIN_DISTANCE], like a tap, doesn't
+## aim or throw.
 ## [br][br]
 ## Aiming is effectively rotating the [member ray_cast_2d].
 ## [br][br]
@@ -36,6 +41,10 @@ enum State {
 	## The control is temporarily paused from aiming. For example, while throwing.
 	AIMING_PAUSED,
 }
+
+## How far, in viewport pixels, a finger has to move from where it touched the
+## screen to count as a swipe.
+const SWIPE_MIN_DISTANCE: float = 40.0
 
 ## How far a throw from this control can reach.
 ## This is the length of the [member ray_cast_2d].
@@ -77,6 +86,20 @@ var _hook_angle: float
 
 var _pointing_at_area: HookableArea
 
+## The index of the finger touching the screen to aim and throw, or -1.
+var _touch_index: int = -1
+
+## Where the finger at [member _touch_index] touched the screen, in viewport
+## coordinates.
+var _touch_start_position: Vector2
+
+## True if the finger was lifted, so the next frame should throw.
+var _touch_throw_requested: bool = false
+
+## True while this control holds the [MouseManager], so that the crosshair cursor
+## shows when aiming with the mouse.
+var _holding_mouse: bool = false
+
 ## The visual representation of the [member ray_cast_2d] direction.
 ## It also indicates if the ray is hitting a [HookableArea] by displaying
 ## the sprite solid, or semitransparent if not.
@@ -89,16 +112,19 @@ var _pointing_at_area: HookableArea
 ## diagonal directions when releasing the input actions.
 @onready var d_pad_timer: Timer = %DPadTimer
 
-@onready var mouse_aiming_timer: Timer = %MouseAimingTimer
-
 
 func _unhandled_input(_event: InputEvent) -> void:
+	if _event is InputEventScreenTouch or _event is InputEventScreenDrag:
+		_handle_touch(_event)
+		return
+
 	if _event is InputEventMouseMotion:
-		mouse_aiming_timer.start()
-		var axis := get_global_mouse_position() - global_position
-		if not axis.is_zero_approx():
-			_hook_angle = axis.angle()
-			_hook_angle_set = true
+		# Ignore the mouse motion that Godot emulates from touch, for example
+		# when dragging the virtual joystick.
+		if _event.device == InputEvent.DEVICE_ID_EMULATION:
+			return
+		if not Settings.keyboard_only:
+			_aim_at(get_global_mouse_position())
 		return
 
 	# When aiming with keyboard, do not change the hook angle immediately if one of these actions
@@ -107,19 +133,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# there is always one that is released first so the aim direction ends up being either left or
 	# down, not left AND down.
 	if (
-		mouse_aiming_timer.is_stopped()
-		and _event is InputEventKey
+		_aims_with_actions() and _event is InputEventKey
 		and (
-			_event.is_action_released(&"aim_left")
-			or _event.is_action_released(&"aim_right")
-			or _event.is_action_released(&"aim_up")
-			or _event.is_action_released(&"aim_down")
+			_event.is_action_released(&"aim_left") or _event.is_action_released(&"aim_right")
+			or _event.is_action_released(&"aim_up") or _event.is_action_released(&"aim_down")
 		)
 	):
 		d_pad_timer.start()
 		return
 
-	if mouse_aiming_timer.is_stopped():
+	if _aims_with_actions():
 		_update_hook_angle()
 
 	if Input.is_action_just_pressed(&"throw"):
@@ -130,6 +153,54 @@ func _unhandled_input(_event: InputEvent) -> void:
 		pressing_throw_action = false
 		throw_failed_while_pressing = false
 		return
+
+
+## Swiping aims in the direction of the swipe, from where the finger touched
+## the screen to where it is now. Lifting the finger throws, unless it ends up
+## closer than [constant SWIPE_MIN_DISTANCE] to where it touched the screen.
+## That way a tap doesn't throw, and moving the finger back cancels the throw.
+## Only one finger is followed at a time.
+func _handle_touch(event: InputEvent) -> void:
+	if event is InputEventScreenDrag:
+		if event.index == _touch_index:
+			_aim_with_swipe(event.position)
+	elif event.pressed:
+		if _touch_index != -1:
+			return
+		_touch_index = event.index
+		_touch_start_position = event.position
+	elif event.index == _touch_index:
+		_touch_index = -1
+		if _aim_with_swipe(event.position):
+			_touch_throw_requested = true
+
+
+## Aim in the direction of the swipe that ends at [param swipe_end], in viewport
+## coordinates. Returns false without aiming if the swipe is too short.
+func _aim_with_swipe(swipe_end: Vector2) -> bool:
+	var swipe := swipe_end - _touch_start_position
+	if swipe.length() < SWIPE_MIN_DISTANCE:
+		return false
+	# Convert the direction from viewport to world space, in case the canvas is
+	# rotated or scaled unevenly.
+	var direction := get_canvas_transform().affine_inverse().basis_xform(swipe)
+	_hook_angle = direction.angle()
+	_hook_angle_set = true
+	return true
+
+
+## True if the aim actions should aim: when playing with a joypad, or with the
+## keyboard only. With keyboard + mouse the mouse aims, and the aim keys, which
+## are also the movement keys, must not.
+func _aims_with_actions() -> bool:
+	return Settings.keyboard_only or InputHelper.device != InputHelper.DEVICE_KEYBOARD
+
+
+func _aim_at(target: Vector2) -> void:
+	var axis := target - global_position
+	if not axis.is_zero_approx():
+		_hook_angle = axis.angle()
+		_hook_angle_set = true
 
 
 func _update_hook_angle() -> void:
@@ -218,6 +289,9 @@ func _set_state(new_state: State) -> void:
 			rotation = 0
 			pressing_throw_action = false
 			throw_failed_while_pressing = false
+			# A disabled control doesn't get the touch release.
+			_touch_index = -1
+			_touch_throw_requested = false
 			clear_pointing_at_area()
 		State.AIMING_PAUSED:
 			clear_pointing_at_area()
@@ -226,25 +300,76 @@ func _set_state(new_state: State) -> void:
 	if ray_cast_2d:
 		ray_cast_2d.enabled = state != State.DISABLED
 	set_process_unhandled_input(state != State.DISABLED)
+	_update_mouse_hold()
 
 
 func _ready() -> void:
+	Settings.keyboard_only_changed.connect(_update_mouse_hold)
+	# The player's control stays aiming while the player lacks the grappling
+	# ability, but its parent PlayerHook is hidden then.
+	visibility_changed.connect(_update_mouse_hold)
 	_set_state(state)
+
+
+func _enter_tree() -> void:
+	if is_node_ready():
+		_update_mouse_hold()
+
+
+func _exit_tree() -> void:
+	# is_inside_tree() is still true here, so release explicitly.
+	if _holding_mouse:
+		_holding_mouse = false
+		MouseManager.release()
+
+
+## Hold the [MouseManager] while aiming with the mouse, which is when this
+## control is visible and not disabled, and [member Settings.keyboard_only] is
+## off. This way the crosshair cursor shows when moving the mouse to aim.
+func _update_mouse_hold() -> void:
+	# Keep holding during State.AIMING_PAUSED too, not only State.AIMING. After a
+	# throw, the player may want to move the mouse to the next target while the
+	# string is out. Releasing would hide the crosshair right away and keep it
+	# hidden until aiming resumes, so the player couldn't see where the mouse is.
+	var should_hold := (
+		is_visible_in_tree() and state != State.DISABLED and not Settings.keyboard_only
+	)
+	if should_hold == _holding_mouse:
+		return
+	_holding_mouse = should_hold
+	if should_hold:
+		MouseManager.hold()
+	else:
+		MouseManager.release()
 
 
 func _process(_delta: float) -> void:
 	if state == State.DISABLED:
 		return
 	rotation = _get_hook_angle()
+	var touch_throw := _touch_throw_requested
+	_touch_throw_requested = false
+	if touch_throw:
+		# The finger may have been lifted somewhere else than the last drag, or
+		# the swipe may have been too fast for any drag, so update the ray now
+		# instead of waiting for the next physics frame.
+		ray_cast_2d.force_raycast_update()
 	if state == State.AIMING:
 		_update_pointing_at_area()
 	sprite_2d.modulate = Color.WHITE if _pointing_at_area else Color(Color.WHITE, 0.5)
 	if hooked_to:
 		# Currently the control can be hooked to a single area.
 		return
-	if state != State.AIMING_PAUSED and pressing_throw_action and not throw_failed_while_pressing:
+	if state == State.AIMING_PAUSED:
+		return
+	if touch_throw:
+		_throw()
+		# Unlike holding the throw action, a touch throws only once.
+		throw_failed_while_pressing = false
+	elif pressing_throw_action and not throw_failed_while_pressing:
 		_throw()
 
 
 func _on_d_pad_timer_timeout() -> void:
-	_update_hook_angle()
+	if _aims_with_actions():
+		_update_hook_angle()

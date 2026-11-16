@@ -37,6 +37,7 @@ const MAX_SPEED: float = 300
 ## Sound played when entering DETECTING or ALERTED states.
 @export var alert_sound_stream: AudioStream:
 	set = _set_alert_sound_stream
+## Sound played when entering ATTACKING state.
 
 var state: State = State.IDLE:
 	set = _set_state
@@ -61,6 +62,7 @@ var _previous_non_detecting_state: State = State.IDLE
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var char_sprite_behavior: CharacterSpriteBehavior = %CharacterSpriteBehavior
 @onready var _alert_sound: AudioStreamPlayer = %AlertSound
+@onready var _attack_sound: AudioStreamPlayer2D = %AttackSound
 
 
 func _ready() -> void:
@@ -72,7 +74,6 @@ func _ready() -> void:
 	awareness_bar.visible = false
 	_set_alert_sound_stream(alert_sound_stream)
 	_initial_position = global_position
-
 	state = State.IDLE
 
 
@@ -150,7 +151,9 @@ func _process_movement(delta: float) -> void:
 
 				if _current_chase_speed > chase_speed:
 					_current_chase_speed = move_toward(
-						_current_chase_speed, chase_speed, burst_deceleration * delta
+						_current_chase_speed,
+						chase_speed,
+						burst_deceleration * delta,
 					)
 
 				velocity = direction_to_player * _current_chase_speed
@@ -210,11 +213,8 @@ func _update_detection(delta: float) -> void:
 	if _awareness >= time_to_detect_player:
 		state = State.ALERTED
 	elif (
-		_awareness == 0.0
-		and state != State.IDLE
-		and state != State.WANDERING
-		and state != State.RETURNING
-		and state != State.ATTACKING
+		_awareness == 0.0 and state != State.IDLE and state != State.WANDERING
+		and state != State.RETURNING and state != State.ATTACKING
 	):
 		state = State.WANDERING
 
@@ -264,6 +264,8 @@ func _set_state(new_state: State) -> void:
 		State.ALERTED:
 			if not _alert_sound.playing:
 				_alert_sound.play()
+			if not _attack_sound.playing:
+				_attack_sound.play()
 			awareness_bar.value = awareness_bar.max_value
 			awareness_bar.tint_progress = Color.RED
 			awareness_bar.modulate.a = 1.0

@@ -16,11 +16,20 @@ extends CharacterBody2D
 ## If you want to throw different scenes depending on the target label, use
 ## [member projectile_scene_for_label].
 
-enum State { IDLE, WALKING, ATTACKING, DEFEATED }
+enum State {
+	IDLE,
+	WALKING,
+	ATTACKING,
+	DEFEATED,
+}
 
 ## Animations that [member sprite_frames] is expected to have.
 const REQUIRED_ANIMATIONS: Array[StringName] = [
-	&"idle", &"walk", &"attack", &"attack anticipation", &"defeated"
+	&"idle",
+	&"walk",
+	&"attack",
+	&"attack anticipation",
+	&"defeated",
 ]
 
 const DEFAULT_SPRITE_FRAME: SpriteFrames = preload("uid://deosvk5k4su5f")
@@ -91,8 +100,12 @@ const WALK_TARGET_SKIP_RANGE: float = 0.25
 		update_configuration_warnings()
 
 ## The speed of the projectile initial impulse and the projectile bouncing impulse.
+# fmt: off
+# gdscript-formatter joins the annotation with the variable, going over the
+# maximum line length.
 @export_range(10., 100., 5., "or_greater", "or_less", "suffix:m/s")
 var projectile_speed: float = 30.0
+# fmt: on
 
 ## The life span of the projectile.
 @export_range(0., 10., 0.1, "or_greater", "suffix:s") var projectile_duration: float = 5.0
@@ -129,6 +142,7 @@ var allowed_labels: Array[String] = ["???"]
 ## color-matching game.
 var color_per_label: Dictionary[String, Color]
 
+var _player: Node2D
 var _initial_position: Vector2
 var _target_position: Vector2
 var _is_attacking: bool
@@ -171,10 +185,10 @@ func _ready() -> void:
 	_set_sprite_frames(sprite_frames)
 	if Engine.is_editor_hint():
 		return
-	var player: Player = get_tree().get_first_node_in_group("player")
-	if is_instance_valid(player):
+	_player = get_tree().get_first_node_in_group("player") as Node2D
+	if is_instance_valid(_player):
 		var direction: Vector2 = projectile_marker.global_position.direction_to(
-			player.global_position
+			_player.global_position
 		)
 		scale.x = 1 if direction.x < 0 else -1
 	if autostart:
@@ -189,7 +203,7 @@ func _draw() -> void:
 		draw_circle(
 			_initial_position - position,
 			walking_range * WALK_TARGET_SKIP_RANGE,
-			Color(0.0, 0.0, 0.0, 0.3)
+			Color(0.0, 0.0, 0.0, 0.3),
 		)
 		if get_tree().is_debugging_collisions_hint():
 			## Only when playing with collision shapes visible, draw a dot for the target position:
@@ -254,15 +268,13 @@ func _set_target_position() -> void:
 		_initial_position
 		+ (
 			Vector2.LEFT.rotated(randf_range(start_angle, end_angle))
-			* walking_range
-			* randf_range(WALK_TARGET_SKIP_RANGE, 1.0)
+			* walking_range * randf_range(WALK_TARGET_SKIP_RANGE, 1.0)
 		)
 	)
 
 
 func _on_timeout() -> void:
-	var player: Player = get_tree().get_first_node_in_group("player")
-	if not is_instance_valid(player):
+	if not is_instance_valid(_player):
 		return
 	_is_attacking = true
 	animation_player.play(&"attack")
@@ -270,12 +282,11 @@ func _on_timeout() -> void:
 
 
 func shoot_projectile() -> void:
-	var player: Player = get_tree().get_first_node_in_group("player")
 	if not allowed_labels:
 		_is_attacking = false
 		return
 
-	if shoot_projectile_at(player):
+	if shoot_projectile_at(_player):
 		_set_target_position()
 		_is_attacking = false
 

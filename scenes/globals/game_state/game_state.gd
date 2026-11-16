@@ -7,19 +7,21 @@ extends Node
 ## signals like [signal PlayerState.abilities_changed].
 signal player_changed(old: PlayerState, new: PlayerState)
 
+## Emitted when the state is cleared.
+signal cleared
+
+## Emitted when [member quest] changes, due to a quest being started, completed,
+## or abandoned.
+signal quest_changed
+
 const SAVE_PATH := "user://saved_game.tres"
 
 ## The player abilities to have from the beginning
 ## when not running the game from the main scene.
-const DEBUG_PLAYER_ABILITIES := [
-	Enums.PlayerAbilities.ABILITY_A,
-	Enums.PlayerAbilities.ABILITY_B,
-]
+const DEBUG_PLAYER_ABILITIES := [Enums.PlayerAbilities.ABILITY_A, Enums.PlayerAbilities.ABILITY_B]
 
 ## Scenes to skip from saving.
-const TRANSIENT_SCENES := [
-	"res://scenes/menus/title/title_screen.tscn",
-]
+const TRANSIENT_SCENES := ["res://scenes/menus/title/title_screen.tscn"]
 
 ## The progress is persisted only if the game is run normally from the main scene.
 ## Otherwise, it means we are playing a specific scene: the current scene from the editor or
@@ -41,6 +43,7 @@ var quest: QuestState:
 		var old_player_state := player
 		_saved_game.quest = new_value
 		player_changed.emit(old_player_state, player)
+		quest_changed.emit()
 
 ## State concerning the current scene, or [code]null[/code] if there is no current scene
 var scene: PerSceneState:
@@ -82,34 +85,69 @@ func _ready() -> void:
 	if not persist_progress:
 		if current_scene:
 			guess_quest(current_scene.scene_file_path)
+			set_scene(current_scene.scene_file_path)
 		# Grant all debug player abilities:
 		for ability: Enums.PlayerAbilities in DEBUG_PLAYER_ABILITIES:
 			player.set_ability(ability, true)
 		return
 
 
-## Sets [member quest], sets up a new [PlayerState] if necessary, and clears the
-## inventory. Note that this does not actually switch to the first scene of [param
-## new_quest].
-func start_quest(new_quest: Quest) -> void:
-	# TODO: this suggests that the inventory should be part of QuestState
-	global.clear_inventory()
+## Restores [member quest] and [member scene] from the point where the quest was
+## previously suspended. [method can_restore_quest] must return
+## [code]true[/code] for this to be legal.
+func restore_quest() -> void:
+	if not quest:
+		push_error("restore_quest() but not on a quest")
+		return
 
+	var key := quest.quest.resource_path
+	if key not in global.suspended_quests:
+		push_error("Tried to restore %s but was not suspended" % key)
+		return
+
+	var suspended_quest := global.suspended_quests[key]
+	global.suspended_quests.erase(key)
+
+	quest = suspended_quest.quest
+	scene = suspended_quest.scene
+
+	if quest.quest is LoreQuest:
+		# Add any lore abilities that the player gained since suspending this
+		# quest.
+		quest.player.abilities |= global.player.abilities
+	elif quest.quest is not StoryQuest:
+		for ability: Enums.PlayerAbilities in DEBUG_PLAYER_ABILITIES:
+			quest.player.set_ability(ability, true)
+
+
+## Sets [member quest], setting up a new [PlayerState] if necessary.
+## Note that this does not switch scenes into the quest.
+func set_quest(new_quest: Quest) -> void:
 	var quest_player_state: PlayerState
-	if new_quest.is_lore_quest:
+	if new_quest is LoreQuest:
 		# Duplicate the current global player state. If the quest is completed,
 		# it will be copied back; if abandoned, it will be discarded.
 		quest_player_state = global.player.duplicate()
 		quest_player_state.reset_lives()
+	elif new_quest is not StoryQuest:
+		# For quests that are not LoreQuests or StoryQuests (e.g. dev archipelago quests)
+		# use a fresh player state and grant all debug player abilities.
+		quest_player_state = PlayerState.new()
+		for ability: Enums.PlayerAbilities in DEBUG_PLAYER_ABILITIES:
+			quest_player_state.set_ability(ability, true)
 	else:
 		# Use a fresh player state for StoryQuests
 		quest_player_state = PlayerState.new()
 
 	quest = QuestState.new(new_quest, quest_player_state)
+	quest.inventory.items = global.inventory.items.filter(
+		func(i: TaggedItem) -> bool:
+			return i.quest_path == new_quest.resource_path,
+	)
 
 
-## Guess which quest the given scene is part of, and set [member current_quest]
-## accordingly. If the quest cannot be determined, unset [member current_quest].
+## Guess which quest the given scene is part of, and set [member quest]
+## accordingly. If the quest cannot be determined, unset [member quest].
 ## [br][br]
 ## This is for use when jumping to a particular scene during development (e.g.
 ## with F6 in the editor, the URL hash in the browser, or in future if we add a
@@ -120,10 +158,10 @@ func guess_quest(scene_path_or_uid: String) -> void:
 	while dir_path != "res://":
 		var quest_path := dir_path.path_join("quest.tres")
 		if ResourceLoader.exists(quest_path, "Resource"):
+			prints("Guessed quest", quest_path, "from scene", scene_path)
 			var q := ResourceLoader.load(quest_path) as Quest
 			quest = QuestState.new(q, PlayerState.new())
 			quest.challenge_start_scene = scene_path
-			prints("Guessed quest", quest.resource_path, "from scene", scene_path)
 			return
 
 		dir_path = dir_path.get_base_dir()
@@ -146,7 +184,7 @@ func set_scene(scene_path: String, spawn_point: NodePath = ^"") -> void:
 func mark_quest_completed() -> void:
 	assert(quest)
 
-	if quest.quest.is_lore_quest:
+	if quest.quest is LoreQuest:
 		# Copy quest abilities to game abilities.
 		global.player = quest.player
 
@@ -155,14 +193,40 @@ func mark_quest_completed() -> void:
 
 
 ## Abandon the current [member quest] without marking it as completed.
-func abandon_quest() -> void:
+## If [param suspend] is [code]true[/code], progress in the quest will be saved
+## so that it can be resumed later.
+func abandon_quest(suspend: bool = true) -> void:
+	if not quest:
+		push_warning("abandon_quest(): no active quest")
+		return
+
+	# TODO: only suspend the quest if meaningful progress has been made, not if
+	# the player abandons it immediately.
+	if suspend:
+		global.suspended_quests[quest.quest.resource_path] = SuspendedQuestState.new(quest, scene)
+
 	quest = null
-	global.clear_inventory()
+
+
+## True if involved in a quest and the current quest has retelling.
+func has_retelling() -> bool:
+	return GameState.quest and GameState.quest.quest and GameState.quest.quest.retelling
+
+
+## True if involved in a quest.
+func is_item_offering_possible() -> bool:
+	if not quest:
+		return false
+
+	# TODO: only if there are *new* threads collected. Problem is - what
+	# triggers the end-of-quest cutscene if there are no new threads?
+	return true
 
 
 ## Clear the persisted state.
 func clear() -> void:
 	_saved_game = SavedGame.new()
+	cleared.emit()
 
 
 ## Check if there is persisted state.

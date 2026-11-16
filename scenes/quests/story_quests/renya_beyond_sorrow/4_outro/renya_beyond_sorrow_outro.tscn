@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cqs18blj5pvx7"]
 
 [ext_resource type="PackedScene" uid="uid://2rbpl811wlv1" path="res://scenes/game_elements/props/background_music/background_music.tscn" id="1_2lbeu"]
-[ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="1_trpnl"]
 [ext_resource type="AudioStream" uid="uid://p0x6sl0v604j" path="res://scenes/quests/story_quests/renya_beyond_sorrow/Complementos/music/4. Fading Memories (Loop).ogg" id="2_mbf3i"]
 [ext_resource type="TileSet" uid="uid://dmg13wgcc7so5" path="res://scenes/quests/story_quests/renya_beyond_sorrow/renya_tileset.tres" id="2_trpnl"]
 [ext_resource type="SpriteFrames" uid="uid://h5omfgpsbww3" path="res://scenes/quests/story_quests/renya_beyond_sorrow/player_components/renya_player_general.tres" id="3_2lbeu"]
@@ -12,8 +11,6 @@
 
 [node name="BackgroundMusic" parent="." unique_id=1564755791 instance=ExtResource("1_2lbeu")]
 stream = ExtResource("2_mbf3i")
-
-[node name="HUD" parent="." unique_id=275860385 instance=ExtResource("1_trpnl")]
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=1783321348]
 
@@ -99,7 +96,7 @@ editor_draw_limits = true
 [node name="OnTheGround" type="Node2D" parent="." unique_id=769881264]
 y_sort_enabled = true
 
-[node name="Character" type="AnimatedSprite2D" parent="OnTheGround" unique_id=576736229]
+[node name="Character" type="AnimatedSprite2D" parent="OnTheGround" unique_id=576736229 groups=["player"]]
 position = Vector2(400, 349)
 sprite_frames = ExtResource("3_2lbeu")
 animation = &"idle"
@@ -110,5 +107,5 @@ autoplay = "idle"
 [node name="Cinematic" type="Node2D" parent="." unique_id=623316175]
 script = ExtResource("4_mbf3i")
 dialogue = ExtResource("5_4sglf")
-next_scene = "uid://cufkthb25mpxy"
+target = 1
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
